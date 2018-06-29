@@ -1,0 +1,165 @@
+$container-lg: 992px;
+$container-md: 900px;
+
+@import "../shared/colours";
+<% if ruckus? %>
+  $brand-primary: #008da0;
+<% else %>
+  $brand-primary: #bf1e2e;
+<% end %>
+
+$font-size-base: 14px;
+$font-family-sans-serif: "Lato", sans-serif;
+$font-family-serif: "Merriweather", serif;
+$font-family-base: $font-family-serif;
+$headings-font-family: $font-family-sans-serif;
+$white: #fff;
+
+@import "bootstrap";
+@import "../fonts/font-reservation";
+@import "../fonts/font-ruckus";
+@import "../shared/magnific-popup";
+@import "jquery.mcustomscrollbar";
+
+$font-family-reservation: 'reservation_wideregular';
+$font-family-ruckus: 'ruckus';
+
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: $screen-sm-min) {}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: $screen-md-min) {}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: $screen-lg-min) {}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  background: #f7f7f7;
+}
+input, textarea, select, a {
+  outline: none;
+  &:focus {
+    outline: none;
+  }
+}
+
+// Default Form Styles
+
+form {
+  font-family: $font-family-sans-serif;
+  .form-group {
+    position: relative;
+    &.clear {
+      clear: both;
+      @media (min-width: 768px) {
+        clear: none;
+      }
+    }
+  }
+  label {
+    font-family: $font-family-sans-serif;
+  }
+  input.form-control,
+  textarea.form-control {
+    border-radius: 0;
+    border: 1px solid #d9d9d9;
+    background: #fff;
+    padding: 10px 13px;
+    height: 40px;
+    line-height: 20px;
+    -webkit-box-shadow: inset 0px 2px 2px 0px rgba(217, 217, 217, 0.3);
+       -moz-box-shadow: inset 0px 2px 2px 0px rgba(217, 217, 217, 0.3);
+            box-shadow: inset 0px 2px 2px 0px rgba(217, 217, 217, 0.3);
+  }
+  textarea.form-control {
+    height: 100px;
+    resize: none;
+  }
+  select.form-control {
+    height: 40px;
+  }
+  input.form-control,
+  textarea.form-control,
+  select.form-control {
+    &:focus {
+      border: 1px solid $brand-primary;
+      outline: none;
+      box-shadow: none;
+      .theme-red & { border-color: $brand-red; }
+      .theme-green & { border-color: $brand-green; }
+      .theme-blue & { border-color: $brand-blue; }
+      .theme-grey & { border-color: $brand-grey; }
+    }
+  }
+  .checkbox {
+    font-size: 0.9em;
+  }
+  button[type="submit"], button.next-step, button[disabled], .btn-default[disabled] {
+    background: $brand-primary;
+    color: #fff;
+    border: 0;
+    min-width: 200px;
+    height: 45px;
+    border-radius: 25px;
+    outline: none;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 400;
+    text-shadow: 0;
+    font-family: $font-family-sans-serif;
+    .theme-red & { background: $brand-red; }
+    .theme-green & { background: $brand-green; }
+    .theme-blue & { background: $brand-blue; }
+    .theme-grey & { background: $brand-grey; }
+    &:hover {
+      background: lighten($brand-primary, 10%);
+      color: #fff;
+      .theme-red & { background: lighten($brand-red, 10%); }
+      .theme-green & { background: lighten($brand-green, 10%); }
+      .theme-blue & { background: lighten($brand-blue, 10%); }
+      .theme-grey & { background: lighten($brand-grey, 10%); }
+    }
+    &:focus {
+      outline: none;
+      background: $brand-primary;
+      color: #fff;
+      .theme-red & { background: $brand-red; }
+      .theme-green & { background: $brand-green; }
+      .theme-blue & { background: $brand-blue; }
+      .theme-grey & { background: $brand-grey; }
+    }
+    &.email {
+      width: 40px;
+      height: 30px;
+      min-width: 0;
+      text-align: center;
+      font-size: 20px;
+      line-height: 20px;
+      border-radius: 4px;
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      i {
+        position: absolute;
+        top: 5px;
+        left: 6px;
+      }
+    }
+  }
+  button.next-step {
+    background: #333 !important;
+    &:hover {
+      background: lighten(#333, 10%) !important;
+    }
+  }
+}
+
+
+@import "../shared/modal";
+
+/* ================================================================
+Admin Bar Styles
+================================================================ */
+@import "../partials/admin-bar";

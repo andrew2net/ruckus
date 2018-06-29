@@ -1,0 +1,18 @@
+%h1 Issues for #{@account.email}
+
+%table.table
+  %tr
+    %th Title
+    %th Actions
+
+  - collection.each do |issue|
+    %tr
+      %td= issue.title
+      %td
+        = link_to 'Show', admin_account_profile_issue_path(@account, @profile, issue)
+        = link_to 'Edit', edit_admin_account_profile_issue_path(@account, @profile, issue)
+        = link_to 'Destroy', admin_account_profile_issue_path(@account, @profile, issue), method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Issue', new_admin_account_profile_issue_path(@account, @profile)

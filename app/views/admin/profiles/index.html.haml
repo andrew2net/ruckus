@@ -1,0 +1,26 @@
+- model_class = Profile
+.page-header
+  %h1=t '.title', default: model_class.model_name.human.pluralize.titleize
+
+%hr
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th= model_class.human_attribute_name(:id)
+      %th= model_class.human_attribute_name(:name)
+      %th= model_class.human_attribute_name(:created_at)
+      %th Actions
+
+  %tbody
+    - collection.each do |profile|
+      %tr
+        %td= link_to profile.id, admin_profile_path(profile)
+        %td= profile.name
+        %td= l profile.created_at
+        %td= link_to 'Delete', admin_profile_path(profile), method: :delete,
+                                                            data: { confirm: 'Are you sure?' }
+
+= link_to t('.new', default: t("helpers.links.new")),
+          new_admin_profile_path,
+          class: 'btn btn-primary'

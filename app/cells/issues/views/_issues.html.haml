@@ -1,0 +1,12 @@
+.slide-fade-wrapper
+  .container
+    .slide-wrapper
+      .css-slider{ data: { start: 1, next: '#issues-slider-wrapper .next', prev: '#issues-slider-wrapper .prev', touch: true } }
+        - collection.each do |issue|
+          = render_issue(issue)
+    = link_to '#prev', class: 'prev slider-nav' do
+      %span
+        %i.fa.fa-chevron-circle-left
+    = link_to '#next', class: 'next slider-nav' do
+      %span
+        %i.fa.fa-chevron-circle-right

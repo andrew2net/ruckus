@@ -1,0 +1,29 @@
+.photo-crop-wrapper{ type: :photo }
+  .photo-crop
+    .result
+    .preview-box
+      %h4 Preview
+      %p Move and change cropping area to see how your image will look.
+      .preview-container
+        = image_tag nil
+      = button_tag 'Cancel', class: 'button button-cancel'
+      = button_tag 'Reset', class: 'button button-reset'
+      = button_tag 'Done', class: 'button button-crop orange', data: { disable_with: 'Please wait...' }
+
+= custom_form_for current_profile, url:  profile_photo_path,
+                                   as:   :profile,
+                                   html: { class: 'media-upload-form',
+                                           id: 'media-upload-form' } do |f|
+
+  = f.simple_fields_for :photo_medium do |photo|
+    .fileupload-wrapper
+      .fileupload.button.white.large
+        %span
+          %i.icon-plus-circled
+          Upload Image
+          = photo.input :image, as: :file,
+                                input_html: { class: "upload #{profile.candidate? ? 'upload-profile-pic' : 'instant-upload'}" }
+
+          = f.input :photo_cropping_width, as: :hidden, input_html: { class: 'crop-width' }
+          = f.input :photo_cropping_offset_x, as: :hidden, input_html: { class: 'crop-x' }
+          = f.input :photo_cropping_offset_y, as: :hidden, input_html: { class: 'crop-y' }

@@ -1,0 +1,10 @@
+= show_for(@issue) do |issue|
+  = issue.attribute :title
+  = issue.attribute :description
+  = issue.association :issue_category
+
+= link_to 'Edit', edit_admin_account_profile_issue_path(@account, @profile, @issue)
+|
+= link_to 'Back', admin_account_profile_issues_path(@account, @profile)
+|
+= link_to 'Back to Account', admin_account_path(@account)

@@ -1,0 +1,13 @@
+.row
+  .container
+    .col-lg-4
+      = simple_form_for resource, url: path, html: { class: 'form-horizontal new_account' } do |f|
+        = f.input :email
+        = f.input :password
+        = f.input :password_confirmation
+
+        .form-actions
+          = f.button :submit, 'Create Account', class: 'btn-green', data: { disable_with: 'Please wait...' }
+          = link_to t('.cancel', default: t("helpers.links.cancel")),
+                    admin_accounts_path,
+                    class: 'btn btn-default'

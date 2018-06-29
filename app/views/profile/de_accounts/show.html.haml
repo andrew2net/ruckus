@@ -1,0 +1,100 @@
+- title("#{app_name} Admin | Settings | #{donation_engine} Account")
+
+= render 'shared/profile/nav', submenu: :settings, profile: current_profile
+
+.content
+  %h1 #{ruckus? ? 'DEMOCRACYENGINE' : 'ONLINE FUNDRAISING, LLC'} ACCOUNT INFO
+  .row
+    .col-sm-12
+      %p At this point we are unable to submit updated account information to #{donation_engine}. However, if you contact #{donation_engine} at
+      - if ruckus?
+        #{mail_to 'support@democracyengine.com'}
+      - else
+        #{mail_to 'support@onlinefundraisingllc.com'}
+      and provide them with the Remote Recipient ID listed below, they will be able to assist you with any modifications to the information submitted to them.
+      %p If you need to change your campaign disclaimer, #{link_to 'click here', profile_builder_path(resources: :info) }
+      %p If you need to change any of your other settings, such as donation maximum or eligibility requirements, please contact us at #{mail_to "info@#{Figaro.env.domain}"}.
+  .row
+    .col-sm-12
+      %h3 General Info
+  .row
+    .col-sm-6 Email:
+    .col-sm-6= resource.email
+  .row
+    .col-sm-6 Name:
+    .col-sm-6= resource.account_full_name
+  .row
+    .col-sm-6 Remote Recipient ID:
+    .col-sm-6= resource.uuid
+  .row
+    .col-sm-12
+      %h3 Account Info
+  .row
+    .col-sm-6 Committee Name:
+    .col-sm-6= resource.account_committee_name
+  .row
+    .col-sm-6 Committee ID:
+    .col-sm-6= resource.account_committee_id
+  .row
+    .col-sm-6 Address:
+    .col-sm-6= "#{resource.account_address}, #{resource.account_city}, #{resource.account_state}, #{resource.account_zip}"
+  .row
+    .col-sm-6 Recipient Type:
+    .col-sm-6= resource.account_recipient_kind.humanize
+  .row
+    .col-sm-6 Party:
+    .col-sm-6= resource.account_party
+  .row
+    .col-sm-6 District/Locality
+    .col-sm-6= resource.account_district_or_locality
+  .row
+    .col-sm-6 Campaign Disclaimer
+    .col-sm-6= resource.account_campaign_disclaimer
+  .row
+    .col-sm-12
+      %h3 Donation Settings
+  .row
+    .col-sm-6 Donation Max Cap:
+    .col-sm-6= number_to_currency(resource.contribution_limit)
+  .row
+    .col-sm-6 Ask for Donor's Employer Name?
+    .col-sm-6.show_employer_name= resource.show_employer_name? ? 'Yes' : 'No'
+  .row
+    .col-sm-6 Ask for Donor's Employer Address?
+    .col-sm-6.show_employer_address= resource.show_employer_address? ? 'Yes' : 'No'
+  .row
+    .col-sm-6 Ask for Donor's Occupation?
+    .col-sm-6.show_employer_occupation= resource.show_occupation? ? 'Yes' : 'No'
+  .row
+    .col-sm-12
+      %h3 Bank Info:
+  .row
+    .col-sm-6 Bank Account Nickname:
+    .col-sm-6= resource.bank_account_name
+  .row
+    .col-sm-6 Bank Routing Number:
+    .col-sm-6= resource.bank_routing_number
+  .row
+    .col-sm-6 Bank Account Number:
+    .col-sm-6= resource.bank_account_number
+  .row
+    .col-sm-12
+      %h3 Contact Info:
+  .row
+    .col-sm-6 Name:
+    .col-sm-6= "#{resource.contact_first_name} #{resource.contact_last_name}"
+  .row
+    .col-sm-6 Email:
+    .col-sm-6= resource.contact_email
+  .row
+    .col-sm-6 Phone:
+    .col-sm-6= resource.contact_phone
+  .row
+    .col-sm-6 Address:
+    .col-sm-6= "#{resource.contact_address}, #{resource.contact_city}, #{resource.contact_state}, #{resource.contact_zip}"
+  .row
+    .col-sm-12
+      %h3 Additional Agreements
+  - resource.agreements.each do |agreement|
+    .row
+      .col-sm-12= agreement

@@ -1,0 +1,32 @@
+.join-campaign-container
+  - if profile.candidate?
+    %p#profile-tagline{ data: { edit: 'profile-tagline' } }
+      = render_tagline_or_placeholder
+      = render_general_info_pencil
+
+  = simple_form_for user, url: front_profile_users_path(profile),
+                          authenticity_token: true,
+                          as: :user,
+                          data: { remote: true },
+                          html: { class:  'form-inline join-campaign new-subscriber-form',
+                                  method: :post } do |f|
+
+    .form-group
+      = f.input_field :email, type:        'email',
+                              placeholder: "#{labels[:join_campaign]}",
+                              class:       'form-control required',
+                              name:        'user[email]',
+                              id:          'user_email',
+                              value:       ''
+
+      = button_tag type: 'submit', class: 'email' do
+        %i.icon-mail
+    = f.error :email
+    .terms By submitting, I agree to receive emails from #{profile.name} and #{app_name}
+
+  - if profile.register_to_vote_on?
+    %div{ data: { edit: 'register-to-vote-url' } }
+      = link_to 'Register to Vote', profile.register_to_vote_url, class: 'btn', target: :_blank
+      - if ruckus?
+        = render_general_info_pencil
+

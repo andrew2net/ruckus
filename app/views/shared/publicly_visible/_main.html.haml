@@ -1,0 +1,10 @@
+- title(profile.name)
+- bodyclasses(" #{profile.theme}")
+
+#wrapper
+  = cell('header/', profile: profile).call
+  #about-block= cell('bio_featured/', profile: profile).call
+  #issues-block= cell('issues/', profile: profile).call
+  #media-block= cell('media_stream/', profile: profile).call
+  #press-events-block= cell('press_events/', profile: profile).call
+  = cell('footer/', profile: profile).call

@@ -1,0 +1,18 @@
+%h1 Press for #{@profile.account.email}
+
+%table.table
+  %tr
+    %th Title
+    %th Actions
+
+  - collection.each do |press_release|
+    %tr
+      %td= press_release.title
+      %td
+        = link_to 'Show', admin_account_profile_press_release_path(@account, @profile, press_release)
+        = link_to 'Edit', edit_admin_account_profile_press_release_path(@account, @profile, press_release)
+        = link_to 'Destroy', admin_account_profile_press_release_path(@account, @profile, press_release), method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to "New Press Release", new_admin_account_profile_press_release_path(@account, @profile)

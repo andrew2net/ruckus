@@ -1,0 +1,7 @@
+- title("#{app_name} Admin | Builder")
+- bodyclasses('builder')
+
+= render 'shared/profile/nav', submenu: :builder, profile: current_profile
+.builder-frame
+  = render 'shared/publicly_visible/main', profile: current_profile
+= render 'shared/profile/onboarding_tips'

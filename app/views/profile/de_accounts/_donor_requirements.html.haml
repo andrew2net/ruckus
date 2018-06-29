@@ -1,0 +1,10 @@
+%ul.no-style
+  %li
+    %span.check-box.active= f.input_field :show_employer_name, as: :boolean
+    = f.label :show_employer_name, 'Employer Name'
+  %li
+    %span.check-box.active= f.input_field :show_occupation, as: :boolean
+    = f.label :show_occupation, 'Occupation'
+  %li
+    %span.check-box= f.input_field :show_employer_address, as: :boolean
+    = f.label :show_employer_address, 'Employer Address'

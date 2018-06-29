@@ -1,0 +1,17 @@
+#about-tab-wrapper{ class: biography_classes }
+  #tab-selector-wrapper.tab-selector-wrapper
+    #tab-selector.tab-selector #{labels[:biography_informal]}
+    .tab-outer
+      %ul#about-tabs.tabs.list-unstyled
+        %li.active
+          = link_to "#{labels[:biography_informal]}", '#'
+          .edit-section
+            = render_bio_pencil
+            = render_bio_switch
+
+  #about-tab-containers.expansion-wrapper.short
+    .biography.about-tab-container.expansion-container.active
+      #profile-about= simple_format(profile.biography)
+
+    = link_to '#', id: 'about-tab-button', class: 'expansion-button hide' do
+      %i.fa.fa-chevron-circle-down

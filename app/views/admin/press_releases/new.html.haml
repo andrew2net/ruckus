@@ -1,0 +1,7 @@
+%h1 New Update for #{@account.email}
+
+= render 'form'
+
+= link_to 'Back', admin_account_profile_press_releases_path(@account, @profile)
+|
+= link_to 'Back to Account', admin_account_profile_path(@account, @profile)

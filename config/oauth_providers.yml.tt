@@ -1,0 +1,7 @@
+oauth_providers:
+  twitter:
+    client_id: 'L3T1M54sua04O0GqnPLxg'
+    client_secret: 'ezbMmYirXWgkyeZIN0Kef8zMhTv7jGQFuYhKZcwD5Uc'
+  facebook:
+    client_id: '215180472014268'
+    client_secret: 'd81640e1523c900d63545f8842f7b64b'

@@ -1,0 +1,25 @@
+.devise_page
+  %h2 Sign in
+
+  .devise_form
+    = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      .form_inputs
+        %table.table-condensed
+          %tr
+            %td= f.label :email
+            %td
+              .relative= f.input_field :email, required: false, autofocus: true
+            %td= f.error :email
+          %tr
+            %td= f.label :password
+            %td
+              .relative= f.input_field :password, required: false
+            %td= f.error :email
+          %tr
+            %td
+            %td= f.input :remember_me, as: :boolean if devise_mapping.rememberable?
+
+      .form-actions
+        = f.button :submit, 'Sign in'
+
+  = render 'devise/shared/links'

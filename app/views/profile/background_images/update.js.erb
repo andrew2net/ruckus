@@ -1,0 +1,4 @@
+$('#header').replaceWith('<%= j cell('header/', profile: current_profile).call %>');
+$('.ruckus-modal-body-content').html('<%= j render 'edit' %>');
+<%= render 'shared/profile/update_completion_percent' %>
+<%= render 'shared/profile/render_social' %>

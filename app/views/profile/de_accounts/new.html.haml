@@ -1,0 +1,16 @@
+- title("#{app_name} Admin | Settings | New #{donation_engine} Account")
+- bodyclasses('page-options donations')
+
+= render 'shared/profile/nav', submenu: :settings, profile: current_profile
+
+.content
+  %h1 Donations
+  %p Complete the form below to enable donations on your site. After you press “Finish” your information will be reviewed and you'll receive an email notice that your donation functionality is up and running.
+  %p
+    %i.icon-cog-solid
+    Powered by #{donation_engine}.
+    - if ruckus?
+      = link_to "What's this?", 'http://www.democracyengine.com/', target: '_blank'
+  .inner
+    .col
+      = render 'form'

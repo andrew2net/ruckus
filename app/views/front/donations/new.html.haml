@@ -1,0 +1,189 @@
+.ruckus-modal.donate-modal
+  .ruckus-modal-head
+    .ruckus-modal-head-content
+      %h4 Donate
+      #donation-steps
+        %span.current 1
+        %span 2
+        %span 3
+  .ruckus-modal-body
+    .ruckus-modal-body-content
+      = simple_form_for resource, url: donations_url(@profile),
+                                  remote: true,
+                                  html: { id: 'donate-form',
+                                          class: 'donate-form validate',
+                                          role: 'form',
+                                          'data-html5-validation' => true,
+                                          'data-validate-fields' => true} do |f|
+        .css-slider{ data: { slides: '> .donate-step', 'dynamic-height' => 'pogo' } }
+          .donate-step#donation-step-1{ data: { step: 1 } }
+            %h2 Customer Information
+            .row
+              = f.input :donor_first_name, label: 'First Name',
+                                           wrapper_html: { class: 'col-sm-5 col-xs-8' },
+                                           input_html: { class: 'form-control required' }
+              = f.input :donor_middle_name, label: 'MI',
+                                            wrapper_html: { class: 'col-sm-2 col-xs-4' },
+                                            input_html: { class: 'form-control' }
+              = f.input :donor_last_name, label: 'Last Name',
+                                          wrapper_html: { class: 'col-sm-5 clear' },
+                                          input_html: { class: 'form-control required' }
+
+            .row
+              = f.input :donor_email, label: 'Email',
+                                      wrapper_html: { class: 'col-sm-6' },
+                                      input_html: { class: 'form-control required' }
+              = f.input :donor_phone, label: 'Phone',
+                                          wrapper_html: { class: 'col-sm-6' },
+                                          input_html: { class: 'form-control required' }
+            .row
+              .form-group.col-sm-6
+                = f.label :donor_address_1 do
+                  Address
+                  %em (line 1)
+                = f.text_field :donor_address_1, class: 'form-control required'
+              .form-group.col-sm-6
+                = f.label :donor_address_2 do
+                  Address
+                  %em (line 2)
+                = f.text_field :donor_address_2, class: 'form-control'
+
+            .row
+              = f.input :donor_city, label: 'City',
+                                     wrapper_html: { class: 'col-sm-5 col-xs-8' },
+                                     input_html: { class: 'form-control required' }
+              = f.input :donor_state, as: :select,
+                                      include_blank: false,
+                                      collection: US_STATES_ABBREVIATIONS,
+                                      label: 'State',
+                                      wrapper_html: { class: 'col-sm-2 col-xs-4' },
+                                      input_html: { class: 'form-control required' }
+              = f.input :donor_zip, label: 'Zip',
+                                    wrapper_html: { class: 'col-sm-5 clear' },
+                                    input_html: { class: 'form-control required' }
+
+            .form-group.next
+              = button_tag 'Next', class: 'btn btn-default next-step'
+              = link_to 'Cancel', '#cancel', class: 'donate-cancel'
+          .donate-step#donation-step-2{ data: { step: 2 } }
+            %h2 Employer Information
+            %p To help our accounts remain in compliance with their state election law, we must use our best efforts to obtain the names, mailing addresses, occupations, and employers of the individuals who contribute toward their campaign.
+
+            .row
+              - if resource.profile.de_account.show_employer_name?
+                = f.input :employer_name, label: 'Employer',
+                                          required: true,
+                                          wrapper_html: { class: 'col-sm-6' },
+                                          input_html: { class: 'form-control' }
+              - if resource.profile.de_account.show_occupation?
+                = f.input :employer_occupation, label: 'Occupation',
+                                                required: true,
+                                                wrapper_html: { class: 'col-sm-6' },
+                                                input_html: { class: 'form-control' }
+
+
+            - if resource.profile.de_account.show_employer_address?
+              .form-group
+                = f.label :employer_address do
+                  Employer Address
+                  %em (line 1)
+                = f.text_field :employer_address, class: 'form-control required'
+
+              .row
+                = f.input :employer_city, label: 'City',
+                                          required: true,
+                                          wrapper_html: { class: 'col-sm-5 col-xs-8' },
+                                          input_html: { class: 'required form-control' }
+
+                = f.input :employer_state, as: :select,
+                                           include_blank: false,
+                                           collection: US_STATES_ABBREVIATIONS,
+                                           label: 'State',
+                                           wrapper_html: { class: 'col-sm-2 col-xs-4' },
+                                           input_html: { class: 'form-control required' }
+                = f.input :employer_zip, label: 'Zip',
+                                         required: true,
+                                         wrapper_html: { class: 'col-sm-5 clear' },
+                                         input_html: { class: 'required form-control' }
+
+            .form-group.next
+              = button_tag 'Next', class: 'btn btn-default next-step'
+              = link_to 'Cancel', '#cancel', class: 'donate-cancel'
+
+          .donate-step#donation-step-3{ data: { step: 3 } }
+            %h2 Payment Information
+            %p
+              %strong Contribution amount
+              - if contribution_limit(resource).present?
+                %em (maximum contribution limit is #{number_to_currency(contribution_limit(resource))})
+              &#58;
+            .dontate-amount
+              - resource.profile.de_account.values_for_donation_modal.each do |amount|
+                .radio
+                  %label
+                    = f.radio_button :amount, amount, checked: resource.amount == amount, tabindex: -1
+                    $#{amount}
+
+              .radio.other-amount
+                %label
+                  = f.radio_button :amount, 'other'
+                  Other
+                #other-amount.form-group
+                  = f.input_field :amount, class: 'form-control',
+                                           as: :string,
+                                           placeholder: '$',
+                                           data: { max: contribution_limit(resource) }
+              = f.input :amount, as: :hidden
+            = f.simple_fields_for :credit_card, resource.build_credit_card do |credit_card|
+              .row
+                = credit_card.input :number, label: 'Credit Card Number',
+                                             required: true,
+                                             wrapper_html: { class: 'col-sm-4' },
+                                             input_html: { class: 'required form-control' }
+                .form-group.col-sm-2
+                  = credit_card.label :cvv do
+                    CVV
+                    = link_to '[?]', '#', data: { toggle: 'tooltip' },
+                                          tabindex: -1,
+                                          title: 'The 3 digit code on the back of card. 4 digit code on the front if an American Express.'
+                  = credit_card.text_field :cvv, class: 'form-control required'
+
+                = credit_card.input :month, as: :select,
+                                            include_blank: false,
+                                            collection: MONTHS,
+                                            label: 'Exp. Mo.',
+                                            wrapper_html: { class: 'col-sm-3' },
+                                            input_html: { class: 'form-control required' }
+                = credit_card.input :year, as: :select,
+                                           include_blank: false,
+                                           collection: YEARS.reverse,
+                                           label: 'Exp. Year',
+                                           wrapper_html: { class: 'col-sm-3' },
+                                           input_html: { class: 'form-control required' }
+            .form-group
+              #donate-terms.terms
+                %p I understand and agree that all contributions are final and not subject to refund. By clicking the submit button I affirm that the following statements are true.
+                %ul
+                  %li Contributions or gifts to political accounts are not tax deductible under federal law.
+                  %li I am a United States citizen or a permanent resident alien.
+                  %li This contribution is made from my own funds, and funds are not being provided to me by another person or entity for the purpose of making this contribution.
+                  %li I am making this contribution with my own personal credit card and not with a corporate or business credit card or a card issued to another person.
+                  %li I am at least eighteen years old.
+                  - if ruckus?
+                    %li I have read and accept the Democracy Engine Terms of Service and Privacy Policy.
+                  - else
+                    %li
+                      I have read and agreed to the Online Fundraising, LLC
+                      = link_to 'Terms of Service', 'https://sites.google.com/a/onlinefundraisingllc.com/terms/subscriber_ToS'
+                      and
+                      = link_to 'Privacy Policy', 'https://sites.google.com/a/onlinefundraisingllc.com/terms/privacy_policy'
+                      \.
+
+                  - if @profile.de_account.present?
+                    - @profile.de_account.agreements.each do |agreement|
+                      - if agreement.present?
+                        %li.agreement= agreement
+
+            .form-group.submit
+              = button_tag 'Donate', class: 'btn btn-default', data: { disable_with: 'Please wait...' }
+              = link_to 'Cancel', '#cancel', class: 'donate-cancel'

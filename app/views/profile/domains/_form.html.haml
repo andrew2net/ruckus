@@ -1,0 +1,6 @@
+= simple_form_for [:profile, @domain], remote: true do |form|
+  = form.input :name, label: false
+  .right.form-actions
+    - if @domain.persisted?
+      = link_to 'Cancel', profile_domain_path(@domain), class: 'cancel', remote: true
+    = form.submit @domain.new_record? ? 'Add' : 'Update', class: 'button', data: { disable_with: 'Please wait...' }

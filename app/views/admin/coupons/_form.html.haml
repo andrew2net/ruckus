@@ -1,0 +1,10 @@
+= simple_form_for [:admin, resource] do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :code
+    = f.input :discount, as: :string
+    = f.input :expired_at, as: :date, include_blank: true, start_year: Date.today.year
+
+  .form-actions
+    = f.button :submit

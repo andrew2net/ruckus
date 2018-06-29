@@ -1,0 +1,19 @@
+version: '2'
+
+services:
+  postgres:
+    image: postgres:9.6.2
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env
+    volumes:
+      - ./.docker/postgres:/var/lib/postgresql/data
+    env_file: .env
+
+  redis:
+    image: redis:3.2.8
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./.docker/redis:/data

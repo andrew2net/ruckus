@@ -1,0 +1,44 @@
+%h3 Contact Info
+.row
+  .col-xs-6
+    = f.label :contact_first_name, 'First Name'
+    = f.input_field :contact_first_name
+    = f.error :contact_first_name
+
+  .col-xs-6
+    = f.label :contact_last_name, 'Last Name'
+    = f.input_field :contact_last_name
+    = f.error :contact_last_name
+
+%div
+  = f.label :contact_email, 'Email'
+  = f.input_field :contact_email
+  = f.error :contact_email
+
+%div
+  = f.label :contact_phone, 'Phone Number'
+  = f.input_field :contact_phone, as: :string
+  = f.error :contact_phone
+
+%div
+  = f.label :contact_address, 'Address'
+  = f.input_field :contact_address, as: :string
+  = f.error :contact_address
+
+.row
+  .col-xs-5
+    = f.label :contact_city, 'City'
+    = f.input_field :contact_city
+    = f.error :contact_city
+
+  .col-xs-4
+    = f.label :contact_state, 'State'
+    = f.input_field :contact_state, as: :select,
+                                    collection:  US_STATES_ABBREVIATIONS,
+                                    include_blank: false
+    = f.error :contact_state
+
+  .col-xs-3
+    = f.label :contact_zip, 'Zipcode'
+    = f.input_field :contact_zip
+    = f.error :contact_zip

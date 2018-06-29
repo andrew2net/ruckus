@@ -1,0 +1,51 @@
+!!!
+%html
+  %head
+    = render 'layouts/shared/head'
+    = stylesheet_link_tag 'application', 'data-turbolinks-track' => true
+    = javascript_include_tag  'application', 'data-turbolinks-track' => true
+    = javascript_include_tag  'analytics', 'data-turbolinks-track' => true unless Rails.env.test? || Rails.env.development?
+    -#= airbrake_javascript_notifier unless Rails.env.test? || Rails.env.development?
+
+  %body{ class: "#{yield(:bodyclasses)}", "data-no-turbolink" => "" }
+    .wrapper
+      #flash= render 'layouts/shared/flash'
+      %nav
+        %ul.main-nav.list-unstyled
+          %li.brand= link_to ruckus? ? 'Ruck.us' : '', root_path
+          = render 'layouts/shared/log_in_out'
+      .main
+        = yield
+
+    #footer.footer
+      %div
+        .brand= link_to ruckus? ? 'Ruck.us' : '', root_path
+
+        %ul.list-unstyled
+          %li= link_to 'Home', root_path
+          %li= link_to 'FAQ', front_faq_path
+          %li= link_to 'Terms of Service/Privacy Policy', front_terms_path
+          %li= link_to 'Contact Us', front_contact_us_path
+
+        - unless account_signed_in?
+          .cta= link_to 'Accounts Start Here', new_account_registration_path, class: 'ajax-modal-link'
+
+        = link_to '#', class: 'expand-menu', id: 'expand-menu' do
+          %span.bar &nbsp;
+          %span.bar &nbsp;
+          %span.bar &nbsp;
+
+    #sm-screen-nav.sm-screen-nav
+      %div
+        %div
+          %nav
+            .cta= link_to 'Accounts Start Here', new_account_registration_path, class: 'ajax-modal-link hide-small-menu'
+
+          %ul.list-unstyled
+            = render 'layouts/shared/log_in_out'
+            %li= link_to 'Home', root_path
+            %li= link_to 'FAQ', front_faq_path
+            %li= link_to 'Terms of Service/Privacy Policy', front_terms_path
+            %li= link_to 'Contact Us', front_contact_us_path
+
+    = render 'shared/crazyegg'

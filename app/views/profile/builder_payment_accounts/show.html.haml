@@ -1,0 +1,5 @@
+.ruckus-modal.small-modal.ruckus-modal-builder
+  .ruckus-modal-body.de-account
+    .ruckus-modal-body-content
+      = custom_form_for current_profile, url: profile_profile_path, as: :profile do |f|
+        = render 'profile/page_options/de_account', f: f, builder: true

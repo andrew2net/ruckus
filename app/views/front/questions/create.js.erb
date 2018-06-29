@@ -1,0 +1,5 @@
+<% if resource.valid? %>
+  $('.mfp-close').click();
+<% else %>
+  $('.ask-a-question-modal form').replaceWith("<%=j render('form') %>");
+<% end %>

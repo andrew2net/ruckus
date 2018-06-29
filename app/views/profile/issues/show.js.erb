@@ -1,0 +1,4 @@
+$('.mfp-close').click();
+$('#issues-block').html('<%= j cell('issues/', profile: current_profile).call %>');
+RuckusAccount.initialize();
+<%= render 'shared/profile/update_completion_percent' %>

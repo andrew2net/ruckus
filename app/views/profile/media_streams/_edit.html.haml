@@ -1,0 +1,29 @@
+.ruckus-modal-body.modal-exclusive
+  %h1 Photostream
+  %p Upload or choose images and video to add your photostream.
+
+  .field-inset.media-upload
+    %h3 Add New Media
+    = render 'new'
+
+  = custom_form_for current_profile, url:  profile_media_stream_path,
+                                     html: { id: 'media-profile-form' } do |f|
+    .inner
+      .media-wrapper.media-bucket
+        .field-inset
+          %h3 Your Media
+          - if current_profile.media.empty?
+            .no-media
+              %p You have no media yet...
+          - else
+            %ul.media-tiles.media-stream.clearfix
+              = render current_profile.media,
+                       f:             f,
+                       input_name:   'profile[media_stream_ids][]',
+                       active_values: current_profile.media_stream_items.pluck(:id),
+                       input_type:   'checkbox'
+
+.ruckus-modal-footer.exclusive
+  .photo-stream-actions.pull-right
+    = link_to 'Cancel', '#', class: 'cancel'
+    = submit_tag 'Update', class: 'btn button small'

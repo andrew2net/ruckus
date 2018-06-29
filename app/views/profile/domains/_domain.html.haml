@@ -1,0 +1,22 @@
+%li.white-box.large{ id: "domain-#{domain.id}" }
+  - if domain.verified? && domain.profile.active?
+    = link_to full_domain_url(domain), target: '_blank', class: 'domain-link' do
+      %i.icon-globe
+  - else
+    %i.icon-globe
+
+  %span.domain-url
+    = domain.name
+
+  %ul.inline-actions
+    %li
+      = link_to 'Edit', edit_profile_domain_path(domain), remote: true
+      - if domain.verified?
+        %span.premium-label.verify verified
+      - else
+        %span.premium-label pending
+    %li
+      = link_to 'Delete', profile_domain_path(domain), method: :delete,
+                                                       class: 'delete',
+                                                       data: { remote: true,
+                                                               confirm: 'Are you sure you want to delete this domain?'}

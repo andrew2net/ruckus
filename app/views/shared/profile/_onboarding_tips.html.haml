@@ -1,0 +1,67 @@
+%ol#onboarding-tips{ data: { joyride: '' } }
+  %li{ data: { class: 'onboard-tip-profile-logo', options: 'tipLocation: right;', text: 'Skip' } }
+    - if current_profile.candidate?
+      .joyride-tip-title Add a Profile Photo
+      %p.joyride-tip-content
+        This “image” icon indicates uploading photos or videos.
+        Click the icon to upload a profile image.
+    - else
+      .joyride-tip-title Add your Organization Logo
+      %p.joyride-tip-content
+        This “image” icon indicates uploading photos or videos.
+        Click the icon to upload an organization logo.
+
+  %li{ data: { class: 'onboard-tip-edit-info', options: 'tipLocation: right;', text: 'Skip' } }
+    - if current_profile.candidate?
+      .joyride-tip-title Add Your Candidate Info
+      %p.joyride-tip-content
+        Anywhere you see this “pencil” icon means you can edit that content.
+        Click the icon to add the office you are running for and any other general info about yourself.
+    - else
+      .joyride-tip-title Add Your Organization Info
+      %p.joyride-tip-content
+        Anywhere you see this “pencil” icon means you can edit that content.
+        Click the icon to add any general info about organization.
+
+
+  %li{ data: { class: 'onboard-tip-add-bio', options: 'tipLocation: right;', text: 'Skip' } }
+    - if current_profile.candidate?
+      .joyride-tip-title Start Your Biography
+      %p.joyride-tip-content
+        Unpopulated areas on your site will have the “add new” buttons to remind you to add
+        content to these sections so your site is full and informative. But don’t worry—if you don’t
+        add content to these sections, they won’t show up on your live site.
+        Click the “Add Biography” button to start your bio.
+    - else
+      .joyride-tip-title Start Your Organization Statement
+      %p.joyride-tip-content
+        Unpopulated areas on your site will have the “add new” buttons to remind you to add
+        content to these sections so your site is full and informative. But don’t worry—if you don’t
+        add content to these sections, they won’t show up on your live site.
+        Click the “Add Who We Are” button to start your organization statement.
+
+  %li{ data: { class: 'onboard-tip-progress', options: 'tipLocation: right;', text: 'Skip' } }
+    - if current_profile.candidate?
+      .joyride-tip-title Check Your Progress
+      %p.joyride-tip-content
+        This percentage indicates your site completeness.
+        Click on the percentage to see what you should do next.
+    - else
+      .joyride-tip-title Check Your Progress
+      %p.joyride-tip-content
+        This percentage indicates your site completeness.
+        Click on the percentage to see what you should do next.
+
+  %li{ data: { class: 'onboard-tip-progress-fly', options: 'tipLocation: right;', button: 'Continue Building' } }
+    - if current_profile.candidate?
+      .joyride-tip-title Complete Your Site
+      %p.joyride-tip-content
+        Get the most out of your site. Here is a checklist of things to do to
+        help complete your site and give you a stronger online presence.
+        Just click on any item to edit. You’re now equipped to build your #{app_name} site.
+    - else
+      .joyride-tip-title Complete Your Site
+      %p.joyride-tip-content
+        Get the most out of your site. Here is a checklist of things to do to
+        help complete your site and give you a stronger online presence.
+        Just click on any item to edit. You’re now equipped to build your #{app_name} site.

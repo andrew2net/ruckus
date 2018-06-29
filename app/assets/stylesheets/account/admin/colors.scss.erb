@@ -1,0 +1,19 @@
+$blue-1: #008da0;
+$blue-2: #0d7886;
+$blue-3: #0f5963;
+
+$red-dark-1: #bb133e;
+$red-dark-2: #8c1622;
+$red-dark-3: #bf1e2e;
+
+<% if ruckus? %>
+  $primary-1: $blue-1;
+  $primary-2: $blue-2;
+  $primary-3: $blue-3;
+<% else %>
+  $primary-1: $red-dark-1;
+  $primary-2: $red-dark-2;
+  $primary-3: $red-dark-3;
+<% end %>
+
+$primary-1-opacity: rgba($primary-1, 0.9);

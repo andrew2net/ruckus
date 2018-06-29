@@ -1,0 +1,9 @@
+%li.item.white-box{ data: { id: social_post.id, type: 'post' } }
+  = link_to profile_social_post_path(social_post), method: :delete,
+                                                   class: 'trash',
+                                                   data: { remote: true,
+                                                           confirm: 'Are you sure you want to delete this post?' } do
+    %i.icon-trash
+  %span.post-date=l social_post.created_at, format: :social_post
+  .post-content
+    %p= shorten_to_tweet_length(social_post.message)

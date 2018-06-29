@@ -1,0 +1,4 @@
+$('.ruckus-modal-body-content').html('<%= j render 'edit' %>');
+var heroBioBlock = '<%= j cell('bio_featured/', profile: current_profile).call %>'
+$('#about-block').html(heroBioBlock);
+<%= render 'shared/profile/update_completion_percent' %>

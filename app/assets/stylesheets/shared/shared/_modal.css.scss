@@ -1,0 +1,227 @@
+// Default Modal Styles
+.mfp-wrap {
+  overflow-y: hidden !important;
+  @media (min-width: 768px) {
+    overflow-y: auto !important;
+  }
+}
+.mfp-container {
+  padding: 0;
+  @media (min-width: 768px) {
+    padding: 0 6px;
+  }
+  &:before {
+    display: none;
+    @media (min-width: 768px) {
+      display: inline-block;
+    }
+  }
+}
+.mfp-content {
+  vertical-align: baseline;
+  margin: 0;
+  height: 100%;
+  @media (min-width: 768px) {
+    vertical-align: middle;
+    margin: 0 auto;
+    height: auto;
+  }
+}
+.mfp-image-holder {
+  .mfp-content {
+    height: auto;
+    margin: 0 auto;
+  }
+}
+.ruckus-modal {
+  position: relative;
+  background: #FFF;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  min-height: 100%;
+  padding: 0;
+  margin: 0;
+  -webkit-box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.2);
+     -moz-box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.2);
+  @media (min-width: 768px) {
+    height: auto;
+    width: auto;
+    max-width: 575px;
+    min-height: 560px;
+    margin: 20px auto;
+  }
+  .ruckus-modal-head {
+    position: relative;
+    height: 45px;
+    line-height: 45px;
+    padding: 0 30px;
+    text-align: center;
+    @media (min-width: 768px) {
+      height: 90px;
+      line-height: 90px;
+      background-color: $brand-primary;
+      .theme-red & { background-color: $brand-red; }
+      .theme-green & { background-color: $brand-green; }
+      .theme-blue & { background-color: $brand-blue; }
+    }
+    h4 {
+      font-size: 14px;
+      text-transform: uppercase;
+      color: #fff;
+      font-family: $font-family-sans-serif;
+      font-weight: 700;
+      margin: 0;
+      line-height: 45px;
+      @media (min-width: 768px) {
+        line-height: 90px;
+      }
+    }
+  }
+  .ruckus-modal-body {
+    position: absolute;
+    overflow: hidden;
+    top: 45px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    @media (min-width: 768px) {
+      top: 90px;
+    }
+    .ruckus-modal-body-content {
+      position: relative;
+      padding: 10px 20px;
+      @media (min-width: 768px) {
+        padding: 20px 45px;
+      }
+    }
+  }
+  .mfp-close {
+    position: absolute;
+    left: 10px;
+    top: 23px;
+    display: block;
+    width: 20px;
+    height: 10px;
+    font-size: 20px;
+    color: #fff;
+    z-index: 100;
+    text-indent: 100%;
+    opacity: 1;
+    cursor: pointer;
+    &:after {
+      position: absolute;
+      display: block;
+      content: '\E83E';
+      font-family: $font-family-ruckus;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      color: #fff;
+      line-height: 0;
+      text-indent: 0;
+      @media (min-width: 768px) {
+        display: none;
+      }
+    }
+    @media (min-width: 768px) {
+      top: -33px;
+      left: auto;
+      right: 0px;
+      width: auto;
+      height: auto;
+      line-height: inherit;
+      font-size: 28px;
+      font-family: $font-family-sans-serif;
+      text-indent: 0;
+      opacity: 1;
+      color: #fff !important;
+      -webkit-transition: opacity 0.25s linear;
+         -moz-transition: opacity 0.25s linear;
+          -ms-transition: opacity 0.25s linear;
+           -o-transition: opacity 0.25s linear;
+              transition: opacity 0.25s linear;
+      &:hover {
+        opacity: 0.8;
+      }
+      &:active, &:focus {
+        top: -33px !important;
+      }
+    }
+    &:active, &:focus {
+      top: 23px;
+    }
+  }
+  .mCSB_container {
+    margin-right: 5px !important;
+  }
+  .mCustomScrollBox > .mCSB_scrollTools {
+    width: 5px;
+  }
+}
+// small modal
+.small-modal {
+  @media (min-width: 768px) {
+    max-width: 380px;
+  }
+  .ruckus-modal-head {
+    @media (min-width: 768px) {
+      height: 145px;
+      background-color: transparent;
+      border-top: 5px solid $brand-primary;
+      .theme-red & { border-color: $brand-red; }
+      .theme-green & { border-color: $brand-green; }
+      .theme-blue & { border-color: $brand-blue; }
+    }
+  }
+  .ruckus-modal-body {
+    @media (min-width: 768px) {
+      top: 145px;
+    }
+    .ruckus-modal-body-content {
+      @media (min-width: 768px) {
+        padding: 15px 30px;
+      }
+    }
+  }
+}
+
+// Overrides for Modal
+.mfp-bg {
+  background: #000;
+}
+
+// Custom Fade Animation for Modal Overlays
+/* overlay at start */
+.mfp-fade.mfp-bg {
+  opacity: 0;
+  -webkit-transition: all 0.25s ease-out;
+     -moz-transition: all 0.25s ease-out;
+          transition: all 0.25s ease-out;
+}
+/* overlay animate in */
+.mfp-fade.mfp-bg.mfp-ready {
+  opacity: 0.7;
+}
+/* overlay animate out */
+.mfp-fade.mfp-bg.mfp-removing {
+  opacity: 0;
+}
+
+/* content at start */
+.mfp-fade.mfp-wrap .mfp-content {
+  opacity: 0;
+  -webkit-transition: all 0.25s ease-out;
+     -moz-transition: all 0.25s ease-out;
+          transition: all 0.25s ease-out;
+}
+/* content animate it */
+.mfp-fade.mfp-wrap.mfp-ready .mfp-content {
+  opacity: 1;
+}
+/* content animate out */
+.mfp-fade.mfp-wrap.mfp-removing .mfp-content {
+  opacity: 0;
+}

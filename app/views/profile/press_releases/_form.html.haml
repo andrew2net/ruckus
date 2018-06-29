@@ -1,0 +1,24 @@
+= simple_form_for [:profile, resource], html: { id: 'update-form', remote: true } do |f|
+  .hidden-fields
+    = f.input :title, as: :string, label: 'Page Heading'
+
+    = f.label :page_title, 'Site Title', class: 'margin-comp'
+    .input-group
+      = f.input :page_title_enabled, as: :check_box_addon
+      = f.input_field :page_title, as: :string, class: 'form-control'
+      = f.error :page_title
+
+    = f.label :page_date, 'Site Date', class: 'margin-comp'
+    .input-group
+      = f.input :page_date_enabled, as: :check_box_addon
+      = f.input_field :page_date, type: 'text', class: 'form-control'
+      = f.error :page_date
+
+    = render 'profile/press_releases/thumbs', f: f
+
+    = f.input :url, as: :hidden
+
+    .clearfix
+      .form-actions.right
+        = link_to 'Cancel', profile_press_releases_path, class: 'cancel', data: { remote: true }
+        = f.button :submit, class: 'button small', data: { disable_with: 'Please wait...' }

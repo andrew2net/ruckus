@@ -1,0 +1,18 @@
+.ruckus-modal.small-modal.ruckus-modal-builder
+  = button_tag class: 'mfp-close', title: 'Close (Esc)' do
+    &times;
+  .ruckus-modal-body
+    .ruckus-modal-body-content
+      %h1 Social Feed
+      .field-inset.sidebar
+        = render 'form'
+        %ul.no-style.post-feed
+          = render collection
+
+:coffeescript
+  $ ->
+    $('.new-post').magnificPopup
+      type: 'inline'
+      callbacks:
+        open: ->
+          $('#new-post .ruckus-modal-body').mCustomScrollbar theme: 'dark-2'

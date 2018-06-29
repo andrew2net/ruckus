@@ -1,0 +1,7 @@
+%div.section-editable{ class: "question question-#{labels[:type]}" }
+  = link_to new_front_profile_question_path(profile),
+            class: classes,
+            disabled: !profile.questions_on do
+    Ask me a Question!
+    = ask_question_button_photo
+  = render_switch

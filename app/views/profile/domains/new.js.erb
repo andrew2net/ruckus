@@ -1,0 +1,12 @@
+<% if @domain.errors.any? || @domain.new_record? %>
+  var form = '<%= j render 'form' %>'
+  $('.add-new-domain-btn').replaceWith(form);
+  $('form#new_domain').replaceWith(form);
+<% else %>
+  var domain = '<%= j render 'domain', domain: @domain %>';
+  var addButton = "<%= j link_to 'Add New Domain', new_profile_domain_path, class: 'button add-new-domain-btn', remote: true %>";
+
+  $('form#new_domain').remove();
+  $('.full-domains .tab-wrapper').append(domain);
+  $('.full-domains').after(addButton);
+<% end %>

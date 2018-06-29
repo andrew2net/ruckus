@@ -1,0 +1,10 @@
+.modal-dialog
+  .modal-content
+    .modal-body
+      %p
+        = link_to 'cancel', account_profile_credit_card_holder_path(parent),
+                            method: :delete,
+                            class: 'button',
+                            data: { confirm: 'Are you sure you want to cancel premium subscription for this site?' }
+      %p
+        Cancelling your account for this site will place your account back into trial mode and it will not longer be visible to the public.

@@ -1,0 +1,34 @@
+= simple_form_for @de_account, url: profile_de_account_path,
+                               html: { class: 'form-horizontal',
+                                       method: :create,
+                                       id: 'new_de_account_form' } do |f|
+
+  .field-inset
+    %h3 Create a #{donation_engine} Account
+    = render 'credentials_fields', f: f
+
+  .account-info
+    = render 'account_fields', f: f
+
+  .donor-requirements
+    = render 'donation_cap_fields', f: f
+
+    %h3 Donor Requirements
+    %p You may be required to report a variety of information about your donors to a government agency. (Most, but not all require name, address, employer, occupation and donation date and amount.)  We will always capture the donor’s name and address and the donation amount and date.  Please determine what, if any, other information you might require and check the appropriate box so your site captures it for you.
+
+    = render 'donor_requirements', f: f
+    = render 'donor_agreements', f: f
+
+  .bank-info
+    %h3 Bank Info
+    %p Please indicate which account will receive your donated funds.
+
+    = render 'bank_account_fields', f: f
+
+  .billing-info
+    = render 'contact_fields', f: f
+    = render 'terms_fields', f: f
+
+    .form-actions.right
+      = link_to 'Cancel', edit_profile_page_option_path, class: 'cancel'
+      = f.button :submit, 'Finish', class: 'button', disabled: true, data: { disable_with: 'Please wait...' }

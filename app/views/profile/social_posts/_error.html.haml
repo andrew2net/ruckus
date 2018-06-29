@@ -1,0 +1,5 @@
+- if resource.errors.any?
+  .alert.alert-dismissable.alert-danger
+    - resource.errors.full_messages.uniq.each do |error|
+      = error
+      %br

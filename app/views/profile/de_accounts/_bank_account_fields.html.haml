@@ -1,0 +1,22 @@
+%div
+  = f.label :bank_account_name, 'Name of Bank'
+  = f.input_field :bank_account_name
+  = f.error :bank_account_name
+
+%div
+  = f.label :bank_routing_number do
+    Routing Number
+    %i.icon-help-circled.tip{"data-placement" => "right", title: "This is a 9 digit number found on a check.  If you do not have checks for your account, do not use a deposit slip.  Contact your bank for the Routing Number."}
+  = f.input_field :bank_routing_number
+  = f.error :bank_routing_number
+  %span.check-helper
+
+%div
+  = f.label :bank_account_number, 'Account Number'
+  = f.input_field :bank_account_number
+  = f.error :bank_account_number
+
+%div
+  = f.label :bank_account_number_confirmation, 'Re-enter Account Number'
+  = f.input_field :bank_account_number_confirmation
+  = f.error :bank_account_number_confirmation

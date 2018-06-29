@@ -1,0 +1,10 @@
+= simple_form_for [:admin, @account, @profile, @issue] do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.association :issue_category, collection: @profile.allowed_categories, include_blank: false
+    = f.input :title
+    = f.input :description
+
+  .form-actions
+    = f.button :submit

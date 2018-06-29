@@ -1,0 +1,392 @@
+- title(app_name)
+- bodyclasses('home')
+
+%section.hero
+  .container
+    - if ruckus?
+      %h1
+        You Need a Website
+        %br
+        It Doesn't Have To Be Complicated
+    - else
+      .big-logo
+      %h1 Fundraise, socialize, and grow your campaign supporters online
+    %h2 #{app_name} can give you a high-powered, attractive political website in five minutes.
+
+    - unless account_signed_in?
+      = link_to 'Start Building Now', new_account_registration_path, class: 'ajax-modal-link button home-button start-building'
+
+    .sample-site
+      = link_to "#{ruckus? ? 'http://naomi4elmhurst.ruck.us/': 'http://gop.win.gop/'}", target: '_blank', class: 'sample-site' do
+        View a Sample Site &raquo;
+      - if ruckus?
+        .sample-modal
+          = link_to '#', class: 'sample-modal-link' do
+            %span.fa.fa-play-circle-o
+            = image_tag image_path('account-site-preview.ruckus.jpg')
+          .sample-site-video
+            %iframe{ allowfullscreen: '',
+                     frameborder: '0',
+                     height: '320',
+                     mozallowfullscreen: '',
+                     src: '//player.vimeo.com/video/108118857?title=0&byline=0&color=ff9933',
+                     webkitallowfullscreen: '',
+                     width: '569' }
+      - else
+        .sample-modal= image_tag image_path('account-site-preview.wingop.jpg')
+
+%section.tools
+  .container
+    %h2 Simple, powerful, and easy-to-use tools to supercharge your campaign and build your online community.
+    %ul.list-unstyled
+      %li
+        %h3 Save Time Managing Your Web Presence
+        %p
+          With time saving tools like event management and weekly reporting, #{app_name} makes keeping a high
+          profile an easy task.
+      %li
+        %h3 Gain control of your online message
+        %p
+          Send email blasts to your supporters and update all your social media from one place, easily
+          without needing any technical help.
+      %li
+        %h3 Cut campaign costs with a free #{app_name} site
+        %p
+          Having a #{app_name} site is free. #{app_name} is entirely supported by a small fee collected from
+          donations gathered online. You'll pay nothing upfront.
+%section.main-features
+  .container
+    %ul.list-unstyled
+      - if ruckus?
+        %li.feature
+          = image_tag image_path('screens/SecureFundraising.png'), class: 'feature-image'
+          .zoom= image_tag image_path('screens/SecureFundraising2.png')
+          .feature-content
+            %div
+              %i.icon-star-favorite
+              %h3 Online Secure Fundraising
+              %p 
+                Powered by #{donation_engine}, #{app_name.possessive} donations platform allows you to start
+                accepting funds from your site directly into your campaign bank account, in complete
+                compliance with campaign finance regulations. Drive supporters to your site through Facebook,
+                Twitter, newsletters, and word of mouth. It's that simple.
+        %li.feature
+          = image_tag image_path('screens/SocialIntegration.png'), class: 'feature-image'
+          .zoom= image_tag image_path('screens/SocialIntegration2.png')
+          .feature-content
+            %div
+              %i.icon-social-profile
+              %h3 Social Integration
+              %p 
+                Ruck.us is designed from the ground up to be entirely integrated with social media to assure
+                you're actively engaging your supporters and participating in the conversation. By using 
+                Ruck.us' "Social Feed" you can instantly post to Facebook and Twitter. Manage your social 
+                media from one screen to drive users back to your Ruck.us site where they can join you
+                campaign and donate.
+        %li.feature
+          = image_tag image_path('screens/SupporterManagement.png'), class: 'feature-image'
+          .zoom= image_tag image_path('screens/SupporterManagement2.png')
+          .feature-content
+            %div
+              %i.icon-speech-bubble
+              %h3 Supporter Management
+              %p 
+                Growing your supporter base is a contact sport. Ruck.us' messaging, inbox, and list management
+                tools will give you the edge you need to succeed. Easily draft and deliver weekly email 
+                blasts, event updates, and donation drives. Upload your existing list to manage all your 
+                campaign messages from one central location.
+      - else
+        %li.feature
+          = image_tag image_path('screens/BuildDomain.png'), class: 'feature-image'
+          .feature-content
+            %div
+              %i.feature-icon.f-icon-build
+              %h3 Build on the .gop domain!
+              %p
+                Make your message heard while taking a stand with your party. Websites made on Win.GOP end
+                with “.win.gop,” the preferred domain name for Republicans and conservatives on the Internet.
+                Using “.gop” gives you access to website names that may have already been taken under .com
+                or .org domains and makes clear that you’re a part of the GOP community from the instant
+                visitors enter your address. Joining the growing movement of Americans bringing the Republican
+                Party online is as simple as signing up.
+        %li.feature
+          = image_tag image_path('screens/RunCampaign.png'), class: 'feature-image'
+          .feature-content
+            %div
+              %i.feature-icon.f-icon-campaign
+              %h3 Run your campaign online!
+              %p
+                Win.GOP websites are designed with one goal: To make building an online presence quick and
+                easy so you can spend more time engaging with your supporters. Manage your social media,
+                fundraise, and share updates from the campaign trail or the monthly meeting from one central
+                hub with just a few clicks and no hassle. There’s no learning curve to adjust to and no
+                mountain of menus to learn to navigate. It’s a political website platform that works like
+                it’s supposed to—straightforward and simple.
+        %li.feature
+          = image_tag image_path('screens/EverythingInBetween.png'), class: 'feature-image full'
+          .feature-content
+            %div
+              %i.feature-icon.f-icon-flag
+              %h3 Everything in between!
+              %p
+                Elections are won on the ground, which is why Win.GOP’s feature-set is focused on bridging the
+                gap between the online space and the campaign trail. Help visitors register to vote right from
+                your website, or engage with them directly one-on-one with our unique “ask me a question”
+                feature. Proudly display your endorsements from organizations and community leaders and post
+                photos and videos of your events to create the same sense of community online that you’re
+                building out in the field. No matter how you use them, Win.GOP’s tools are there to help you
+                defend the American Dream.
+
+%section.features
+  .container
+    %ul.list-unstyled
+      %li.feature
+        .feature-content
+          %i.icon-camera
+          %h3
+            Photos and
+            = succeed "Videos" do
+              %br/
+          %p Sync your Facebook, YouTube, and more to effortlessly share scenes from your campaign.
+
+      - if wingop?
+        %li.feature
+          .feature-content
+            %i.icon-thumbs-up
+            %h3
+              Endorsements
+              %br/
+            %p Display your endorsements from individuals, organizations, and office holders.
+
+      %li.feature
+        .feature-content
+          %i.icon-doc
+          %h3
+            My
+            = succeed "Press" do
+              %br/
+          %p Show off your highlights and mentions in the media.
+      %li.feature
+        .feature-content
+          %i.icon-megaphone
+          %h3
+            Issues
+            = succeed "Statements" do
+              %br/
+          %p State your platform and take a stance on issues important to your campaign.
+      %li.feature
+        .feature-content
+          %i.icon-mobile
+          %h3
+            Mobile
+            = succeed "Friendly" do
+              %br/
+          %p #{app_name.possessive} sites are made to look great and function beautifully on smartphones and tablets.
+      %li.feature
+        .feature-content
+          %i.icon-analytics
+          %h3
+            Analytics &
+            = succeed "Reporting" do
+              %br/
+          %p With an intuitive dashboard and weekly reports, see all your activity at a glance: donations, visitors, and more.
+      - if wingop?
+        %li.feature
+          .feature-content
+            %i.icon-calendar
+            %h3
+              Event Management
+              %br/
+            %p Keep supporters up to date an increase turnout by creating and displaying events on your site.
+      %li.feature
+        .feature-content
+          %i.icon-globe
+          %h3
+            Custom
+            = succeed "URL" do
+              %br/
+          %p Create your own #{Figaro.env.domain} domain or use your own custom domain to make a memorable web address for your site.
+
+- if ruckus?
+  %section.premium
+    .container
+      .premium-block
+        %h2
+          Run stronger with the ruck.us
+          %span
+            premium
+          feature set
+
+        %ul.list-degree
+          %li.degree
+            %span
+              %strong
+                Fundraise
+              online with a small
+              %br
+              processing fee
+          %li.degree.more-50
+            %span
+              %strong
+                Create
+              cutting-edge websites for
+              %br
+              candidates or political organizations
+          %li.degree.more-100
+            %span
+              %strong
+                Share
+              photo and video
+          %li.degree.more-150
+            %span
+              %strong
+                Promote
+              upcoming events
+          %li.degree.more-200
+            %span
+              %strong
+                Fully
+              integrate Facebook and Twitter
+          %li.degree.more-250
+            %span
+              %strong
+                Share
+              your campaign’s issues,
+              %br
+              statements and biography
+          %li.degree.more-300
+            %span
+              %strong
+                Spotlight
+              your press coverage
+          %li.degree.more-350
+            %span
+              %strong
+                Control
+              multiple Ruck.us sites from
+              %br
+              a single user account
+          %li.degree.more-400
+            %span
+              %strong
+                Change
+              your site’s color scheme
+          %li.degree.more-450
+            %span
+              %strong
+                Customize
+              your website URL with
+              %br
+              \.com, .org and more (instead of .ruck.us)
+          %li.degree.more-500
+            %span
+              %strong
+                Manage
+              a single site from multiple
+              %br
+              user accounts
+          %li.degree.more-550
+            %span
+              %strong
+                Get
+              exclusive access to Ruck.us’
+              %br
+              constantly growing online toolkit
+
+        %ul.premium-items.clearfix
+          %li.account-type
+            %span.cell
+              %span
+                %strong.teal Standard
+                %small Free
+            %span.cell
+              %span
+                %strong.orange Premium
+                %small $20/month
+          %li
+            %span.cell
+              %strong.teal 5.75%
+            %span.cell
+              %strong.orange 3.75%
+          %li
+            %span.cell
+              %i.icon-star-teal
+            %span.cell
+              %i.icon-star-orange
+          %li
+            %span.cell
+              %i.icon-star-teal
+            %span.cell
+              %i.icon-star-orange
+          %li
+            %span.cell
+              %i.icon-star-teal
+            %span.cell
+              %i.icon-star-orange
+          %li
+            %span.cell
+              %i.icon-star-teal
+            %span.cell
+              %i.icon-star-orange
+          %li
+            %span.cell
+              %i.icon-star-teal
+            %span.cell
+              %i.icon-star-orange
+          %li
+            %span.cell
+              %i.icon-star-teal
+            %span.cell
+              %i.icon-star-orange
+          %li
+            %span.cell
+              %i.icon-star-teal
+            %span.cell
+              %i.icon-star-orange
+          %li
+            %span.cell
+              %i.icon-star-teal
+            %span.cell
+              %i.icon-star-orange
+          %li
+            %span.cell
+            %span.cell
+              %i.icon-star-orange
+          %li
+            %span.cell
+            %span.cell
+              %i.icon-star-orange
+          %li
+            %span.cell
+            %span.cell
+              %i.icon-star-orange
+
+%section.process
+  .container
+    %h2
+      Whether you are local or national, #{app_name} is professionally designed to meet every candidates
+      needs.
+    .slider{ data: { disabled_media_query: '(min-width: 768px)', touch: true } }
+      .slide
+        .slide-inner
+          %div
+            %h3{ data: { number: '1' } } Register Your Account
+            %p
+              Test out the builder, preview your site, and save your work as you go. No payment required.
+              Having a #{app_name} account is entirely free.
+      .slide
+        .slide-inner
+          %div
+            %h3{ data: { number: '2' } } Make Your Site Unique
+            %p
+              Add your tagline, biography, videos, images, and issues. Even make or use your own web address.
+              Customizing your site is designed to be easy.
+      .slide
+        .slide-inner
+          %div
+            %h3{ data: { number: '3' } } Share & Manage
+            %p
+              Promote your site through Facebook, Twitter, word of mouth and more. Then manage your donations
+              and supporters.
+  - unless account_signed_in?
+    = link_to 'Start Building Now', new_account_registration_path, class: 'ajax-modal-link button home-button'

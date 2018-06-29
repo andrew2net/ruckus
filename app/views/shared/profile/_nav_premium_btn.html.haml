@@ -1,0 +1,7 @@
+- unless profile.premium?
+  .paid-upgrade-block
+    %p 
+    = link_to 'Upgrade', new_account_profile_credit_card_holder_path(current_profile),
+                            class: 'premium-label upgrade edit-link js-edit-modal',
+                            style: 'color: white;'
+

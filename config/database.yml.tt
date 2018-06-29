@@ -1,0 +1,17 @@
+development: &development
+  adapter: postgresql
+  encoding: unicode
+  database: ruckus_development
+  pool: 25
+  username: postgres
+  password: '12345'
+  host: localhost
+  min_messages: WARNING
+
+test:
+  <<: *development
+  database: ruckus_test
+
+production:
+  <<: *development
+  database: ruckus_production

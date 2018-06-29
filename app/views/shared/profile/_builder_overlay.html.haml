@@ -1,0 +1,153 @@
+#builder-overlay
+  .builder-inner
+    %h2 Learn How to Complete Your Site Quickly and Easily
+    %p
+      Check out this example site. Mouse over any of these awesome sections to highlight where in the navigation bar you'll need to go to add or edit them.
+      = link_to 'Read More', '#hidden-text', data: { toggle: 'collapse' }
+    #hidden-text.panel-collapse.collapse
+      %p
+        See a section you like? Just click it and jump into editing that section for your own site.  This helper tool will always be available for you at the top of the
+        = succeed '.' do
+          = link_to 'HELP section', profile_help_path
+      %p
+        This helper tool will always be available for you at the top of the FAQ section. Happy building and feel free to
+        = link_to 'reach out to us', front_contact_us_path
+        if you need any help!
+        = link_to 'Show less', '#hidden-text', data: { toggle: 'collapse' }
+    #builder-preview
+      = image_tag 'builder-overlay-500.jpg'
+      / Tagline
+      = link_to profile_builder_path(resources: :info), class: 'hotspot',
+                                                        id: 'hotspot-tagline',
+                                                        data: { html: true,
+                                                                mainnav: '.mainnav-builder',
+                                                                placement: 'right',
+                                                                section: '.section-general-info',
+                                                                toggle: 'tooltip' },
+                                                                title: 'Tagline<span>Edit in General Info</span>' do
+        %span Edit
+
+      / Social Feed
+      / = link_to profile_root_path, class: 'hotspot',
+      /                                id: 'hotspot-social-feed',
+      /                                data: { html: true,
+      /                                        mainnav: '.mainnav-dashboard',
+      /                                        placement: 'right',
+      /                                        section: '.section-general-info',
+      /                                        toggle: 'tooltip' },
+      /                                        title: 'Social Feed<span>Edit in your Dashboard</span>' do
+      /   %span Edit
+      / Profile Pic
+      = link_to profile_builder_path(resources: :media), class: 'hotspot',
+                                                         id: 'hotspot-profile-pic',
+                                                         data: { html: true,
+                                                                 mainnav: '.mainnav-builder',
+                                                                 placement: 'right',
+                                                                 section: '.section-media',
+                                                                 toggle: 'tooltip' },
+                                                                 title: 'Profile Pic<span>Edit in Media</span>' do
+        %span Edit
+      / Account Info
+      = link_to profile_builder_path(resources: :info), class: 'hotspot',
+                                                        id: 'hotspot-account-info',
+                                                        data: { html: true,
+                                                                mainnav: '.mainnav-builder',
+                                                                placement: 'right',
+                                                                section: '.section-general-info',
+                                                                toggle: 'tooltip' },
+                                                                title: 'Account Info<span>Edit in General Info</span>' do
+        %span Edit
+      / Donations
+      = link_to profile_builder_path(resources: :info), class: 'hotspot',
+                                                        id: 'hotspot-donations',
+                                                        data: { html: true,
+                                                                mainnav: '.mainnav-settings',
+                                                                placement: 'right',
+                                                                section: '.section-page-options',
+                                                                toggle: 'tooltip' },
+                                                                title: 'Donations<span>Edit in Site Features</span>' do
+        %span Edit
+      / Biography
+      = link_to profile_builder_path(resources: :biography), class: 'hotspot',
+                                                             id: 'hotspot-biography',
+                                                             data: { html: true,
+                                                                     mainnav: '.mainnav-builder',
+                                                                     placement: 'right',
+                                                                     section: '.section-biography',
+                                                                     toggle: 'tooltip' },
+                                                                     title: "#{current_profile.labels[:biography]}<span>Edit in #{current_profile.labels[:biography]}</span>" do
+        %span Edit
+      / Hero Media
+      = link_to profile_builder_path(resources: :featured), class: 'hotspot',
+                                                            id: 'hotspot-hero-media',
+                                                            data: { html: true,
+                                                                    mainnav: '.mainnav-builder',
+                                                                    placement: 'right',
+                                                                    section: '.section-media',
+                                                                    toggle: 'tooltip' },
+                                                                    title: 'Feature Media<span>Edit in Feature Media</span>' do
+        %span Edit
+      / Issues
+      = link_to profile_builder_path(resources: current_profile.labels[:issues_name].to_sym),
+                class: 'hotspot',
+                id: 'hotspot-issues',
+                data: { html: true,
+                        mainnav: '.mainnav-builder',
+                        placement: 'right',
+                        section: '.section-issues',
+                        toggle: 'tooltip' },
+                        title: "#{current_profile.labels[:issues]}<span>Edit in #{current_profile.labels[:issues]}</span>" do
+        %span Edit
+      / Media Stream
+      = link_to profile_builder_path(resources: :media), class: 'hotspot',
+                                                         id: 'hotspot-media-stream',
+                                                         data: { html: true,
+                                                                 mainnav: '.mainnav-builder',
+                                                                 placement: 'right',
+                                                                 section: '.section-media',
+                                                                 toggle: 'tooltip' },
+                                                                 title: 'Media Stream<span>Edit in Media</span>' do
+        %span Edit
+      / Press
+      = link_to profile_builder_path(resources: :press), class: 'hotspot',
+                                                         id: 'hotspot-my-updates',
+                                                         data: { html: true,
+                                                                 mainnav: '.mainnav-builder',
+                                                                 placement: 'right',
+                                                                 section: '.section-my-updates',
+                                                                 toggle: 'tooltip' },
+                                                                 title: 'My Press<span>Edit in My Press</span>' do
+        %span Edit
+      / Contact Info
+      = link_to profile_builder_path(resources: :info), class: 'hotspot',
+                                                        id: 'hotspot-contact',
+                                                        data: { html: true,
+                                                                mainnav: '.mainnav-builder',
+                                                                placement: 'right',
+                                                                section: '.section-general-info',
+                                                                toggle: 'tooltip' },
+                                                                title: 'Contact Info<span>Edit in General Info</span>' do
+        %span Edit
+      / Tagline Footer
+      = link_to profile_builder_path(resources: :info), class: 'hotspot',
+                                                        id: 'hotspot-tagline-footer',
+                                                        data: { html: true,
+                                                                mainnav: '.mainnav-builder',
+                                                                placement: 'right',
+                                                                section: '.section-general-info',
+                                                                toggle: 'tooltip' },
+                                                                title: 'Tagline<span>Edit in General Info</span>' do
+        %span Edit
+      / Social Icons
+      -#= link_to account_oauth_accounts_path, class: 'hotspot',
+      -#                                         id: 'hotspot-social',
+      -#                                         data: { html: true,
+      -#                                                 mainnav: '.mainnav-settings',
+      -#                                                 placement: 'right',
+      -#                                                 section: '.section-social',
+      -#                                                 toggle: 'tooltip' },
+      -#                                                 title: 'Social Icons<span>Edit in Social</span>' do
+        %span Edit
+:javascript
+  $('.hotspot[data-toggle="tooltip"]').tooltip();
+  // $('.hotspot[data-toggle="tooltip"]').tooltip('show');

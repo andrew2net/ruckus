@@ -1,0 +1,7 @@
+en:
+  activerecord:
+    attributes:
+      candidate_profile:
+        name: 'Your Name'
+        campaign_website: 'Campaign URL'
+        biography: 'About Me'

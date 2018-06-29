@@ -1,0 +1,5 @@
+= custom_form_for profile, url: profile_profile_path, as: :profile do |f|
+  #media-stream-switch.switch-builder
+    .toggle
+      %label.checkbox
+        = f.input_field :media_on, as: :boolean, class: 'boolean optional'

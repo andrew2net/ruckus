@@ -1,0 +1,23 @@
+%li.white-box.large{ id: "account-#{account.id}" }
+  %i.icon-globe
+  %span.domain-url
+    = account.email
+  - if account.invitation_accepted_at.blank?
+    %span.note.profile-type invitation sent
+  %span.pull-right.member-role
+    - if parent.has_admin?(account)
+      %span{ class: "is-admin #{'is-active' if current_account == account}" } admin
+    - else
+      %span{ class: "is-editor #{'is-active' if current_account == account}" } editor
+    - if can? :update_ownership_type, account, parent
+      = link_to edit_account_profile_account_ownership_path(parent, account), title: 'Change access level',
+                                                                              class: 'edit-link js-edit-modal' do
+        %span.glyphicon.glyphicon-pencil
+
+  - if can? :destroy, account, parent
+    %span.pull-right
+      = link_to '&times;'.html_safe, [:account, parent.becomes(Profile), account],
+                          class: 'delete-member',
+                          method: :delete,
+                          data: { confirm: 'Are you sure you want to restrict access to this site for this editor?' },
+                          remote: true

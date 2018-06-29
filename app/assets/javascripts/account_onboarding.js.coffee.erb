@@ -1,0 +1,167 @@
+#= require jquery.cookie
+
+#Progress circle
+updatePercentCircle = () ->
+  $ppc = $(".progress-pie-chart")
+  percent = parseInt($ppc.data("percent"))
+  deg = 360 * percent / 100
+  $ppc.addClass "gt-50"  if percent > 50
+  $(".ppc-progress-fill").css "transform", "rotate(#{deg}deg)"
+  $(".ppc-percents span").html "#{percent}%"
+
+appendScrollbarToPercentage = () ->
+  $('.progress-list').mCustomScrollbar({theme: 'dark-2'})
+
+$ ->
+  updatePercentCircle()
+  appendScrollbarToPercentage()
+
+  $(document).ajaxComplete (e)->
+    updatePercentCircle()
+    appendScrollbarToPercentage()
+
+  # Onboarding Tips
+  # TODO: enable it
+#  $('#onboarding-tips').joyride
+#    autoStart            : true
+#    nubPosition          : 'auto'
+#    scrollSpeed          : 500
+#    tipAnimationFadeSpeed: 500
+#    postStepCallback: ->
+#      if $('[data-index="3"]').attr('style')
+#        $('.spinner .dropdown-toggle').dropdown('toggle');
+#    template :
+#      link : '<a href="#close" class="joyride-close-tip">I don\'t need the tutorial</a>'
+#      button : '<a href="#" class="joyride-next-tip" data-toggle="dropdown"></a>'
+
+  # Quick Tips - Bootstrap popover extends
+  $.fn.extend popoverClosable: (options) ->
+    defaults = template: "<div class=\"popover popover-quick-tip\">
+                            <div class=\"arrow\"></div>
+                            <div class=\"popover-header\">
+                              <i class=\"fa fa-times\" data-dismiss=\"popover\" aria-hidden=\"true\"></i>
+                              <div class=\"popover-title\"></div>
+                            </div>
+                            <div class=\"popover-content\"></div>
+                          </div>"
+    options = $.extend({}, defaults, options)
+    $popoverTogglers = this
+    $popoverTogglers.popover options
+    $popoverTogglers.on "hover", ->
+      $popoverTogglers.not(this).popover "hide"
+
+    $("html").on "click", "[data-dismiss=\"popover\"]", (e) ->
+      $popoverTogglers.popover "hide"
+
+  window.initTooltips = ->
+    $('.quick-tip-reordering').on 'mouseover', ->
+      $('.quick-tip-reordering').not(this).popover('hide')
+
+    # On/off Tip
+    $(".quick-tip-on-off[data-type='candidate']").popoverClosable
+      title: "Hiding and Showing Sections"
+      content: "Using the “on/off” toggle you can switch
+               between hiding and showing different sections on your site.
+               For example, if you are halfway done with your bio,
+               you can save your work and then select “off” to hide it from the
+               public view. Once you’re finished with your bio,
+               just toggle “on” to make it visible on your site."
+      trigger: "hover"
+      delay:
+        show: 0
+        hide: 5000
+    # Reordering Tip
+    $(".quick-tip-reordering[data-type='candidate']").popoverClosable
+      title: "Reorder Your Content"
+      content: "Click and drag on these tiles to reorder your list."
+      trigger: "hover"
+      delay:
+        show: 0
+        hide: 5000
+    # Photostream Sorting Tip
+    $(".quick-tip-photo-sorting").popoverClosable
+      title: "Reorder Your Photos"
+      content: "Click and drag on the bottom of the tiles to sort them.
+                When you add new images they will appear first in the list."
+      trigger: "hover"
+      delay:
+        show: 0
+        hide: 5000
+    # Photostream Checkboxes Tip
+    $(".quick-tip-photo-checkbox").popoverClosable
+      title: "Active Photos in Your Stream"
+      content: "Click the bottom of the tiles to “check” which images you
+                want to include in your Photostream. If you want to use
+                photos from your profile or background libraries you can
+                add from there as well. Once you are done selecting the
+                images you want to add, click the “Update and Sort” button."
+      trigger: "hover"
+      delay:
+        show: 0
+        hide: 5000
+    # Social Media Activation Tip
+    $(".quick-tip-media[data-type='candidate']").popoverClosable
+      title: "Integrate your Social Media Accounts"
+      content: "You can post from <%= app_name %> to Facebook and Twitter. All you need
+               to do is activate each account here."
+      trigger: "hover"
+      delay:
+        show: 0
+        hide: 5000
+
+
+
+
+    $(".quick-tip-on-off[data-type='organization']").popoverClosable
+      title: "Hiding and Showing Sections"
+      content: "Using the “on/off” toggle you can switch
+                between hiding and showing different sections on your site.
+                For example, if you are halfway done with your bio, you can
+                save your work and then select “off” to hide it from the public
+                view. Once you’re finished with your bio, just toggle “on”
+                to make it visible on your site."
+      trigger: "hover"
+      delay:
+        show: 0
+        hide: 5000
+    # Reordering Tip
+    $(".quick-tip-reordering[data-type='organization']").popoverClosable
+      title: "Reorder Your Content"
+      content: "Click and drag on these tiles to reorder your list."
+      trigger: "hover"
+      delay:
+        show: 0
+        hide: 5000
+    # Social Media Activation Tip
+    $(".quick-tip-media[data-type='organization']").popoverClosable
+      title: "Integrate your Social Media Accounts"
+      content: "You can post from <%= app_name %> to Facebook and Twitter.
+                All you need to do is activate each account here."
+      trigger: "hover"
+      delay:
+        show: 0
+        hide: 5000
+  initTooltips()
+
+
+  if !$.cookie('welcome-screen-candidate-shown')
+    $('.welcome-screen-candidate').show()
+    $('html, body').addClass('overflow')
+
+  if !$.cookie('welcome-screen-organization-shown')
+    $('.welcome-screen-organization').show()
+    $('html, body').addClass('overflow')
+
+  $('.js-welcome-btn').click (e) ->
+    e.preventDefault()
+    $('html, body').removeClass('overflow')
+    $welcomeScreen = $('.welcome-screen-overlay')
+    if $welcomeScreen.hasClass 'welcome-screen-candidate'
+      $.cookie('welcome-screen-candidate-shown', 1, { expires: 365, path: '/' });
+    else if $welcomeScreen.hasClass 'welcome-screen-organization'
+      $.cookie('welcome-screen-organization-shown', 1, { expires: 365, path: '/' });
+    $welcomeScreen.fadeOut(250)
+
+
+  if $.cookie('welcome-screen-organization-shown') || $.cookie('welcome-screen-candidate-shown')
+    $('html, body').removeClass('overflow')

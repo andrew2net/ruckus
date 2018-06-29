@@ -1,0 +1,6 @@
+<% if @email_valid %>
+  $('.close').click();
+<% else %>
+  $('#account_email').after('<span class="help-inline">invalid email</span>');
+  $('[name="commit"]').val('Send').removeAttr('disabled');
+<% end %>

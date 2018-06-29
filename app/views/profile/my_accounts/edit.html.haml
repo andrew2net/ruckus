@@ -1,0 +1,16 @@
+- title("#{app_name} Admin | Settings | My Account")
+
+= render 'shared/profile/nav', submenu: :settings, profile: current_profile
+
+.content
+  %h1 My Account
+
+  = link_to 'Deactivate Account', account_registration_path,
+    method: :delete,
+    class: 'destroy',
+    id: 'my-account-destroy',
+    data: { confirm: 'Deactivating your account will deactivate ALL sites associated with the account.  If you want to deactivate only one specific site, click on the Sites menu and convert the site from "public" to "private."  If you are sure you want to Deactivate your entire account, click "ok" otherwise click "cancel"' }
+
+  .inner
+    .col
+      = render 'form'

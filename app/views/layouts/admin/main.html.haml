@@ -1,0 +1,30 @@
+!!!
+%html
+  %head
+    %title #{app_name}
+    = stylesheet_link_tag    'admin_main', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'admin_main', 'data-turbolinks-track' => true
+    %link{ href: "/favicon-#{ruckus? ? 'ruckus' : 'wingop'}.ico", rel: 'shortcut icon', type: 'image/x-icon' }
+    = csrf_meta_tags
+  %body
+    .navbar.navbar-fixed-top.navbar-inverse
+      .navbar-inner
+        .container
+          = link_to "#{app_name}", admin_root_path, class: 'navbar-brand'
+          %ul.nav.navbar-nav.navbar-left
+            %li= active_link_to 'Accounts', admin_accounts_path
+            %li= active_link_to 'Domains', admin_domains_path
+            %li= active_link_to 'Pages', admin_pages_path
+            %li= active_link_to 'Donations', admin_donations_path
+            %li= active_link_to 'Coupons', admin_coupons_path
+
+          %ul.nav.navbar-nav.navbar-right
+            - if admin_signed_in?
+              %li= link_to 'Logout', destroy_admin_session_path, method: :delete
+            - else
+              %li= link_to 'Login', new_admin_session_path
+    .container
+      .row
+        .span12= render 'layouts/shared/flash'
+      .row
+        .span12= yield

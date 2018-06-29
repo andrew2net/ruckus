@@ -1,0 +1,12 @@
+= simple_form_for [:admin, resource] do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.association :profile, collection:    Profile.order(:name),
+                              label_method:  :name,
+                              include_blank: false
+    = f.input :name
+    = f.input :internal
+
+  .form-actions
+    = f.button :submit

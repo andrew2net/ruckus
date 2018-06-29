@@ -1,0 +1,10 @@
+$('#header').replaceWith('<%= j cell('header/', profile: current_profile).call %>');
+var askQuestionBlockHtml = '<%= j cell('ask_question/', profile: current_profile, enable_switcher: true).call %>';
+$('.question.question-<%= current_profile.labels[:type] %>').replaceWith(askQuestionBlockHtml);
+window.BuilderSwitcher();
+$('.ruckus-modal-body-content').html("<%= j render 'edit' %>");
+$('.ajax-modal-link').magnificPopup($.extend( { type: 'ajax' }, RuckusAccount.defaultMFPOptions ));
+var navigation = '<%= j render 'shared/profile/nav', submenu: :builder, profile: current_profile %>';
+$('.admin-nav-wrap').replaceWith(navigation);
+<%= render 'shared/profile/render_social' %>
+

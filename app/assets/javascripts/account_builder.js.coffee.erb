@@ -1,0 +1,47 @@
+#= require jquery.tablesorter
+#= require ./account/admin/main
+#= require ./account/admin/issues
+#= require ./account/admin/press_releases
+#= require ./account/admin/events
+#= require ./account/admin/dropdown
+#= require ./account/admin/media
+#= require ./account/admin/premium
+#= require account_onboarding
+#= require load-image.min
+#= require jquery.jcrop
+
+<% environment.context_class.instance_eval { include Rails.application.routes.url_helpers } %>
+
+callModal = (href) ->
+  $.magnificPopup.open $.extend
+    items:
+      src: href
+      type: 'ajax'
+    closeOnBgClick: false
+    RuckusAccount.defaultMFPOptions
+
+$ ->
+  $('.theme-select input').on 'change', ->
+    $('.theme-select span').removeClass('active')
+    $(@).parent().addClass('active')
+    currentTheme = $('.current-theme').val()
+    newTheme = 'theme-' + $(this).val()
+    $('.current-theme').val(newTheme)
+    $('body').removeClass currentTheme
+    $('body').addClass newTheme
+    $(@).closest('form').submit()
+
+$ ->
+  switch window.location.search
+    when '?resources=issues' then callModal("<%= profile_issues_path %>")
+    when '?resources=priorities' then callModal("<%= profile_issues_path %>")
+    when '?resources=events' then callModal("<%= profile_events_path %>")
+    when '?resources=press' then callModal("<%= profile_press_releases_path %>")
+    when '?resources=media' then callModal("<%= profile_media_path %>")
+    when '?resources=info' then callModal("<%= edit_profile_general_info_path %>")
+    when '?resources=biography' then callModal("<%= edit_profile_biography_path %>")
+    when '?resources=photo' then callModal("<%= edit_profile_photo_path %>")
+    when '?resources=featured' then callModal("<%= edit_profile_hero_unit_path %>")
+    when '?resources=background' then callModal("<%= edit_profile_background_image_path %>")
+    when '?resources=stream' then callModal("<%= edit_profile_media_stream_path %>")
+    when '?resources=social' then callModal("<%= new_profile_social_post_path %>")

@@ -1,0 +1,10 @@
+var html = '<%= j cell('subscribe_form/', profile: profile, user: resource).call %>';
+var selector = '.join-campaign-container';
+$(selector).replaceWith(html);
+
+<% if resource.errors.empty? %>
+  var form = $(selector).find('form');
+
+  form.addClass('submitted');
+  setTimeout(function(){ form.removeClass('submitted') }, 3000);
+<% end %>

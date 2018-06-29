@@ -1,0 +1,8 @@
+%div
+  %h3
+    = f.label :contribution_limit do
+      Contribution Limit
+      %i.icon-help-circled.tip{"data-placement" => "right", title: "If there is a cap on the amount that may be contributed to your campaign in an election, please enter that amount here.  Your website will automatically enforce this limit on each contribution.  Please note that our system can not aggregate multiple donations by a single donor."}
+
+  = f.input_field :contribution_limit, as: :string
+  = f.error :contribution_limit

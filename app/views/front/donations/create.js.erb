@@ -1,0 +1,26 @@
+<% if resource.errors.empty? # don't use .valid? here, because of callbacks %>
+  $('#flash').html("<%= j render('layouts/shared/flash') %>");
+  $('.mfp-close').click();
+<% else %>
+  if (!$('.ruckus-modal-body .alert').length) {
+    $('.ruckus-modal-body').prepend("<div class='alert alert-dismissable alert-danger'><%= resource.errors.full_messages.join('<br/>').html_safe %></div>");
+  } else {
+    $('.ruckus-modal-body .alert').html('<%= resource.errors.full_messages.join('<br/>').html_safe %>');
+  }
+
+  var alertHeight = $('.ruckus-modal-body .alert').outerHeight(true);
+  var modalHeight = 600;
+  $('.donate-modal').css({ 'min-height': modalHeight + alertHeight });
+
+  $('.ruckus-modal-body').mCustomScrollbar('destroy');
+  $(".ruckus-modal-body").mCustomScrollbar({
+    theme: "dark-2"
+  });
+
+  <% resource.errors.each do |key, _| %>
+    $("#donation_<%= key.to_s.sub('.', '_attributes_') %>").parent().addClass('invalid');
+  <% end %>
+
+  var activeStep = $('.donate-step .invalid').first().closest('.donate-step').data('step') - 1
+  $('.css-slider').data('CSSSlider').goTo(activeStep);
+<% end %>

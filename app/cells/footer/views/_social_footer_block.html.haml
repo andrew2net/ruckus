@@ -1,0 +1,41 @@
+#social-footer.section
+  .container
+    .row
+      #join-campaign
+        - if profile.candidate?
+          %h4 #{profile.name} for #{profile.office}
+          = cell('subscribe_form/', profile: profile, user: User.new).call
+        - else
+          %h4 #{profile.name} #{profile.office}
+          = cell('subscribe_form/', profile: profile, user: User.new).call
+          = render_tagline_or_placeholder
+
+        .name
+          %p{ data: { edit: 'disclaimer' } }
+            = disclaimer_or_placeholder
+            = render_general_info_pencil
+
+      #contact-info{ data: { edit: 'contact-info' } }
+        - if display_contact_info_placeholder?
+          .text-placeholder Contact
+        - else
+          #profile-address-1= profile.address_1
+          #profile-address-2= profile.address_2
+          #profile-city-and-state= contact_city_and_state
+          #profile-phone= profile.phone
+        %br
+        = page_uri_link
+        = render_general_info_pencil
+
+      #social
+        = cell('ask_question/', profile: profile, enable_switcher: false).call
+        %ul.list-unstyled
+          - if profile.show_facebook_buttons?
+            %li.facebook
+              = link_to facebook_share_text_link(profile, 'Check it out!'), target: '_blank' do
+                %i.fa.fa-facebook
+
+          - if profile.show_twitter_buttons?
+            %li.twitter
+              = link_to twitter_share_link(profile, 'Check it out!'), target: '_blank' do
+                %i.fa.fa-twitter

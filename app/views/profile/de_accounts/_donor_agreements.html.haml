@@ -1,0 +1,32 @@
+%p Campaign contributions are heavily regulated and there are restrictions on who can contribute and requirements that a donation be attributed to the owner of the funds.  We have included standard eligibility requirements that apply to all political donations, please check to see if your campaign is governed by any additional restrictions and enter any additional eligibility requirements for your donors here.
+
+.field-inset.donation-agreements
+  %ul
+    %li Contributions or gifts to political accounts are not tax deductible under federal law.
+    %li I am a United States citizen or a permanent resident alien.
+    %li This contribution is made from my own funds, and funds are not being provided to me by another person or entity for the purpose of making this contribution.
+    %li I am making this contribution with my own personal credit card and not with a corporate or business credit card or a card issued to another person.
+    %li I am at least eighteen years old.
+
+%p Add additional Eligibility Requirements
+%span.help-inline#agreement-error please save your agreement
+.additional-agreements-wrapper.clearfix
+  #additional-agreements
+    - @de_account.agreements << '' if @de_account.agreements.blank?
+    - @de_account.agreements.each do |agreement|
+      .additional-agreement.item
+        = f.input_field :agreements, as: :string,
+                                     name: 'de_account[agreements][]',
+                                     value: agreement,
+                                     class: 'form-control'
+        = link_to profile_dummy_destroy_path, class: 'destroy trash',
+                                                data: { confirm: 'Are you sure you want to delete this agreement item?',
+                                                        remote: true,
+                                                        method: :delete,
+                                                        tabindex: '-1'} do
+          %i.icon-trash
+  .clearfix
+    = link_to '#', class: 'add-additional-agreement add-new' do
+      Save
+  #additional-agreements-added
+

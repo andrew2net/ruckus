@@ -1,0 +1,23 @@
+= simple_form_for resource, url: front_profile_questions_path(@profile), remote: true do |form|
+  = form.simple_fields_for :user do |user|
+    .name
+      = user.input :first_name, label:        false,
+                                input_html:   { class: 'form-control', placeholder: 'First Name' },
+                                wrapper_html: { class: 'firstname' }
+
+      = user.input :last_name, label:        false,
+                               input_html:   { class: 'form-control', placeholder: 'Last Name' },
+                               wrapper_html: { class: 'lastname' }
+    = user.input :email, label:      false,
+                         input_html: { class: 'form-control', placeholder: 'Enter email' }
+
+  = form.input :text, as:         :text,
+                      label:      false,
+                      input_html: { class: 'form-control', placeholder: 'Your Question' }
+  .checkbox
+    %label
+      = form.simple_fields_for :user do |user|
+        = user.check_box :subscribed
+        Subscribe to email updates from #{@profile.name} and #{app_name}
+  .submit
+    = form.submit 'Submit', class: 'btn btn-default', data: { disable_with: 'Please wait...' }

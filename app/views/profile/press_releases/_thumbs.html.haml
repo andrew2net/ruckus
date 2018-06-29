@@ -1,0 +1,21 @@
+- press_release_thumbs_data(f.object) do |images, active_image, image_number|
+  %label.margin-comp Site Thumbnail
+  .input-group
+    = f.input :page_thumbnail_enabled, as:         :check_box_addon,
+                                       input_html: { id: 'update-create-page-thumbnail-enabled' }
+    .thumb-selector
+      %ul.thumbs
+        - images.each do |image|
+          %li{ class: image == active_image ? 'active' : '',
+               data:  { id: image.id } }
+            = image_tag image.image_url(:thumb)
+      %ul.thumb-nav
+        %li.prev{ class: image_number == 1 ? 'disabled' : '' }
+          %i.icon-angle-left
+        %li.next{ class: image_number == images.size ? 'disabled' : '' }
+          %i.icon-angle-right
+      .thumb-nav-position
+        %span.thumb-current= image_number
+        of
+        %span.thumb-total= images.size
+    = f.input :active_image_id, as: :hidden

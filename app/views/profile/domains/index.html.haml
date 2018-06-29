@@ -1,0 +1,42 @@
+- title("#{app_name} Admin | Settings | Domains")
+- bodyclasses('domains')
+
+= render 'shared/profile/nav', submenu: :settings, profile: current_profile
+
+.content.ovisible
+  %h1 Domains
+  %p
+    You can edit the part of the URL that comes before
+    %span.domainame #{app_name}.
+    Please use only lower and upper case letters and numbers (you have to start with a letter).
+
+  .inner
+    %ul.no-style.domain-list
+      = render 'profile/subdomains/subdomain', subdomain: current_profile.domain
+
+.content
+  - if can?(:manage, Domain)
+    = link_to 'Cancel', cancel_account_profile_credit_card_holder_path(current_profile), class: 'cancel edit-link pull-right js-edit-modal'
+
+  %h1 Custom domains
+
+  .inner.domains-id
+    .field-inset
+      .center
+        - if can? :manage, Domain
+          %h2 Your IP address is: #{SERVER_IP}
+          %p Please update your IP address for all custom domains with your domain provider.
+        - else
+          %p= link_to 'Upgrade', new_account_profile_credit_card_holder_path(current_profile), class: 'button edit-link js-edit-modal'
+          %br
+          %p 
+            Upgrading to #{app_name} premium gives you even more tools to run the campaign you want, like 
+            custom URLs for externally purchased domains and multiple-editor support, all with a donation 
+            processing fee well below the industry standard.
+    %ul.no-style.domain-list.full-domains.section-editable{ class: can?(:manage, Domain) ? nil : 'section-disabled' }
+      .tab-wrapper
+        = render collection
+    - if can? :manage, Domain
+      = link_to new_profile_domain_path, class: 'button add-new-domain-btn', remote: true do
+        %i.icon-plus-circled
+        Add New Domain

@@ -1,0 +1,12 @@
+%li.white-box.large#subdomain
+  - if subdomain.profile.active?
+    = link_to full_domain_url(subdomain), target: '_blank', class: 'domain-link' do
+      %i.icon-globe
+  - else
+    = link_to profile_preview_profile_path(subdomain.profile), target: '_blank', class: 'domain-link' do
+      %i.icon-globe
+  %span.domain-url
+    = subdomain.name
+
+  %ul.inline-actions
+    %li= link_to 'Rename', edit_profile_subdomain_path, remote: true

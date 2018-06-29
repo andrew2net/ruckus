@@ -1,0 +1,44 @@
+%table{ align: 'center',
+        background: '#ffffff',
+        border: '0',
+        cellpadding: '0',
+        cellspacing: '0',
+        style: 'max-width: 600px; margin: 0 auto; background-color: #fff;' }
+  %tr
+    %td{ colspan: '3' }= image_tag image_path('mailer/spacer.gif'), alt: '',
+                                                                    height: '60',
+                                                                    style: 'display: block; margin: 0; border: 0;',
+                                                                    width: '1'
+
+  %tr
+    %td= image_tag image_path('mailer/spacer.gif'), alt: '',
+                                                    height: '1',
+                                                    style: 'display: block; margin: 0; border: 0;',
+                                                    width: '60'
+    %td{ valign: 'top' }
+      %h2
+        %strong New Donation Received!
+      %p{ style: 'margin: 0 0 20px; line-height: 1.4em;' } Amount: #{number_to_currency(@donation.amount)}
+      %p{ style: 'margin: 0 0 20px; line-height: 1.4em;' } Date: #{@donation.created_at.strftime('%m/%d/%Y')}
+
+      %h3 Donor Info:
+      %p{ style: 'margin: 0 0 20px; line-height: 1.4em;' } Name: #{@donation.donor_name}
+      %p{ style: 'margin: 0 0 20px; line-height: 1.4em;' } Email: #{@donation.donor_email}
+      %p{ style: 'margin: 0 0 20px; line-height: 1.4em;' } Phone: #{@donation.donor_phone}
+      %p{ style: 'margin: 0 0 20px; line-height: 1.4em;' } Address: #{@donation.donor_full_address}      
+      %p{ style: 'margin: 0 0 20px; line-height: 1.4em;' } 
+        To access all donation activity, you will want to login to your #{donation_engine} account at
+        - "https://recipient.#{ruckus? ? 'democracyengine' : 'onlinefundraisingllc'}.com".tap do |url|
+          = link_to url, url, target: '_blank'
+        \.
+
+
+    %td= image_tag image_path('mailer/spacer.gif'), alt: '',
+                                                    height: '1',
+                                                    style: 'display: block; margin: 0; border: 0;',
+                                                    width: '60'
+  %tr
+    %td{ colspan: '3' }= image_tag image_path('mailer/spacer.gif'), alt: '',
+                                                                    height: '60',
+                                                                    style: 'display: block; margin: 0; border: 0;',
+                                                                    width: '1'

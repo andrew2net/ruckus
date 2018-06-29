@@ -1,0 +1,12 @@
+%h2= link_to profile_path(@domain), profile_path(@domain), target: '_blank'
+
+%h2 Visits:
+= content_tag :div, '', id: 'chart', data: { records: visits_chart_data(@domain, params[:period].try(:to_sym)), label: 'Visits' }
+= render 'admin/shared/switch_stats_mode_links', path: admin_domain_path(@domain)
+
+.form-actions
+  = link_to 'Edit', edit_admin_domain_path(@domain), class: 'btn btn-default'
+  = link_to 'Delete',
+             admin_domain_path(@domain),
+             class: 'btn btn-danger',
+             data: { method: :delete, confirm: 'Are you sure?' }

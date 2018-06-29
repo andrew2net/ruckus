@@ -1,0 +1,5 @@
+<% if resource.errors.any? || @price_check %>
+  $('.modal-body').html('<%= j render 'form' %>');
+<% else %>
+  window.location.href = "/account/sites"
+<% end %>

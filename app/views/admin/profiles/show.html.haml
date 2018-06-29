@@ -1,0 +1,42 @@
+%h2 Profile #{resource.id}
+= show_for @profile do |profile|
+  = profile.attribute :first_name
+  = profile.attribute :last_name
+  = profile.attribute :office
+  = profile.attribute :tagline
+  = profile.attribute :city
+  = profile.attribute :state
+  = profile.attribute :party_affiliation
+  = profile.attribute :biography
+  = profile.attribute :donation_notifications_on?, wrapper_html: { id: 'donation_notifications_on' }
+  = profile.attribute :weekly_report_on?, wrapper_html: { id: 'weekly_report_on' }
+  = profile.attribute :donations_on?, wrapper_html: { id: 'donations_on' }
+  = profile.attribute :phone
+  = profile.attribute :twitter_on?, wrapper_html: { id: 'twitter_on' }
+  = profile.attribute :facebook_on?, wrapper_html: { id: 'facebook_on' }
+  = profile.attribute :events_on?, wrapper_html: { id: 'events_on' }
+  = profile.attribute :press_on?, wrapper_html: { id: 'press_on' }
+  = profile.attribute :questions_on?, wrapper_html: { id: 'questions_on' }
+  = profile.attribute :social_feed_on?, wrapper_html: { id: 'social_feed_on' }
+  = profile.attribute :address_1
+  = profile.attribute :address_2
+  = profile.attribute :campaign_website
+  = profile.attribute :campaign_organization
+  = profile.attribute :campaign_disclaimer
+  = profile.attribute :contact_city
+  = profile.attribute :contact_state
+  = profile.attribute :issues_on?, wrapper_html: { id: 'issues_on' }
+  = profile.attribute :media_on?, wrapper_html: { id: 'media_on' }
+  = profile.attribute :biography_on?, wrapper_html: { id: 'biography_on' }
+  = profile.attribute :signup_notifications_on?, wrapper_html: { id: 'signup_notifications_on' }
+  = profile.attribute :premium_by_default?, wrapper_html: { id: 'premium_by_default' }
+  = profile.attribute :district
+  = profile.attribute :contact_zip
+  = profile.attribute :campaign_organization_identifier
+  = profile.attribute :updated_at
+  = profile.attribute :created_at
+
+.tab-pane.active#other
+  %h2 Other Resources
+  %p= link_to 'Issues', admin_account_profile_issues_path(@account, resource)
+  %p= link_to 'Press', admin_account_profile_press_releases_path(@account, resource)

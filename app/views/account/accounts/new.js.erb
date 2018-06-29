@@ -1,0 +1,7 @@
+<% if resource.persisted? %>
+  $('#profile-member-list-pad-<%= parent.id %>').replaceWith('<%= j render 'list' %>');
+<% else %>
+  var btn = $('#profile-member-list-pad-<%= parent.id %> #create-account-button');
+  btn.after('<%= j render 'form' %>');
+  btn.hide();
+<% end %>

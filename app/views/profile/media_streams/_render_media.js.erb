@@ -1,0 +1,16 @@
+$('#media-block').html('<%= j cell('media_stream/', profile: profile).call %>');
+$('#media-slider').smoothTouchScroll({ continuousScrolling: false });
+$('#media-slider .image-popup').magnificPopup($.extend({
+  type: "image",
+  mainClass: "mfp-img-mobile",
+  image: {
+    verticalFit: true
+  }
+}, self.defaultMFPOptions));
+
+$('#media-slider .video-popup').magnificPopup($.extend({
+  disableOn: 700,
+  type: "iframe",
+  preloader: false,
+  fixedContentPos: false
+}, self.defaultMFPOptions));

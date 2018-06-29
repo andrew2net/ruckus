@@ -1,0 +1,69 @@
+.content
+  %h1 Connected Accounts
+  %p Upload photos and share videos of you and your campaign.
+
+  .inner
+    .col
+      .account-quick-tip-wrap
+        .facebook-button-group.dropdown.quick-tip-media{ data: { type: "#{current_profile.labels[:type]}" } }
+          .btn-group.btn-group-justified
+            = link_to account_omniauth_authorize_path(:facebook),
+                      class: "btn btn-default btn-lg #{'active' if current_profile.facebook_account_active?}",
+                      role:  'button' do
+              %i.icon-facebook-squared
+              .name Facebook
+              .activate activate
+              .edit edit
+          .box-form
+            .field-inset
+              .form
+                %p Edit Facebook
+                - if current_profile.facebook_account_active?
+                  = link_to profile_oauth_account_path(current_profile.facebook_account),
+                            method: :delete,
+                            class:  'unlink_account_button',
+                            data:   { confirm: 'Are you sure you want to unlink this account?' } do
+                    Unlink Account
+                    %i.icon-help-circled.tip.oauth-account-unlink{ title: "Unlinking your Facebook account will permanently remove the 'Like/Follow' buttons from your site and disable the ability to post Social Feed to your social networks from #{app_name}",
+                                            data: { placement: 'right' } }
+                = simple_form_for current_profile, as: :profile, url: profile_social_path do |f|
+                  = f.input :facebook_on, as:         :boolean,
+                                          label_html: { class: ('active' if current_profile.facebook_on?) },
+                                          label:      'Show Like and Share Button',
+                                          input_html: { data: { old_value: current_profile.facebook_on? } }
+                  %br
+                  %i.icon-help-circled.tip.facebook_public_page_url{ title: "Leave blank if you want to use site URL for \"Like/Share\" features" }
+                  = f.input :facebook_public_page_url, label: 'Public page', placeholder: 'https://facebook.com/your_page'
+                  %br
+                  = link_to 'Cancel', '#', class: 'btn btn-default cancel-btn'
+                  = f.button :submit, 'SAVE', class: 'btn btn-primary save'
+
+      .twitter-button-group.dropdown
+        .btn-group.btn-group-justified
+          = link_to account_omniauth_authorize_path(:twitter),
+                    class: "btn btn-default btn-lg #{'active' if current_profile.twitter_account_active?}",
+                    role:  'button' do
+            %i.icon-twitter
+            .name Twitter
+            .activate activate
+            .edit edit
+        .box-form
+          .field-inset
+            .form
+              %p Edit Twitter
+              - if current_profile.twitter_account_active?
+                = link_to profile_oauth_account_path(current_profile.twitter_account),
+                           method: :delete,
+                           class:  'unlink_account_button',
+                           data:   { confirm: 'Are you sure you want to unlink this account?' } do
+                  Unlink Account
+                  %i.icon-help-circled.tip.oauth-account-unlink{ title: "Unlinking your Twitter account will permanently remove the 'Like/Follow' buttons from your site and disable the ability to post Social Feed to your social networks from #{app_name}",
+                                            data: { placement: 'right' } }
+              = simple_form_for current_profile, as: :profile, url: profile_social_path do |f|
+                = f.input :twitter_on, as:         :boolean,
+                                       label_html: { class: ('active' if current_profile.twitter_on?) },
+                                       label:      'Show Like and Share Button',
+                                       input_html: { data: { old_value: current_profile.twitter_on? } }
+                %br
+                = link_to 'Cancel', '#', class: 'btn btn-default cancel-btn'
+                = f.button :submit, 'SAVE', class: 'btn btn-primary save'

@@ -1,0 +1,6 @@
+%li
+  = link_to path, class: "edit-link js-edit-modal #{'active' if progress.completed?}" do
+    .icon-list
+    = caption
+    - if progress.total_items_count > 1
+      #{progress.completed_items_count} / #{progress.total_items_count}

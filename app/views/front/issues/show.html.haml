@@ -1,0 +1,23 @@
+- if params[:show_modal].blank?
+  = render 'front/shared/facebook_og_tags', page_title: resource.title, page_description: resource.description, resource: resource
+- else
+  .ruckus-modal.issues-single-modal.issue-healthcare
+    .ruckus-modal-head{ class: "#{category_color_block_class(resource.issue_category, @categories.index(resource.issue_category).to_i)} color-block" }
+      .ruckus-modal-head-content
+        %h4= resource.issue_category.name.upcase
+    .ruckus-modal-body
+      .ruckus-modal-body-content
+        %div
+          %h5= resource.title
+          .slide-copy
+            = simple_format(resource.description)
+          .social
+            = link_to front_score_path, class: 'likes', data: { id: resource.id, type: 'Issue' } do
+              %i.icon-heart
+                %span= resource.scores.count
+            - if @profile.show_facebook_buttons?
+              = link_to facebook_share_link(resource), class: 'facebook', target: '_blank' do
+                %i.icon-facebook-squared
+            - if @profile.show_twitter_buttons?
+              = link_to twitter_share_link(@profile, resource.description), class: 'twitter', target: '_blank' do
+                %i.icon-twitter

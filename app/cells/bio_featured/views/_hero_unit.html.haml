@@ -1,0 +1,13 @@
+#about-video{ class: hero_unit_classes }
+  - if hero_medium.try(:video_embed_url).present?
+    .video-wrapper
+      .media-container
+        %iframe{ width: '100%', src: hero_medium.video_embed_url, frameborder: 0, allowfullscreen: true }
+  - elsif hero_medium.try(:image).present?
+    = image_tag profile.hero_unit_url(:large_thumb)
+
+  = render_hero_unit_switch
+
+  - if show_navigation?
+    = link_to edit_profile_hero_unit_path, class: 'edit-link js-edit-modal edit-account-image' do
+      %i.i-icon.i-photo#add-photos-to-hero-unit-choice

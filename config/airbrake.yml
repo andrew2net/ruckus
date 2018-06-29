@@ -1,0 +1,4 @@
+airbrake_api_key:
+  production: '2aec7fe1f655ec5e23ad9073a3760b20'
+  staging: '7f357f8e5ef8120cabb431c66e259159'
+  staging2: 'b5c32342b1d749feb99f23f365272833'

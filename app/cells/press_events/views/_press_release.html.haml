@@ -1,0 +1,11 @@
+%li{ class: press_release_classes(press_release, index), id: "press-release-#{press_release.id}" }
+  - if press_release.display_page_thumbnail?
+    %span= image_tag press_release.active_image.image_url(:thumb)
+  %div
+    = link_to press_release.url, target: '_blank' do
+      = truncate(press_release.title, length: 64)
+    %p
+      - if press_release.display_page_title?
+        %strong= truncate(press_release.page_title, length: 24)
+      - if press_release.display_page_date?
+        = press_release.page_date

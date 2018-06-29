@@ -1,0 +1,521 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://clientstage-api.democracyengine.com/subscribers/18.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers: {}
+  response:
+    status:
+      code: 401
+      message: Authorization Required
+    headers:
+      Date:
+      - Fri, 02 May 2014 00:39:28 GMT
+      Server:
+      - Apache/2.2.25 (Unix) mod_ssl/2.2.25 OpenSSL/0.9.8e-fips-rhel5 DAV/2 Phusion_Passenger/3.0.19
+      X-Powered-By:
+      - Phusion Passenger (mod_rails/mod_rack) 3.0.19
+      Www-Authenticate:
+      - Digest realm="Democracy Engine API", qop="auth", algorithm=MD5, nonce="MTM5ODk5MTE2ODo5MzY2NWM0NzJhMGU2NjFiM2IzNjU0OTAwNzFmZDk2Nw==",
+        opaque="0196eb83b664c00d7d5d4d52c24543ae"
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      Cache-Control:
+      - no-cache
+      X-Request-Id:
+      - 1f59f359be39571b4bc79fce11d9daa5
+      X-Runtime:
+      - '0.006044'
+      X-Rack-Cache:
+      - miss
+      Set-Cookie:
+      - _democracy_engine_session=BAh7CEkiD3Nlc3Npb25faWQGOgZFRkkiJTA5YTc5Mzk1ZmZkZjY4YjEyMzEwNmIyZmIwOWQ3NjhiBjsAVEkiFmlucHV0X2RldmljZV90eXBlBjsARkkiCk1PVVNFBjsARkkiFGhvdmVyX3N1cHBvcnRlZAY7AEZU--80d36f2a71497b81a4dba1bd4dd24d43578bd73f;
+        path=/; HttpOnly
+      Status:
+      - '401'
+      Content-Length:
+      - '28'
+      Content-Type:
+      - text/html; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: |
+        HTTP Digest: Access denied.
+    http_version: 
+  recorded_at: Fri, 02 May 2014 00:40:09 GMT
+- request:
+    method: get
+    uri: https://clientstage-api.democracyengine.com/subscribers/18.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Digest username="Ruck.us_api"
+      - cnonce="e048b3fb15961e7a9834f716d93433e0"
+      - nc=00000001
+      - nonce="MTM5ODk5MTE2ODo5MzY2NWM0NzJhMGU2NjFiM2IzNjU0OTAwNzFmZDk2Nw=="
+      - opaque="0196eb83b664c00d7d5d4d52c24543ae"
+      - qop="auth"
+      - realm="Democracy Engine API"
+      - response="4759f1f362ef19ebeecbe6ec875dc54b"
+      - uri="/subscribers/18.json"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 02 May 2014 00:39:28 GMT
+      Server:
+      - Apache/2.2.25 (Unix) mod_ssl/2.2.25 OpenSSL/0.9.8e-fips-rhel5 DAV/2 Phusion_Passenger/3.0.19
+      X-Powered-By:
+      - Phusion Passenger (mod_rails/mod_rack) 3.0.19
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      Etag:
+      - '"76c49e38e059b67586542c6e676b6785"'
+      Cache-Control:
+      - must-revalidate, private, max-age=0
+      X-Request-Id:
+      - d98724e0c96490d993dcb5b1ff9db229
+      X-Runtime:
+      - '0.009992'
+      X-Rack-Cache:
+      - miss
+      Set-Cookie:
+      - _democracy_engine_session=BAh7CEkiD3Nlc3Npb25faWQGOgZFRkkiJWJkMGE1M2I5YTkwZmVhMDM5YTZmN2E5MjMyOTVkNjQ3BjsAVEkiFmlucHV0X2RldmljZV90eXBlBjsARkkiCk1PVVNFBjsARkkiFGhvdmVyX3N1cHBvcnRlZAY7AEZU--ccbcf3efcd5b9ac6fef0f51c3526ef0dbb30072a;
+        path=/; HttpOnly
+      Status:
+      - '200'
+      Content-Length:
+      - '1793'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"id":18,"name":"Ruck.us_api","username":"Ruck.us_api","uri":"https://clientstage-api.democracyengine.com/subscribers/18.json","donation_uri":"https://clientstage-api.democracyengine.com/subscribers/18/donations/:donation_id.json","donation_process_uri":"https://clientstage-donate.democracyengine.com/subscribers/18/donations.json","donations_uri":"https://clientstage-api.democracyengine.com/subscribers/18/donations.json","recipient_uri":"https://clientstage-api.democracyengine.com/subscribers/18/recipients/:recipient_id.json","recipients_uri":"https://clientstage-api.democracyengine.com/subscribers/18/recipients.json","recipient_process_uri":"https://clientstage-api.democracyengine.com/subscribers/18/recipients.json","transaction_uri":"https://clientstage-api.democracyengine.com/subscribers/18/transactions/:transaction_id.json","transaction_void_uri":"https://clientstage-api.democracyengine.com/subscribers/18/transactions/:transaction_id/void.json","transaction_credit_uri":"https://clientstage-api.democracyengine.com/subscribers/18/transactions/:transaction_id/credit.json","transactions_uri":"https://clientstage-api.democracyengine.com/subscribers/18/transactions.json","subscriptions_uri":"https://clientstage-api.democracyengine.com/subscribers/18/subscriptions.json","subscription_uri":"https://clientstage-api.democracyengine.com/subscribers/18/subscriptions/:subscription_id.json","subscription_donations_uri":"https://clientstage-api.democracyengine.com/subscribers/18/subscriptions/:subscription_id/donations.json","subscription_recurrence_uri":"https://clientstage-api.democracyengine.com/subscribers/18/subscription_recurrences/:subscription_recurrence_id.json","stored_card_uri":"https://clientstage-api.democracyengine.com/subscribers/18/stored_cards/:token.json"}'
+    http_version: 
+  recorded_at: Fri, 02 May 2014 00:40:10 GMT
+- request:
+    method: post
+    uri: https://clientstage-api.democracyengine.com/subscribers/18/recipients.json
+    body:
+      encoding: UTF-8
+      string: ''
+    headers: {}
+  response:
+    status:
+      code: 401
+      message: Authorization Required
+    headers:
+      Date:
+      - Fri, 02 May 2014 00:39:29 GMT
+      Server:
+      - Apache/2.2.25 (Unix) mod_ssl/2.2.25 OpenSSL/0.9.8e-fips-rhel5 DAV/2 Phusion_Passenger/3.0.19
+      X-Powered-By:
+      - Phusion Passenger (mod_rails/mod_rack) 3.0.19
+      Www-Authenticate:
+      - Digest realm="Democracy Engine API", qop="auth", algorithm=MD5, nonce="MTM5ODk5MTE2OTpjNmU4YmIyZmMwOTQ4ODZhNjEzNDYxNDUzNzVlNDk5NA==",
+        opaque="0196eb83b664c00d7d5d4d52c24543ae"
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      Cache-Control:
+      - no-cache
+      X-Request-Id:
+      - b3a2d6cfe03148db99092a146f5794bd
+      X-Runtime:
+      - '0.005593'
+      X-Rack-Cache:
+      - invalidate, pass
+      Set-Cookie:
+      - _democracy_engine_session=BAh7CDoWaW5wdXRfZGV2aWNlX3R5cGVJIgpNT1VTRQY6BkVGOhRob3Zlcl9zdXBwb3J0ZWRUSSIPc2Vzc2lvbl9pZAY7BkZJIiU3Zjk3YjEzMzBmZDU3NmE0YmM0NDNiODJjNzYwZTQwZAY7BlQ%3D--43908adc15b10a0601fcfc64b18deef316942a53;
+        path=/; HttpOnly
+      Status:
+      - '401'
+      Content-Length:
+      - '28'
+      Content-Type:
+      - text/html; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: |
+        HTTP Digest: Access denied.
+    http_version: 
+  recorded_at: Fri, 02 May 2014 00:40:11 GMT
+- request:
+    method: post
+    uri: https://clientstage-api.democracyengine.com/subscribers/18/recipients.json
+    body:
+      encoding: UTF-8
+      string: recipient[name]=John%20Johnson&recipient[remote_recipient_id]=c8a9600a-7cce-4733-bc99-312f1729c96e&recipient[registered_id]=12345678&recipient[recipient_type]=local_account&recipient[contact][first_name]=John&recipient[contact][last_name]=Smith&recipient[contact][phone]=234-567-8907&recipient[contact][address1]=Street&recipient[contact][city]=Austin&recipient[contact][state]=TX&recipient[contact][zip]=34343&recipient[contact][bank_name]=Bank%20Account&recipient[contact][bank_routing_number]=12345678&recipient[contact][bank_account_number]=12345678&recipient[user][first_name]=John&recipient[user][last_name]=Smith&recipient[user][login]=email%40example.com&recipient[user][initial_password]=password21&recipient[user][email]=email%40example.com&recipient[recipient_tags][party]=Bob%20has%20a%20party&recipient[recipient_tags][state]=NY&recipient[recipient_tags][office]=Mayor&recipient[recipient_tags][locality]=123
+    headers:
+      Authorization:
+      - Digest username="Ruck.us_api"
+      - cnonce="97197b0fa68bf544e298457f76c04ef7"
+      - nc=00000001
+      - nonce="MTM5ODk5MTE2OTpjNmU4YmIyZmMwOTQ4ODZhNjEzNDYxNDUzNzVlNDk5NA=="
+      - opaque="0196eb83b664c00d7d5d4d52c24543ae"
+      - qop="auth"
+      - realm="Democracy Engine API"
+      - response="6782bc45e60d0fed91c0bf5d41a02d46"
+      - uri="/subscribers/18/recipients.json"
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Fri, 02 May 2014 00:39:30 GMT
+      Server:
+      - Apache/2.2.25 (Unix) mod_ssl/2.2.25 OpenSSL/0.9.8e-fips-rhel5 DAV/2 Phusion_Passenger/3.0.19
+      X-Powered-By:
+      - Phusion Passenger (mod_rails/mod_rack) 3.0.19
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      Etag:
+      - '"af5f801f7320ba9c48f48db332f2f4b9"'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - a28564c3feb288173ef1bdbb602f0193
+      X-Runtime:
+      - '0.116831'
+      X-Rack-Cache:
+      - invalidate, pass
+      Set-Cookie:
+      - _democracy_engine_session=BAh7CDoWaW5wdXRfZGV2aWNlX3R5cGVJIgpNT1VTRQY6BkVGOhRob3Zlcl9zdXBwb3J0ZWRUSSIPc2Vzc2lvbl9pZAY7BkZJIiVkYTAwOWNkNzg5NDMwY2NiMzdlYzlmMGM3NmYzM2FhOAY7BlQ%3D--b1dae5529d68844b1999036bbb88da68687d876c;
+        path=/; HttpOnly
+      Location:
+      - https://clientstage-api.democracyengine.com/subscribers/18/recipients/1668
+      Status:
+      - '201'
+      Content-Length:
+      - '779'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"api_subscriber_id":18,"contact":{"first_name":"John","last_name":"Smith","phone":"234-567-8907","address1":"Street","city":"Austin","state":"TX","zip":"34343","bank_name":"Bank
+        Account","bank_routing_number":"12345678","bank_account_number":"12345678"},"created_at":"2014-05-01T20:39:30-04:00","id":1668,"name":"John
+        Johnson","organization_incarnation_id":null,"recipient_tags":{"party":"Bob
+        has a party","state":"NY","office":"Mayor","locality":"123"},"recipient_type":"local_account","registered_id":"12345678","remote_recipient_id":"c8a9600a-7cce-4733-bc99-312f1729c96e","setup_complete":false,"updated_at":"2014-05-01T20:39:30-04:00","user":{"first_name":"John","last_name":"Smith","login":"email@example.com","initial_password":"password21","email":"email@example.com"}}'
+    http_version: 
+  recorded_at: Fri, 02 May 2014 00:40:12 GMT
+- request:
+    method: get
+    uri: https://clientstage-api.democracyengine.com/subscribers/18.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers: {}
+  response:
+    status:
+      code: 401
+      message: Authorization Required
+    headers:
+      Date:
+      - Fri, 02 May 2014 00:39:31 GMT
+      Server:
+      - Apache/2.2.25 (Unix) mod_ssl/2.2.25 OpenSSL/0.9.8e-fips-rhel5 DAV/2 Phusion_Passenger/3.0.19
+      X-Powered-By:
+      - Phusion Passenger (mod_rails/mod_rack) 3.0.19
+      Www-Authenticate:
+      - Digest realm="Democracy Engine API", qop="auth", algorithm=MD5, nonce="MTM5ODk5MTE3MTpiYjdmOThkZTUyNTI0OGVkYmJlMWE1NjEwMDE2ZTk4Ng==",
+        opaque="0196eb83b664c00d7d5d4d52c24543ae"
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      Cache-Control:
+      - no-cache
+      X-Request-Id:
+      - f05e7bb18e413e16d2f45499a2ff3006
+      X-Runtime:
+      - '0.006016'
+      X-Rack-Cache:
+      - miss
+      Set-Cookie:
+      - _democracy_engine_session=BAh7CEkiD3Nlc3Npb25faWQGOgZFRkkiJWY0YWNjZjM0NDc5YzU2YTRjY2QzMmViNjE1YmYxOTg4BjsAVEkiFmlucHV0X2RldmljZV90eXBlBjsARkkiCk1PVVNFBjsARkkiFGhvdmVyX3N1cHBvcnRlZAY7AEZU--e88dd539be490cbbe4c8a4530e3c8d461f6b9043;
+        path=/; HttpOnly
+      Status:
+      - '401'
+      Content-Length:
+      - '28'
+      Content-Type:
+      - text/html; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: |
+        HTTP Digest: Access denied.
+    http_version: 
+  recorded_at: Fri, 02 May 2014 00:40:13 GMT
+- request:
+    method: get
+    uri: https://clientstage-api.democracyengine.com/subscribers/18.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Digest username="Ruck.us_api"
+      - cnonce="fc68092320e5ea8a772117936ca3aa83"
+      - nc=00000001
+      - nonce="MTM5ODk5MTE3MTpiYjdmOThkZTUyNTI0OGVkYmJlMWE1NjEwMDE2ZTk4Ng=="
+      - opaque="0196eb83b664c00d7d5d4d52c24543ae"
+      - qop="auth"
+      - realm="Democracy Engine API"
+      - response="ce4d9b53d4c67b3d26e38a6f96a91989"
+      - uri="/subscribers/18.json"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 02 May 2014 00:39:32 GMT
+      Server:
+      - Apache/2.2.25 (Unix) mod_ssl/2.2.25 OpenSSL/0.9.8e-fips-rhel5 DAV/2 Phusion_Passenger/3.0.19
+      X-Powered-By:
+      - Phusion Passenger (mod_rails/mod_rack) 3.0.19
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      Etag:
+      - '"76c49e38e059b67586542c6e676b6785"'
+      Cache-Control:
+      - must-revalidate, private, max-age=0
+      X-Request-Id:
+      - 5380f05d730324818236ea1d8b8bdf85
+      X-Runtime:
+      - '0.011076'
+      X-Rack-Cache:
+      - miss
+      Set-Cookie:
+      - _democracy_engine_session=BAh7CEkiD3Nlc3Npb25faWQGOgZFRkkiJTk0ZWI2MzUwZjE4MzVlMDQ2ZWQzOGNhNjhhNjI2MjA3BjsAVEkiFmlucHV0X2RldmljZV90eXBlBjsARkkiCk1PVVNFBjsARkkiFGhvdmVyX3N1cHBvcnRlZAY7AEZU--8e4b34ab9ba713cd2f363e431a015e5b3dd364b8;
+        path=/; HttpOnly
+      Status:
+      - '200'
+      Content-Length:
+      - '1793'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"id":18,"name":"Ruck.us_api","username":"Ruck.us_api","uri":"https://clientstage-api.democracyengine.com/subscribers/18.json","donation_uri":"https://clientstage-api.democracyengine.com/subscribers/18/donations/:donation_id.json","donation_process_uri":"https://clientstage-donate.democracyengine.com/subscribers/18/donations.json","donations_uri":"https://clientstage-api.democracyengine.com/subscribers/18/donations.json","recipient_uri":"https://clientstage-api.democracyengine.com/subscribers/18/recipients/:recipient_id.json","recipients_uri":"https://clientstage-api.democracyengine.com/subscribers/18/recipients.json","recipient_process_uri":"https://clientstage-api.democracyengine.com/subscribers/18/recipients.json","transaction_uri":"https://clientstage-api.democracyengine.com/subscribers/18/transactions/:transaction_id.json","transaction_void_uri":"https://clientstage-api.democracyengine.com/subscribers/18/transactions/:transaction_id/void.json","transaction_credit_uri":"https://clientstage-api.democracyengine.com/subscribers/18/transactions/:transaction_id/credit.json","transactions_uri":"https://clientstage-api.democracyengine.com/subscribers/18/transactions.json","subscriptions_uri":"https://clientstage-api.democracyengine.com/subscribers/18/subscriptions.json","subscription_uri":"https://clientstage-api.democracyengine.com/subscribers/18/subscriptions/:subscription_id.json","subscription_donations_uri":"https://clientstage-api.democracyengine.com/subscribers/18/subscriptions/:subscription_id/donations.json","subscription_recurrence_uri":"https://clientstage-api.democracyengine.com/subscribers/18/subscription_recurrences/:subscription_recurrence_id.json","stored_card_uri":"https://clientstage-api.democracyengine.com/subscribers/18/stored_cards/:token.json"}'
+    http_version: 
+  recorded_at: Fri, 02 May 2014 00:40:14 GMT
+- request:
+    method: post
+    uri: https://clientstage-donate.democracyengine.com/subscribers/18/donations.json
+    body:
+      encoding: UTF-8
+      string: ''
+    headers: {}
+  response:
+    status:
+      code: 401
+      message: Authorization Required
+    headers:
+      Date:
+      - Fri, 02 May 2014 00:39:33 GMT
+      Server:
+      - Apache/2.2.25 (Unix) mod_ssl/2.2.25 OpenSSL/0.9.8e-fips-rhel5 DAV/2 Phusion_Passenger/3.0.19
+      X-Powered-By:
+      - Phusion Passenger (mod_rails/mod_rack) 3.0.19
+      Www-Authenticate:
+      - Digest realm="Democracy Engine API", qop="auth", algorithm=MD5, nonce="MTM5ODk5MTE3Mzo5MTkyOWIwNDgxYmMzOTkwMDQ2NjZmYjQzOTVjNGMzNQ==",
+        opaque="0196eb83b664c00d7d5d4d52c24543ae"
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      Cache-Control:
+      - no-cache
+      X-Request-Id:
+      - bbf05d3d8545351b2ed9cf7c9320330b
+      X-Runtime:
+      - '0.009627'
+      X-Rack-Cache:
+      - invalidate, pass
+      Set-Cookie:
+      - _democracy_engine_session=BAh7CDoWaW5wdXRfZGV2aWNlX3R5cGVJIgpNT1VTRQY6BkVGOhRob3Zlcl9zdXBwb3J0ZWRUSSIPc2Vzc2lvbl9pZAY7BkZJIiViNGIwMDkwM2E1MzkwYTFkYzBlNmViNTBiYThkNWI0MAY7BlQ%3D--0c94adb479c07d87a7074f3d07bbb99437bef8de;
+        path=/; HttpOnly
+      Status:
+      - '401'
+      Content-Length:
+      - '28'
+      Content-Type:
+      - text/html; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: |
+        HTTP Digest: Access denied.
+    http_version: 
+  recorded_at: Fri, 02 May 2014 00:40:15 GMT
+- request:
+    method: post
+    uri: https://clientstage-donate.democracyengine.com/subscribers/18/donations.json
+    body:
+      encoding: UTF-8
+      string: donation[donor_first_name]=John&donation[donor_last_name]=Smit&donation[donor_address1]=my%20street%201&donation[donor_address2]=my%20street%202&donation[donor_city]=New%20York%20City&donation[donor_state]=NY&donation[donor_zip]=11222&donation[donor_email]=johnsmith%40gmail.com&donation[donor_phone]=112-223-3344&donation[cc_number]=&donation[cc_verification_value]=211&donation[cc_month]=12&donation[cc_year]=2015&donation[cc_first_name]=John&donation[cc_last_name]=Smit&donation[cc_zip]=11222&donation[compliance_employer]=Op%20Inc.&donation[compliance_occupation]=Manager&donation[compliance_employer_address]=the%20other%20street&donation[compliance_employer_city]=Los%20Angeles&donation[compliance_employer_state]=CA&donation[compliance_employer_zip]=13342&donation[line_items][][amount]=%2410&donation[line_items][][recipient_id]=c8a9600a-7cce-4733-bc99-312f1729c96e
+    headers:
+      Authorization:
+      - Digest username="Ruck.us_api"
+      - cnonce="40ab61437235539c960875f1a8fdacd2"
+      - nc=00000001
+      - nonce="MTM5ODk5MTE3Mzo5MTkyOWIwNDgxYmMzOTkwMDQ2NjZmYjQzOTVjNGMzNQ=="
+      - opaque="0196eb83b664c00d7d5d4d52c24543ae"
+      - qop="auth"
+      - realm="Democracy Engine API"
+      - response="2fdee2256309c5a79868f91f1ffa3744"
+      - uri="/subscribers/18/donations.json"
+  response:
+    status:
+      code: 422
+      message: Unprocessable Entity
+    headers:
+      Date:
+      - Fri, 02 May 2014 00:39:34 GMT
+      Server:
+      - Apache/2.2.25 (Unix) mod_ssl/2.2.25 OpenSSL/0.9.8e-fips-rhel5 DAV/2 Phusion_Passenger/3.0.19
+      X-Powered-By:
+      - Phusion Passenger (mod_rails/mod_rack) 3.0.19
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      Cache-Control:
+      - no-cache
+      X-Request-Id:
+      - dcab5f057311aa3f3a58cbb2d39d9e86
+      X-Runtime:
+      - '0.049623'
+      X-Rack-Cache:
+      - invalidate, pass
+      Set-Cookie:
+      - _democracy_engine_session=BAh7CDoWaW5wdXRfZGV2aWNlX3R5cGVJIgpNT1VTRQY6BkVGOhRob3Zlcl9zdXBwb3J0ZWRUSSIPc2Vzc2lvbl9pZAY7BkZJIiU3NjNiYmViMmZiOTAzZDA3ZjI3NmZjZWMyMzVkMWE4YwY7BlQ%3D--0053128ec201fa9f7bd7862a0ddc98e3e7a89284;
+        path=/; HttpOnly
+      Status:
+      - '422'
+      Content-Length:
+      - '93'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '[["base","Recipient is not active"],["base","Card number is not a valid
+        credit card number"]]'
+    http_version: 
+  recorded_at: Fri, 02 May 2014 00:40:16 GMT
+- request:
+    method: post
+    uri: https://clientstage-donate.democracyengine.com/subscribers/18/donations.json
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Date:
+      - Mon, 19 Jan 2015 22:36:46 GMT
+      Server:
+      - Apache/2.2.29 (Unix) mod_ssl/2.2.29 OpenSSL/1.0.1j DAV/2 Phusion_Passenger/4.0.50
+      Strict-Transport-Security:
+      - max-age=31536000
+      Www-Authenticate:
+      - Digest realm="Democracy Engine API", qop="auth", algorithm=MD5, nonce="MTQyMTcwNzAwNjo5Nzk0ZTcwNTYwZjI2MDIzNzgxYTJiZDg4NmU3M2ZkZA==",
+        opaque="0196eb83b664c00d7d5d4d52c24543ae"
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      Cache-Control:
+      - no-cache
+      X-Request-Id:
+      - 563254d3dc371b1f973391b743e5f165
+      X-Runtime:
+      - '0.038141'
+      X-Rack-Cache:
+      - invalidate, pass
+      X-Powered-By:
+      - Phusion Passenger 4.0.50
+      Set-Cookie:
+      - _democracy_engine_session=BAh7CDoWaW5wdXRfZGV2aWNlX3R5cGVJIgpNT1VTRQY6BkVUOhRob3Zlcl9zdXBwb3J0ZWRUSSIPc2Vzc2lvbl9pZAY7BlRJIiVmZGFkN2IyYzQ5MjIwOWFjZTFiMzE0MDVhYzJjMmYxOQY7BlQ%3D--39aa98aa07a8728ae208d9c58376a535b85a4114;
+        path=/; secure; HttpOnly
+      Status:
+      - 401 Unauthorized
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - text/html; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: |
+        HTTP Digest: Access denied.
+    http_version: 
+  recorded_at: Mon, 19 Jan 2015 22:36:46 GMT
+- request:
+    method: post
+    uri: https://clientstage-donate.democracyengine.com/subscribers/18/donations.json
+    body:
+      encoding: UTF-8
+      string: donation[donor_first_name]=John&donation[donor_last_name]=Doe&donation[donor_city]=Louisiana&donation[donor_state]=CA&donation[donor_zip]=12345&donation[donor_address1]=Street&donation[cc_number]=4111111111111111&donation[cc_verification_value]=123&donation[cc_month]=02&donation[cc_year]=2018&donation[cc_first_name]=John&donation[cc_last_name]=Doe&donation[line_items][][amount]=%2420.00&donation[line_items][][recipient_id]=ruckusfees&donation[token]=token
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Digest username="Ruck.us_api"
+      - cnonce="9bd2d66529528bcc38f33346b4b40aac"
+      - nc=00000001
+      - nonce="MTQyMTcwNzAwNjo5Nzk0ZTcwNTYwZjI2MDIzNzgxYTJiZDg4NmU3M2ZkZA=="
+      - opaque="0196eb83b664c00d7d5d4d52c24543ae"
+      - qop="auth"
+      - realm="Democracy Engine API"
+      - response="17fee8ef46f69d4a2e02f2ebd56cfae2"
+      - uri="/subscribers/18/donations.json"
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Mon, 19 Jan 2015 22:36:47 GMT
+      Server:
+      - Apache/2.2.29 (Unix) mod_ssl/2.2.29 OpenSSL/1.0.1j DAV/2 Phusion_Passenger/4.0.50
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      Cache-Control:
+      - no-cache
+      X-Request-Id:
+      - 4fbb981ced808dcf84ca8b46433e3047
+      X-Runtime:
+      - '0.373098'
+      X-Rack-Cache:
+      - invalidate, pass
+      X-Powered-By:
+      - Phusion Passenger 4.0.50
+      Set-Cookie:
+      - _democracy_engine_session=BAh7CDoWaW5wdXRfZGV2aWNlX3R5cGVJIgpNT1VTRQY6BkVUOhRob3Zlcl9zdXBwb3J0ZWRUSSIPc2Vzc2lvbl9pZAY7BlRJIiU0ODBhOTM4NGFkZWQ5ZmNkZWYxYTg2ODIwOGRlYWNjMwY7BlQ%3D--0d266a3496a1b0693eb232b3e954d021951c7e22;
+        path=/; secure; HttpOnly
+      Status:
+      - 404 Not Found
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: 404 Record Not Found
+    http_version: 
+  recorded_at: Mon, 19 Jan 2015 22:36:47 GMT
+recorded_with: VCR 2.9.3

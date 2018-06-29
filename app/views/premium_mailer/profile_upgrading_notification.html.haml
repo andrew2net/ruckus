@@ -1,0 +1,16 @@
+%p Congratulations, #{@profile.name}!
+
+%p Your #{app_name} account has been successfully upgraded! Your information is:
+
+%div{ style: 'font-weight: bold;' } Name: #{@profile.name}
+%div{ style: 'font-weight: bold;' } Cost per month: #{@amount}
+
+%p
+  Now that your account has been upgraded, your site is live for the world to see! As always, you have access to features like custom website domains.
+  You can check out our tutorial
+  video #{link_to 'here', ruckus? ? 'https://vimeo.com/119134043' : 'https://youtu.be/Yhu2gi7HJzE'} to
+  customize your URL quickly and easily! If you have any questions about Premium or #{app_name} generally,
+  let us know at #{mail_to "support@#{Figaro.env.domain}"}.
+
+%p Cheers,
+%p -Team #{app_name}

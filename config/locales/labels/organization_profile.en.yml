@@ -1,0 +1,14 @@
+en:
+  labels:
+    organization_profile:
+      type: organization
+      issue: Priority
+      issue_with_article: a Priority
+      issues: Priorities
+      issues_name: priorities
+      biography: Organization Statement
+      biography_informal: Who We Are
+      profile_photo: Organization Logo
+      profile_image: Organization Logo
+      photo: Logo
+      join_campaign: Join us.

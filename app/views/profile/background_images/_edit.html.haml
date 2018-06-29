@@ -1,0 +1,40 @@
+%h1 Media - Background Image
+%p Upload or choose images to use as the background of your site header.
+
+.field-inset.media-upload
+  %h3 Add New Background Image
+
+  = render 'new'
+
+= custom_form_for current_profile, url:  profile_background_image_path,
+                                   as:   :profile,
+                                   html: { id: 'media-profile-form' } do |f|
+
+  .inner
+    .media-wrapper.media-bucket
+      .field-inset
+        %h3 Your Media
+        - if @profile_media.empty?
+          .no-media
+            %p You have no media yet...
+        - else
+          = button_tag nil, class: 'button-photo-selected hide'
+          %ul.media-tiles.media-cropable.clearfix
+            = render @profile_media, f: f,
+                                     input_name: 'profile[background_image_medium_id]',
+                                     active_values: [current_profile.background_image_medium_id],
+                                     input_type: 'radio'
+
+      .field-inset
+        %h3 #{app_name} Media
+        = button_tag nil, class: 'button-photo-selected hide'
+        %ul.media-tiles.media-cropable.clearfix
+          = render @ruckus_media, f: f,
+                                  input_name: 'profile[background_image_medium_id]',
+                                  active_values: [current_profile.background_image_medium_id],
+                                  input_type: 'radio'
+
+          = f.input :background_image_cropping_width, as: :hidden, input_html: { class: 'crop-width' }
+          = f.input :background_image_cropping_height, as: :hidden, input_html: { class: 'crop-height' }
+          = f.input :background_image_cropping_offset_x, as: :hidden, input_html: { class: 'crop-x' }
+          = f.input :background_image_cropping_offset_y, as: :hidden, input_html: { class: 'crop-y' }

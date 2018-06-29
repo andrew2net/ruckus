@@ -1,0 +1,78 @@
+%h1 Upgrade Account
+.inner
+  .row
+    .col-md-6
+      = custom_form_for resource, url: account_profile_credit_card_holder_path(parent), html: { method: :post }  do |f|
+        = f.error :base, error_method: :to_sentence
+        = f.simple_fields_for :credit_card do |card|
+          .form-group
+            = card.input :number, as: :string,
+                                  label_html: { class: 'control-label' },
+                                  input_html: { maxlength: '24', required: true }
+        .form-group.row
+          = f.input :first_name, as: :string,
+                                 label_html: { class: 'control-label' },
+                                 input_html: { required: true },
+                                 wrapper_html: { class: 'col-xs-6' }
+
+          = f.input :last_name, as: :string,
+                                 label_html: { class: 'control-label' },
+                                 input_html: { required: true },
+                                 wrapper_html: { class: 'col-xs-6' }
+
+        = f.simple_fields_for :credit_card do |card|
+          .form-group.row
+            = card.input :month, as: :string,
+                                 label_html: { class: 'control-label' },
+                                 input_html: { maxlength: '2', required: true },
+                                 wrapper_html: { class: 'col-xs-4' }
+
+            = card.input :year, as: :string,
+                                label_html: { class: 'control-label' },
+                                input_html: { maxlength: '4', required: true },
+                                wrapper_html: { class: 'col-xs-4' }
+
+            = card.input :cvv, as: :string,
+                               label_html: { class: 'control-label' },
+                               input_html: { maxlength: '4', required: true },
+                               wrapper_html: { class: 'col-xs-4' }
+        .form-group
+          = f.input :address, as: :string,
+                              label_html: { class: 'control-label' },
+                              input_html: { required: true }
+        .form-group.row
+          = f.input :city, as: :string,
+                           label_html: { class: 'control-label' },
+                           input_html: { required: true },
+                           wrapper_html: { class: 'col-xs-4' }
+
+          = f.input :state, as: :select,
+                            include_blank: false,
+                            collection: US_STATES_ABBREVIATIONS,
+                            label_html: { class: 'control-label' },
+                            input_html: { required: true },
+                            wrapper_html: { class: 'col-xs-4' }
+
+          = f.input :zip, as: :string,
+                          label_html: { class: 'control-label' },
+                          input_html: { required: true },
+                          wrapper_html: { class: 'col-xs-4' }
+
+        .form-coupon
+          = link_to "Have a #{app_name} coupon code? Click here", '#', class: 'js-show-coupon-form'
+          .form-group.row.hide.js-coupon-form
+            = f.input :coupon_code, as: :string, label_html: { class: 'control-label' },
+                                                 wrapper_html: { class: 'col-xs-6' }
+            .col-xs-6.apply-code
+              = f.submit 'Apply', class: 'button'
+
+        .submit
+          = f.submit 'Upgrade Plan', class: 'button float right'
+
+
+    .col-md-5.info-text
+      %p.small
+        Upgrading your account will make your site live for the world to see. Currently, only logged in users such as yourself are able to view your site.
+      %span.premium-rate
+        = "#{@new_price || "$20"}"
+        %small /month

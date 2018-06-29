@@ -1,0 +1,10 @@
+#join-campaign-head
+  = cell('subscribe_form/', profile: profile, user: User.new).call
+  .social
+    - if profile.show_facebook_buttons?
+      .facebook
+        = facebook_like(profile.facebook_public_page_url.present? ? profile.facebook_public_page_url : request.original_url)
+    - if profile.show_twitter_buttons?
+      .twitter
+        = twitter_follow(profile)
+

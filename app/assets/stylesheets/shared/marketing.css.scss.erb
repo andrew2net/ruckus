@@ -1,0 +1,1274 @@
+/* =============================================
+Bootstrap Overrides
+============================================= */
+<% if ruckus? %>
+  $brand-primary: #008da0;
+<% else %>
+  $brand-primary: #bf1e2e;
+<% end %>
+
+@import 'shared/global';
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: $screen-sm-min) {}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: $screen-md-min) {}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: $screen-lg-min) {}
+
+/* =============================================
+Marketing Variables
+============================================= */
+$body-grey: #f7f7f7;
+$nav-bg: #1e2526;
+<% if ruckus? %>
+  $orange: #ff6801;
+<% else %>
+  $red: #8c1622;
+  $red-light: #bf1e2e;
+<% end %>
+$white: #ffffff;
+$grey-blue: #aab1b3;
+$error-red: #e00b43;
+
+/* =============================================
+Sticky Footer
+============================================= */
+#wrapper {
+  position: relative;
+  padding-top: 50px;
+  min-height: 100%;
+}
+/* Small devices (tablets, 768px and up) */
+@media (min-width: $screen-sm-min) {
+  html {
+    position: relative;
+    min-height: 100%;
+    height: 100%;
+  }
+  body {
+    position: relative;
+    padding: 0 0 50px;
+    min-height: 100%;
+  }
+  #wrapper {
+    padding-top: 0;
+  }
+  .footer {
+    width: 100%;
+  }
+}
+
+/* =============================================
+Marketing General
+============================================= */
+body {
+  background: #ffffff;
+  font-family: $font-family-sans-serif;
+}
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+}
+h1 {
+  font-size: 40px;
+  font-weight: 300;
+  margin: 0 0 30px;
+}
+h3 {
+  font-size: 18px;
+  font-weight: 900;
+  margin: 0 0 10px;
+  text-transform: uppercase;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+.content {
+  padding: 72px 0 20px;
+  &.grey {
+    background: $body-grey;
+  }
+}
+.brand {
+  font-family: $font-family-reservation;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 18px;
+  letter-spacing: 0.05em;
+  color: $white;
+  line-height: 19px;
+  <% if ruckus? %>
+    a {
+      font-weight: 400 !important;
+      color: $white;
+
+      &:after {
+        content: 'beta';
+        font-family: $font-family-sans-serif;
+        font-weight: 700;
+        font-size: 10px;
+        text-transform: uppercase;
+        background: #ff6801;
+        color: $white;
+        margin-left: 8px;
+        display: inline-block;
+        vertical-align: 2px;
+        padding: 0 4px 0 2px;
+        letter-spacing: -0.125px;
+        line-height: 13px;
+      }
+    }
+  <% else %>
+    a {
+      display: block;
+      width: 140px;
+      height: 30px;
+      background: image-url('win-white.png') 50% 50% no-repeat;
+      background-size: 100% auto;
+      text-indent: -9999px;
+      @media (-webkit-min-device-pixel-ratio: 2) {
+        background-image: image-url('brand-win-gop-2x.png');
+      }
+    }
+    &.center {
+      a {
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+  <% end %>
+}
+.cta {
+  a {
+    display: inline-block;
+    color: $white;
+    &:after {
+      position: relative;
+      display: inline-block;
+      content: '\E82F';
+      margin-left: 10px;
+      font-family: $font-family-ruckus;
+      <% if ruckus? %>
+        color: $orange;
+      <% else %>
+        color: $red;
+      <% end %>
+    }
+  }
+}
+/* Small devices (tablets, 768px and up) */
+@media (min-width: $screen-sm-min) {
+  h1 {
+    font-size: 50px;
+    margin-bottom: 50px;
+  }
+  .content {
+    padding: 50px 0;
+  }
+}
+
+// Button Styles Default
+.button {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  <% if ruckus? %>
+    background: $brand-primary;
+  <% else %>
+    background: $red-light;
+  <% end %>
+  height: 62px;
+  line-height: 62px;
+  color: $white;
+  font-weight: 900;
+  text-transform: uppercase;
+  padding: 0 35px;
+  border-radius: 31px;
+
+  -webkit-box-shadow: inset 0 -2px 0 0 rgba(0,0,0,0.2);
+  box-shadow: inset 0 -2px 0 0 rgba(0,0,0,0.2);
+
+  -webkit-transition: background-color 0.25s;
+  -moz-transition: background-color 0.25s;
+  -ms-transition: background-color 0.25s;
+  -o-transition: background-color 0.25s;
+  transition: background-color 0.25s;
+  &.button-small {
+    height: 32px;
+    line-height: 32px;
+    padding: 0 15px;
+    border-radius: 8px;
+    &:active {
+      line-height: 34px;
+    }
+  }
+  &:hover {
+    text-decoration: none;
+    color: $white;
+    <% if ruckus? %>
+      background: lighten($brand-primary, 3%);
+    <% else %>
+      background: lighten($red-light, 3%);
+    <% end %>
+  }
+  &:active {
+    line-height: 64px;
+    <% if ruckus? %>
+      background: lighten($brand-primary, 5%);
+    <% else %>
+      background: lighten($red-light, 5%);
+    <% end %>
+    -webkit-box-shadow: inset 0 2px 0 0 rgba(0,0,0,0.2);
+    box-shadow: inset 0 2px 0 0 rgba(0,0,0,0.2);
+  }
+
+  &.button-orange {
+    background: #ff6801;
+    cursor: pointer;
+    &:hover,
+    &:active {
+      background: #d95802;
+    }
+  }
+}
+
+// Marketing form overrides
+::-webkit-input-placeholder {
+  color: $grey-blue;
+  font-weight: 300;
+}
+:-moz-placeholder {
+  color: $grey-blue;
+  font-weight: 300;
+}
+::-moz-placeholder {
+  color: $grey-blue;
+  font-weight: 300;
+}
+:-ms-input-placeholder {
+  color: $grey-blue;
+  font-weight: 300;
+}
+form {
+  input.form-control,
+  textarea.form-control {
+    border: 1px solid $white;
+    background: #fff;
+    padding: 10px 13px;
+    height: 50px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    box-shadow: inset 0px 2px 2px #D5D5D5;
+  }
+  textarea.form-control {
+    height: 100px;
+  }
+  select.form-control {
+    height: 50px;
+    border-radius: 0;
+  }
+  button[type='submit'] {
+    min-width: 0;
+  }
+  .invalid, .error {
+    color: $error-red;
+  }
+  input, textarea, select {
+    &.invalid, &.error {
+      border: 1px solid $error-red;
+      &::-webkit-input-placeholder {
+        color: $error-red;
+      }
+      &:-moz-placeholder {
+        color: $error-red;
+      }
+      &::-moz-placeholder {
+        color: $error-red;
+      }
+      &:-ms-input-placeholder {
+        color: $error-red;
+      }
+    }
+  }
+  .validation-error {
+    display: block;
+    text-align: right;
+  }
+}
+
+/* =============================================
+Header/Nav
+============================================= */
+.main-nav {
+  display: none;
+  position: relative;
+  overflow: hidden;
+  height: 99px;
+  <% if ruckus? %>
+    border-top: 5px solid $orange;
+  <% else %>
+    border-top: 5px solid $red;
+  <% end %>
+  background: $nav-bg;
+  padding: 32px 15px 0;
+  margin: 0 0 30px;
+  li {
+    position: relative;
+    overflow: hidden;
+    display: block;
+    float: right;
+    font-size: 16px;
+    padding: 0 10px;
+    &.brand {
+      float: left;
+    }
+    a {
+      color: $white;
+      font-weight: 600;
+      text-transform: uppercase;
+      text-decoration: none;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}
+/* Small devices (tablets, 768px and up) */
+@media (min-width: $screen-sm-min) {
+  .main-nav {
+    display: block;
+  }
+}
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: $screen-lg-min) {
+  .main-nav {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+/* =============================================
+FAQ
+============================================= */
+.faq-questions {
+  li {
+    font-size: 20px;
+    margin-bottom: 10px;
+    a {
+      text-decoration: none;
+    }
+  }
+}
+.faq-answers {
+  > li {
+    margin-bottom: 50px;
+    ul {
+      list-style-type: disc;
+    }
+  }
+}
+
+/* =============================================
+Contact
+============================================= */
+.contact-meta {
+  > div {
+    margin-bottom: 40px;
+  }
+}
+.contact-form-wrapper {
+  background-color: $body-grey;
+  padding: 30px 20px;
+  .submit {
+    text-align: center;
+    .button-small {
+      width: 100%;
+      height: 50px;
+      line-height: 50px;
+    }
+  }
+}
+/* Small devices (tablets, 768px and up) */
+@media (min-width: $screen-sm-min) {
+  .contact-form-wrapper {
+    padding: 40px 60px;
+    .submit {
+      text-align: right;
+      .button-small {
+        width: auto;
+        height: 32px;
+        line-height: 32px;
+      }
+    }
+  }
+}
+
+.contact-form-wrapper .has-error .help-inline {
+  color: #a94442;
+}
+
+/* =============================================
+Footer
+============================================= */
+.footer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 52px;
+  z-index: 1000;
+  > div {
+    position: relative;
+    height: 100%;
+    <% if ruckus? %>
+      background: rgba(255,104,1,0.8);
+    <% else %>
+      background: $red;
+    <% end %>
+    padding: 0 10px;
+  }
+  .brand {
+    position: relative;
+    line-height: 50px;
+    float: left;
+    <% if wingop? %>
+      margin-top: 10px;
+    <% end %>
+    a {
+      text-decoration: none;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+  ul {
+    display: none;
+    height: 50px;
+    line-height: 50px;
+    float: left;
+    margin: 0;
+    li {
+      float: left;
+      display: block;
+      height: 50px;
+      &:first-child {
+        a {
+          padding-left: 0;
+        }
+      }
+      a {
+        font-size: 12px;
+        padding: 0;
+        color: $white;
+        padding-left: 8px;
+        padding-right: 8px;
+        text-decoration: none;
+      }
+    }
+  }
+  .cta {
+    display: none;
+    height: 50px;
+    line-height: 50px;
+    float: right;
+  }
+  .expand-menu {
+    position: relative;
+    display: inline-block;
+    width: 38px;
+    height: 38px;
+    border: 2px solid $white;
+    padding: 9px 8px;
+    float: right;
+    top: 6px;
+    text-decoration: none;
+    > span {
+      display: block;
+      height: 2px;
+      width: 100%;
+      background: $white;
+      margin-bottom: 5px;
+    }
+  }
+}
+/* Small devices (tablets, 768px and up) */
+@media (min-width: $screen-sm-min) {
+  .footer {
+    position: absolute;
+    top: auto !important;
+    left: 0;
+    bottom: 0;
+    <% if ruckus? %>
+      > div {
+        background: $nav-bg;
+      }
+    <% end %>
+    .brand {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      margin-left: -50px;
+      float: none;
+    }
+    ul {
+      display: block;
+    }
+    .cta {
+      display: block;
+    }
+    .expand-menu {
+      display: none;
+    }
+  }
+}
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: $screen-md-min) {
+  .footer {
+    ul {
+      li {
+        a {
+          font-size: 14px;
+          padding-left: 15px;
+          padding-right: 15px;
+        }
+      }
+    }
+  }
+}
+
+/* =============================================
+Small Screen Nav
+============================================= */
+.sm-screen-nav {
+  position: fixed;
+  display: block;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  > div {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background-color: $nav-bg;
+    > div {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+    }
+  }
+  .login-forgot-wrapper {
+    background: #000;
+    color: $white;
+    height: 270px;
+  }
+  .cta {
+    height: 50px;
+    a {
+      display: block;
+      height: 50px;
+      line-height: 50px;
+      padding: 0 15px;
+      background: #2c2c2c;
+    }
+  }
+  ul {
+    position: relative;
+    overflow: hidden;
+    padding-top: 10px;
+    li {
+      margin-bottom: 5px;
+      a {
+        color: $white;
+        display: block;
+        padding: 6px 15px;
+        line-height: 1.2em;
+      }
+    }
+  }
+  a.cancel-link {
+    display: none;
+  }
+  span.validation-error {
+    display: none !important;
+  }
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: $screen-sm-min) {
+  .sm-screen-nav {
+    display: none;
+  }
+}
+
+/* =============================================
+Nav SlideOut Styles
+============================================= */
+/* Default styles for elements used for slideuut nav */
+$nav-speed: 0.5s;
+html {
+  overflow: auto;
+  body {
+    position: relative;
+    overflow: auto;
+    width: auto;
+    right: 0;
+    -webkit-transition: right $nav-speed ease-in-out;
+    -moz-transition: right $nav-speed ease-in-out;
+    -ms-transition: right $nav-speed ease-in-out;
+    -o-transition: right $nav-speed ease-in-out;
+    transition: right $nav-speed ease-in-out;
+    .mask {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      display: block;
+      content: '';
+      z-index: 500;
+      opacity: 0;
+      <% if ruckus? %>
+        background-color: rgba(255,104,1, 0.2);
+      <% else %>
+        background-color: rgba(140,22,34, 0.2);
+      <% end %>
+      -webkit-transition: opacity $nav-speed;
+      -moz-transition: opacity $nav-speed;
+      -ms-transition: opacity $nav-speed;
+      -o-transition: opacity $nav-speed;
+      transition: opacity $nav-speed;
+      &.on {
+        opacity: 1;
+      }
+    }
+  }
+  .footer {
+    margin-left: 0;
+    -webkit-transition: margin-left $nav-speed ease-in-out;
+    -moz-transition: margin-left $nav-speed ease-in-out;
+    -ms-transition: margin-left $nav-speed ease-in-out;
+    -o-transition: margin-left $nav-speed ease-in-out;
+    transition: margin-left $nav-speed ease-in-out;
+  }
+  .sm-screen-nav {
+    width: 234px;
+    margin-right: -234px;
+    -webkit-transition: margin-right $nav-speed ease-in-out;
+    -moz-transition: margin-right $nav-speed ease-in-out;
+    -ms-transition: margin-right $nav-speed ease-in-out;
+    -o-transition: margin-right $nav-speed ease-in-out;
+    transition: margin-right $nav-speed ease-in-out;
+  }
+}
+/* Open styles for elements used for slideuut nav */
+.ruckus-nav-open {
+  overflow: hidden;
+  body {
+    position: absolute;
+    overflow: hidden;
+    width: 100%;
+    right: 234px; // width of .sm-screen-nav
+  }
+  .footer {
+    margin-left: -234px;
+  }
+  .sm-screen-nav {
+    width: 234px;
+    margin-right: 0;
+  }
+}
+/* Animating - translate for Hardware acceleration */
+.ruckus-nav-animating {
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  -webkit-perspective: 1000;
+}
+
+/* =============================================
+Marketing/Signup Modals
+============================================= */
+.ruckus-modal {
+  &.login-signup-modal {
+    background: transparent;
+    color: $white;
+  }
+}
+/* Small devices (tablets, 768px and up) */
+@media (min-width: $screen-sm-min) {
+  .ruckus-modal {
+    &.login-signup-modal {
+      border-radius: 15px;
+      min-height: 180px;
+      max-width: 400px;
+    }
+  }
+}
+
+/* =============================================
+Marketing Login/Signup forms
+============================================= */
+.form-wrapper {
+  div.submit {
+    overflow: hidden;
+    clear: both;
+    button {
+      float: right;
+    }
+    a.cancel-link {
+      float: right;
+      line-height: 32px;
+      margin-right: 15px;
+      color: $grey-blue;
+      font-weight: 300;
+      font-size: 14px;
+    }
+  }
+}
+.login-signup-modal {
+  span.validation-error {
+    display: none !important;
+  }
+}
+.signup-wrapper {
+  padding: 30px 20px;
+  .row {
+    margin: 0 -8px;
+    .form-group {
+      padding: 0 8px;
+    }
+  }
+  .terms {
+    color: $grey-blue;
+  }
+  ul {
+    margin-bottom: 20px;
+    padding: 0 35px;
+    li {
+      text-align: center;
+      list-style: none;
+      padding-bottom: 10px;
+    }
+  }
+  h3 {
+    margin: 20px;
+    line-height: 1.5em;
+    font-weight: normal;
+    strong {
+      font-weight: normal;
+      color: <% if ruckus? %>$orange<% else %>$red-light<% end %>;
+    }
+  }
+
+  .button.go-premium {
+    background: <% if ruckus? %>$orange<% else %>$red-light<% end %>;
+  }
+}
+.login-forgot-wrapper {
+  overflow: hidden;
+  height: 260px;
+  background: rgba(20,25,25,0.95);
+  border-radius: 10px;
+  > div:first-child {
+    float: left;
+    padding: 15px 15px 0;
+    > span {
+      display: none;
+      &.brand {
+        display: inline;
+        margin-right: 10px;
+        <% if ruckus? %>
+          &:after {
+            content: 'beta';
+            font-family: $font-family-sans-serif;
+            font-weight: 700;
+            font-size: 10px;
+            text-transform: uppercase;
+            background: #ff6801;
+            color: $white;
+            margin-left: 8px;
+            display: inline-block;
+            vertical-align: 2px;
+            padding: 0 4px 0 2px;
+            letter-spacing: -0.125px;
+            line-height: 13px;
+          }
+        <% else %>
+          display: inline-block;
+          vertical-align: 3px;
+          width: 100px;
+          height: 30px;
+          text-indent: -9999px;
+          background-image: image-url('win-white.png');
+          background-repeat: no-repeat;
+          background-position: 50% 50%;
+          background-size: 100% auto;
+          @media (-webkit-min-device-pixel-ratio: 2) {
+            background-image: image-url('brand-win-gop-admin-2x.png');
+          }
+        <% end %>
+      }
+    }
+  }
+  a.dont-have-account {
+    display: none;
+    float: right;
+    margin: 20px 15px 0 0;
+  }
+  a.goto-link {
+    float: right;
+    margin-bottom: 15px;
+  }
+  .form-wrapper {
+    position: relative;
+    width: 200%;
+    height: 100%;
+    clear: both;
+    left: 0;
+    -webkit-transition: left 0.25s linear;
+    -moz-transition: left 0.25s linear;
+    -ms-transition: left 0.25s linear;
+    -o-transition: left 0.25s linear;
+    transition: left 0.25s linear;
+    > div {
+      position: relative;
+      width: 50%;
+      float: left;
+      padding: 10px 15px 15px;
+    }
+  }
+  a:hover {
+    text-decoration: none;
+    color: lighten($brand-primary, 10%);
+  }
+  a.cancel-link:hover {
+    color: lighten($grey-blue, 10%);
+  }
+}
+
+#candidate-signup, #organization-signup {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  max-width: 400px;
+  max-height: 640px;
+  padding: 0 20px;
+  background: rgba(20,25,25,0.95);
+}
+
+// Choose account
+.choose-account {
+  background: rgba(20,25,25,0.95);
+  border-radius: 10px;
+  text-align: center;
+  p {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+    text-align: center;
+  }
+  span {
+    display: inline-block;
+    height: 45px;
+    width: 30px;
+    text-align: center;
+    line-height: 45px;
+    vertical-align: top;
+    font-weight: bold;
+    font-size: 14px;
+    @media (min-width: 768px) {
+      width: 50px;
+      font-size: 18px;
+    }
+  }
+  .brand {
+    text-align: center;
+    a { font-size: 14px;}
+  }
+  .button {
+    height: 45px;
+    padding: 0 15px;
+    line-height: 45px;
+    text-align: center;
+    font-size: 13px;
+    @media (min-width: 768px) {
+      width: 152px;
+      font-size: 14px;
+    }
+  }
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: $screen-sm-min) {
+  .login-forgot-wrapper {
+    > div:first-child {
+      padding: 25px 30px 0;
+      > span {
+        display: inline;
+      }
+    }
+    a.dont-have-account {
+      display: inline-block;
+      margin: 30px 30px 0 0;
+    }
+    .form-wrapper {
+      > div {
+        padding: 15px 30px;
+      }
+    }
+  }
+}
+
+/* =============================================
+Marketing Home
+============================================= */
+@import 'partials/marketing-home';
+
+/* =============================================
+Signup
+============================================= */
+body.signup {
+  background: #f7f7f7;
+  h1 {
+    margin-bottom: 0px;
+  }
+  span.steps {
+    display: inline-block;
+    <% if ruckus? %>
+      color: $orange;
+    <% else %>
+      color: $red;
+    <% end %>
+    margin-bottom: 30px;
+  }
+  h4 {
+    margin-bottom: 10px;
+  }
+}
+div.signup {
+  position: relative;
+  margin: 0 auto;
+  max-width: 400px;
+  min-height: 620px;
+  overflow: hidden;
+  border-radius: 10px;
+}
+.signup-form-wrapper {
+  form {
+    .row {
+      margin-left: -5px;
+      margin-right: -5px;
+      [class*='col-'] {
+        padding-left: 5px;
+        padding-right: 5px;
+      }
+    }
+  }
+  label {
+    cursor: pointer;
+    font-weight: 400;
+    span {
+      color: darken($grey-blue, 20%);
+      font-style: italic;
+    }
+  }
+  div.submit {
+    clear: both;
+    padding-top: 30px;
+    text-align: right;
+  }
+  .fileupload-wrapper {
+    position: relative;
+    overflow: hidden;
+    float: left;
+    width: 100%;
+    label {
+      position: relative;
+      top: 6px;
+      display: inline-block;
+      margin-right: 15px;
+      float: left;
+    }
+    span.button {
+      float: right;
+    }
+    input.upload {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin: 0;
+      padding: 0;
+      font-size: 20px;
+      height: 32px;
+      cursor: pointer;
+      opacity: 0;
+      filter: alpha(opacity=0);
+    }
+    .validation-error {
+      clear: both;
+    }
+  }
+  a.skip-step {
+    color: $grey-blue;
+    margin-right: 15px;
+  }
+}
+
+.devise_page {
+  padding: 30px;
+}
+
+.devise_form {
+  .form_inputs {
+    input:not([type='checkbox']) {
+      width: 300px;
+      border: 1px solid rgba(70, 70, 70, 0.89);
+      background: none repeat scroll 0% 0% #FFF;
+      padding: 10px 13px;
+      height: 50px;
+      box-shadow: 0px 2px 2px #D5D5D5 inset;
+    }
+  }
+
+  //  label {
+  //
+  //  }
+  //
+  //  #admin_email { width: 250px; }
+  //  #admin_password { width: 250px; }
+}
+
+#social {
+  .btn-speech-bubble {
+    margin-right: 58px;
+    img {
+      right: -60px;
+      bottom: -2px;
+    }
+  }
+  .btn-speech-bubble:after {
+    content: '';
+    width: 0;
+    height: 0;
+    position: absolute;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 7px solid #fff;
+    background: none;
+    bottom: 13px;
+    right: -7px;
+  }
+}
+
+
+
+
+// TODO: Refactor this section (possibly move to a separate file)
+$white-4: #D5D5D5;
+$blue-1: #008DA0;
+$red-1: #E00B43;
+
+#premiumModal {
+  &.modal-dialog { width: 720px; }
+  .modal-header { border: none; }
+
+  h1 {
+    font-weight: 300;
+    font-size: 24px;
+    margin: 0 0 15px;
+    padding: 0;
+  }
+
+  form {
+    position: relative;
+    label {
+      cursor: pointer;
+      clear: both;
+      font-weight: 300;
+      font-size: 14px;
+      &.error {
+        color: $red-1;
+      }
+    }
+    input[type='text'],
+    input[type='password'],
+    input[type='url'],
+    input[type='date'],
+    input[type='email'],
+    textarea,
+    select {
+      position: relative;
+      cursor: text;
+      display: block;
+      width: 100%;
+      margin-bottom: 15px;
+      height: 50px;
+      padding: 0 16px;
+      font-size: 16px;
+      color: #333;
+      border: none;
+      box-shadow: inset 0px 2px 2px $white-4;
+      position: relative;
+      &:focus {
+        box-shadow: 0px 0px 4px $brand-primary;
+        left: -1px;
+      }
+      &.error {
+        margin-bottom: 5px;
+        color: $red-1;
+        border: 1px solid $red-1;
+        left: -1px;
+      }
+      &.highlighted {
+        border: 3px solid $brand-primary;
+      }
+      &::-ms-clear {
+        display: none;
+      }
+    }
+    select {
+      padding: 16px;
+      background: #fff;
+      box-shadow: inset 0px 2px 2px #d5d5d5;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      background: image-url('select.png') 93% center;
+      background-repeat: no-repeat;
+      &::-ms-expand {
+        display: none;
+      }
+    }
+    textarea {
+      padding-top: 10px;
+      min-height: 100px;
+      resize: none;
+    }
+    .error-text {
+      color: $red-1;
+      line-height: auto;
+      display: inline-block;
+      margin-bottom: 15px;
+      display: block;
+      width: 100%;
+      text-align: right;
+    }
+    input.date {
+      max-width: 150px;
+    }
+    .input-group {
+      .input-group-addon {
+        border-radius: 0px !important;
+        clear: both;
+        border: none;
+        background: none;
+        padding: 0;
+        padding-right: 20px;
+        position: relative;
+        .check-box {
+          top: 4px;
+        }
+      }
+      .form-control {
+        border-radius: 0px !important;
+        margin-bottom: 15px;
+      }
+      label.form-control {
+        background: none;
+        border: none;
+        box-shadow: none;
+      }
+    }
+    .margin-comp {
+      margin-left: 40px;
+    }
+    .form-actions {
+      padding-top: 30px;
+    }
+
+    .control-label abbr { display: none; }
+
+    .button {
+      display: inline-block;
+      text-transform: uppercase;
+      color: white;
+      font: bold 14px 'Lato', sans-serif;
+      outline: none !important;
+      border: none;
+      border-bottom-width: 2px;
+      border-bottom-style: solid;
+      <% if ruckus? %>
+        background: #008da0;
+        border-bottom-color: #0d7886;
+      <% else %>
+        background: #bb133e;
+        border-bottom-color: #8c1622;
+      <% end %>
+      height: 30px;
+      border-radius: 10px;
+      padding: 0 30px;
+      line-height: 30px;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none;
+
+      &.right { float: right; }
+    }
+
+    .has-error input,
+    .has-error textarea,
+    .has-error select {
+      margin-bottom: 5px;
+      color: #e00b43;
+      border: 1px solid #e00b43;
+      left: -1px;
+    }
+
+    .has-error span.help-inline {
+      color: #e00b43;
+    }
+
+    .help-inline {
+      display: block;
+      font-size: 14px;
+      color: #b00;
+    }
+
+    input + .help-inline {
+      margin-bottom: 15px;
+    }
+
+    .error { color: #e00b43; }
+  }
+
+  .small { font-size: 14px; }
+  .info-text { padding: 45px 0 0 30px; }
+}
+
+.premium-rate {
+  font-size: 36px;
+  small {
+    color: #666;
+    font-size: 20px;
+  }
+}
+
+.premium-actions {
+  .cancel {
+    display: block;
+    margin-top: 8px;
+    font-size: 14px;
+    text-decoration: none;
+    color: #666;
+    &:hover { text-decoration: underline; }
+  }
+}

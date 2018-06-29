@@ -1,0 +1,2 @@
+class EditorOwnership < Ownership
+end

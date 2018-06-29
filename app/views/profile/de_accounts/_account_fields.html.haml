@@ -1,0 +1,61 @@
+%h3 Account Info
+%div
+  = f.label :account_full_name, 'Full Name'
+  = f.input_field :account_full_name
+  = f.error :account_full_name
+
+%div
+  = f.label :account_committee_name, 'Account Committee Name'
+  = f.input_field :account_committee_name
+  = f.error :account_committee_name
+
+%div
+  = f.label :account_committee_id do
+    Committee ID
+    %i.icon-help-circled.tip{"data-placement" => "right", title: "If your campaign committee has been issued an ID by the local or state campaign regulator, please provide it here."}
+  = f.input_field :account_committee_id
+  = f.error :account_committee_id
+
+%div
+  = f.label :account_party, 'Account Party or Organization Name'
+  = f.input_field :account_party
+  = f.error :account_party
+
+%div
+  = f.label :account_address, 'Address'
+  = f.input_field :account_address
+  = f.error :account_address
+
+.row
+  .col-xs-5
+    = f.label :account_city, 'City'
+    = f.input_field :account_city
+    = f.error :account_city
+
+  .col-xs-4
+    = f.label :account_state, 'State'
+    = f.input_field :account_state, as: :select,
+                                      collection:  US_STATES_ABBREVIATIONS,
+                                      include_blank: false
+    = f.error :account_state
+  .col-xs-3
+    = f.label :account_zip, 'Zipcode'
+    = f.input_field :account_zip
+    = f.error :account_zip
+
+%div
+  = f.label :account_recipient_kind, 'Recipient Type'
+  = f.input_field :account_recipient_kind, as: :select, collection: DE_ACCOUNT_TYPES
+  = f.error :account_recipient_kind
+
+%div
+  = f.label :account_district_or_locality, 'District and/or Locality'
+  = f.input_field :account_district_or_locality
+  = f.error :account_district_or_locality
+
+%div
+  = f.label :account_campaign_disclaimer do
+    Official Campaign Disclaimer
+    %i.icon-help-circled.tip{"data-placement" => "right", title: "If your jurisdiction requires specific language on a fundraising site, such as “Paid for by People for Smith”, please enter that language here."}
+  = f.input_field :account_campaign_disclaimer
+  = f.error :account_campaign_disclaimer

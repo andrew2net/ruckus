@@ -1,0 +1,7 @@
+en:
+  activerecord:
+    attributes:
+      organization_profile:
+        name: 'Organization Name'
+        campaign_website: 'Organization URL'
+        biography: 'About Us'

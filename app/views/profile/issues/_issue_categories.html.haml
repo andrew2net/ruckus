@@ -1,0 +1,21 @@
+.ruckus-drop{ data: { field: '#category-name' } }
+  .ruckus-selected.white-box
+    .category
+      %span.color-block{ class: category_color_block_class(active_category, collection.index(active_category).to_i) }
+        = active_category.present? ? active_category.try(:name) : "Select #{current_profile.labels[:issue_with_article]} Topic"
+    %i.icon-down-open
+  %ul.ruckus-drop-options
+    - collection.each_with_index do |category, index|
+      %li{ data: { issue: { category: category.id } }, id: "issue-category-#{category.id}" }
+        .category
+          %span.color-block{ class: category_color_block_class(category, index) }
+            = category.name
+
+    %li.new-category
+      .category
+        %span.color-block.category-custom
+          = simple_form_for [:account, IssueCategory.new], url: profile_issue_categories_path,
+                                             remote: true,
+                                             html: { id: 'new_issue_category_form' } do |f|
+
+            = f.text_field :name, placeholder: 'Create Your Own Category'

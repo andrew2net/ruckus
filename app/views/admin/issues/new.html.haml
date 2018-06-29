@@ -1,0 +1,7 @@
+%h1 New Issue for #{@account.email}
+
+= render 'form'
+
+= link_to 'Back', admin_account_profile_issues_path(@account, @profile)
+|
+= link_to 'Back to Account', admin_account_path(@account)

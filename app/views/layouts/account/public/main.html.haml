@@ -1,0 +1,14 @@
+!!!
+%html
+  %head
+    = render 'layouts/shared/head'
+    = javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{GOOGLE_MAP_KEY}", 'data-turbolinks-track' => true
+    = stylesheet_link_tag 'account_public', media: 'all', data: { turbolinks_track: true }
+    = javascript_include_tag 'account_public', data: { turbolinks_track: true }
+  %body{ class: "#{yield(:bodyclasses)}" }
+    / add 'theme-<color>' (red, green, blue) class to body element depends on user's theme
+    = load_facebook_init
+    = load_twitter_init
+    #flash= render 'layouts/shared/flash'
+    = yield
+    = render 'shared/crazyegg'

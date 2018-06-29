@@ -1,0 +1,2 @@
+class AdminOwnership < Ownership
+end

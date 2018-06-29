@@ -1,0 +1,20 @@
+common: &default_settings
+  license_key: newrelic_license_key
+  app_name: ruck.us
+  log_level: info
+
+development:
+  <<: *default_settings
+  app_name: ruck.us (Development)
+  developer_mode: true
+
+test:
+  <<: *default_settings
+  monitor_mode: false
+
+staging:
+  <<: *default_settings
+  app_name: ruck.us (Staging)
+
+production:
+  <<: *default_settings

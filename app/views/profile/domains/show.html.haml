@@ -1,0 +1,36 @@
+- title('Domains')
+- bodyclasses('domains add-domain')
+
+= render 'shared/profile/nav', submenu: :settings, profile: current_profile
+
+.content
+  %h1 Link an Existing Domain
+  %p
+    This process is for those who have already purchased a custom domain name.
+    %br
+    Don't have a custom domain?
+    = link_to '#', target: '_blank' do
+      %strong Purchase one here.
+  .inner
+    %h3 Step 1: Enter your Domain
+    %ul.no-style.domain-list
+      %li.white-box
+        %i.icon-globe
+        = resource.name
+    %h3 Step 2: Redelegate domain to #{app_name.possessive} DNS servers
+    %p Redelegation involves changing DNS server addresses at your registrar to #{app_name.possessive} DNS server addresses. When you log in to DNS management tool on the registrar's webiste you will find a section which allows you to specify DNS servers.
+    %p Ths is where you need to enter the following DNS server addresses:
+    %p
+      %strong ns1.worldsecuresystems.com (54.236.190.129) - primary DNS server
+    %p
+      %strong ns2.worldsecuresystems.com (54.246.209.121) - secondary DNS server
+    %p
+      %strong ns3.worldsecuresystems.com (54.252.148.151)
+    %p The IP addresses are optional. Some registrars require them and some don't. If the registrar doesn't have the fields for them, you don't need to supply them.
+    %p If you're not sure who your registrar is, you can obtain this information with a "whois" utility. <a href="http://whois.domaintools.com/">http://whois.domaintools.com/</a> is a free online whois service you can use.
+    %p
+      See
+      = link_to 'this tutorial', '#', target: '_blank'
+      for more detailed instructions</p>
+    .form-actions
+      = link_to 'Finished', profile_domains_path, class: 'button'

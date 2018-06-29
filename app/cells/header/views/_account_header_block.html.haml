@@ -1,0 +1,24 @@
+#account-header
+  .mask
+  = render_photo
+
+  %h1
+    - if profile.candidate?
+      %strong= profile.name
+      for
+      %span= profile.office
+    - else
+      %strong= "#{profile.name} #{profile.office}"
+
+  .account-meta{ data: { edit: 'edit-general-info' } }
+    #general-account-info{ class: "#{'onboard-tip-edit-info' if show_navigation?}" }
+      - if profile.candidate?
+        = general_info
+        = render_general_info_pencil
+      - else
+        .organization-tagline
+          %p#profile-tagline{ data: { edit: 'profile-tagline' } }
+            = render_tagline_or_placeholder
+            = render_question_pencil
+
+  = render_donations_block

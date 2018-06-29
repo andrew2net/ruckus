@@ -1,0 +1,35 @@
+= simple_form_for @account, url: account_registration_path,
+                            html: { class: 'signup-form',
+                                    role:  'form' },
+                            remote: true do |f|
+  .row
+    - attributes.each do |attributes_name, field_names|
+      = f.simple_fields_for attributes_name do |profile|
+        - if field_names.include?(:first_name)
+          .form-group.col-sm-6
+            = profile.input_field :first_name, class: 'form-control required'
+        - if field_names.include?(:last_name)
+          .form-group.col-sm-6
+            = profile.input_field :last_name, class: 'form-control required'
+        - if field_names.include?(:name)
+          .form-group.col-sm-12
+            = profile.input_field :name, class: 'form-control required'
+        - if field_names.include?(:office)
+          .form-group.col-sm-12
+            = profile.input_field :office, class: 'form-control required'
+  .form-group
+    = f.input_field :email, as: :email, class: 'form-control required'
+  .form-group
+    = f.input_field :password, as: :password, class: 'form-control required',
+                                              data: { message: 'Please enter your password' }
+    %span.help-block minimum is #{password_min_length} characters
+  .form-group
+    = f.input_field :password_confirmation, as: :password, class: 'form-control required',
+                                                           data: { message:  'Please enter your password again' }
+  %p.terms
+    By clicking below to sign up, you are agreeing to the #{app_name}
+    = link_to 'Terms of Service.', front_terms_path, target: '_blank'
+
+  .form-group.submit
+    = f.button :button, class: 'button button-small', data: { disable_with: 'Please wait...' }
+    = link_to 'Cancel', '#', class: 'cancel-link'

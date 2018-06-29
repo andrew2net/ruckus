@@ -1,0 +1,152 @@
+/* Crop Functionality
+------------------------------------- */
+.profile-upload {
+  min-height: 200px;
+  margin-bottom: 20px;
+}
+
+.profile-upload,
+.button-crop,
+.photo-crop-wrapper {
+  display: none;
+}
+
+.photo-crop {
+  position: relative;
+  .preview-box { height: 100%; }
+}
+
+.jcrop-holder {
+  min-height: 330px;
+  background-color: transparent !important;
+}
+
+#newly_selected_image {
+  min-width: 130px;
+  min-height: 130px;
+  max-width: 445px;
+  max-height: 500px;
+}
+
+.preview-box {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 200px;
+
+  h4 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-weight: 700;
+    font-size: 15px;
+  }
+
+  p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+  }
+
+  .button {
+    position: absolute;
+    padding: 0 20px !important;
+  }
+
+  .button-reset {
+    bottom: 40px;
+    right: 0;
+  }
+
+  .button-cancel {
+    bottom: 40px;
+    left: 0;
+  }
+
+  .button-crop {
+    bottom: 0;
+    right: 0;
+    width: 100%;
+  }
+}
+
+.photo-crop-wrapper[type="photo"] {
+  .preview-container { display: block; }
+}
+
+.preview-container {
+  display: none;
+  width: 140px;
+  height: 140px;
+  overflow: hidden;
+  border: 4px solid #fff;
+  <% if ruckus? %>
+    border-radius: 100px;
+  <% end %>
+  box-shadow: 0px 1px 1px #cfd8da;
+
+  .manage-media & {
+    margin-left: 36px;
+  }
+}
+
+.text-placeholder {
+  font-weight: bold;
+  font-style: italic;
+}
+
+.loader {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: image-url('loader.gif') 50% 50% no-repeat rgba(255, 255, 255, 0.9);
+  z-index: 50;
+}
+
+.non-clickable {
+  pointer-events: none;
+}
+
+.media-block {
+  position: relative;
+  cursor: pointer !important;
+  @include no-user-select(none);
+  .check-wrap {
+    pointer-events: none;
+    .check-box {
+      padding-left: 0;
+      position: relative;
+      &:before {
+        position: relative;
+        overflow: hidden;
+      }
+    }
+
+    input[type="radio"],
+    input[type="checkbox"] {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      filter: alpha(opacity=0);
+      opacity: 0;
+      cursor: pointer;
+      z-index: 40;
+    }
+  }
+}
+
+.media-stream {
+  .media-block {
+    .check-wrap {
+      input[type="radio"],
+      input[type="checkbox"] {
+        display: none;
+      }
+    }
+  }
+}

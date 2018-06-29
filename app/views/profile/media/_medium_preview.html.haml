@@ -1,0 +1,7 @@
+.media-wrapper.profile.col-xs-4
+  .field-inset
+    %h3= title
+    .media-block
+      .image-wrapper
+        = image_tag image_path
+    = link_to 'Edit', edit_path, class: modal_classes('button')

@@ -1,0 +1,110 @@
+@import 'account/admin/colors';
+
+body.admin-bar {
+  margin-top: 60px;
+}
+#ruckus-admin-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: #1e2526;
+  z-index: 999999;
+  ul {
+    padding: 0 15px;
+    margin: 0 auto;
+    li {
+      display: inline-block;
+      color: $white;
+      height: 60px;
+      line-height: 60px;
+    }
+  }
+  .brand {
+    font-family: $font-family-reservation;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 14px;
+    letter-spacing: 0.05em;
+    color: $white;
+    position: absolute;
+    left: 50%;
+    margin-left: -49px;
+    a {
+      font-weight: 400 !important;
+      color: $white;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+  .edit {
+    float: left;
+    font-family: $font-family-sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    a {
+      color: $white;
+      text-decoration: none;
+      i {
+        color: #d45b0b;
+      }
+    }
+  }
+  .publish {
+    float: right;
+    a.button {
+      // borrowed from admin reusables - bleck
+      display: inline-block;
+      text-transform: uppercase;
+      color: $white;
+      font: bold 12px $font-family-sans-serif;
+      outline: none !important;
+      border: none;
+      border-bottom-width: 2px;
+      border-bottom-style: solid;
+      $button-inset-box-shadow: inset 0px 2px 1px;
+      background: $primary-1;
+      border-bottom-color: $primary-2;
+      height: 30px;
+      border-radius: 10px;
+      padding: 0 30px;
+      line-height: 30px;
+      &:hover, &:focus {
+        color: $white;
+        text-decoration: none;
+        background: lighten($primary-1, 5%);
+      }
+      &:active {
+        background: darken($primary-1, 5%);
+        box-shadow: $button-inset-box-shadow darken($primary-2, 5%);
+        border-bottom: none;
+      }
+      &:focus {
+        text-decoration: none;
+        color: $white;
+      }
+      i {
+        margin-right: 5px;
+      }
+    }
+  }
+}
+/* Small devices (tablets, 768px and up) */
+@media (min-width: $screen-sm-min) {
+  #ruckus-admin-bar {
+    .brand {
+      font-size: 16px;
+    }
+    .edit {
+      font-size: 14px;
+    }
+    .publish {
+      float: right;
+      a.button {
+        font-size: 14px;
+      }
+    }
+  }
+}

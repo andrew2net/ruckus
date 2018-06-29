@@ -1,0 +1,5 @@
+.actions#preview-link
+  - if profile.active?
+    = link_to 'View Live Site', profile_path(profile), class: 'link-live', target: '_blank'
+  - else
+    = link_to 'Preview', profile_preview_profile_path(profile), class: 'link-live', target: '_blank'

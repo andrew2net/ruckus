@@ -1,0 +1,37 @@
+%h2 Edit #{donation_engine}
+= simple_form_for @payment_account, url: admin_payment_account_path do |f|
+  = f.input :email
+  = f.input :account_full_name
+  = f.input :account_committee_name
+  = f.input :account_address
+  = f.input :account_city
+  = f.input :account_state
+  = f.input :account_zip
+  = f.input :account_recipient_kind, as: :select, collection: DE_ACCOUNT_TYPES, label: 'Recipient Type'
+  = f.input :account_district_or_locality
+  = f.input :account_campaign_disclaimer
+  = f.input :contribution_limit
+  = f.input :show_employer_name
+  = f.input :show_employer_address
+  = f.input :show_occupation
+  = f.input :bank_account_name
+  = f.input :bank_routing_number
+  = f.input :bank_account_number
+  = f.input :contact_first_name
+  = f.input :contact_last_name
+  = f.input :contact_email
+  = f.input :contact_phone, as: :string
+  = f.input :contact_address
+  = f.input :contact_city
+  = f.input :contact_state
+  = f.input :contact_zip
+  = f.input :account_party
+  %p Agreements
+  - @payment_account.agreements << '' if @payment_account.agreements.blank?
+  - @payment_account.agreements.each do |agreement|
+    = f.input_field :agreements, as: :string,
+                                     name: 'de_account[agreements][]',
+                                     value: agreement,
+                                     class: 'form-control'
+  .form-actions
+    = f.button :submit, 'Save', class: 'btn btn-success', data: { disable_with: 'Please wait...' }

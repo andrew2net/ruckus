@@ -1,0 +1,8 @@
+.ruckus-modal.small-modal.ruckus-modal-builder
+  .ruckus-modal-body.biography
+    .ruckus-modal-body-content
+      %h1 #{current_profile.labels[:biography]}
+      %p Share your story with a brief #{current_profile.labels[:biography].downcase}.
+      .inner
+        .col.form-modal
+          = render 'form'

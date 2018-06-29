@@ -1,0 +1,19 @@
+%h3 A Record: #{SERVER_IP}
+
+= link_to 'New Domain', new_admin_domain_path
+
+%table.table
+  %thead
+    %tr
+      %th ID
+      %th Owner
+      %th Website
+      %th Visits
+  %tbody
+    - collection.each do |domain|
+      - account = domain.profile.admin_ownerships.first.account
+      %tr
+        %td= link_to domain.id, admin_domain_path(domain)
+        %td= link_to account.email, admin_account_path(account)
+        %td= link_to profile_path(domain), profile_path(domain), target: '_blank'
+        %td= domain.visits.count

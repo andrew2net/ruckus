@@ -1,0 +1,10 @@
+#press{ class: press_classes }
+  %h3
+    %span Press
+    .edit-section
+      = render_press_pencil
+      = render_press_switch
+  = render_view_all_press_releases_link
+  %ol.list-unstyled.clearfix
+    - press.each_with_index do |press_release, index|
+      = render_press_release(press_release, index)

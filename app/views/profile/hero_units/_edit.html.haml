@@ -1,0 +1,26 @@
+.photo-stream-actions.pull-right
+
+%h1 Media - Featured Image/Video
+%p upload or choose an image or video (vimeo or youtube) to feature on your site)
+
+.field-inset.media-upload
+  %h3 Add New Media
+  = render 'new'
+
+= custom_form_for current_profile, url:  profile_hero_unit_path,
+                                   html: { id: 'media-profile-form' } do |f|
+  .inner
+    .media-wrapper.media-bucket
+      .field-inset
+        %h3 Your Media
+        - if @media.empty?
+          .no-media
+            %p You have no media yet...
+        - else
+
+          %ul.media-tiles.clearfix
+            = render @media, f: f,
+                             input_name: 'profile[hero_unit_medium_id]',
+                             active_values: [current_profile.hero_unit_medium_id],
+                             input_type: 'radio'
+

@@ -1,0 +1,52 @@
+%table{ align: 'center',
+        background: '#ffffff',
+        border: '0',
+        cellpadding: '0',
+        cellspacing: '0',
+        style: 'max-width: 600px; margin: 0 auto; background-color: #fff;' }
+  %tr
+    %td{ colspan: '3' }= image_tag image_path('mailer/spacer.gif'), alt: '',
+                                                                    height: '60',
+                                                                    style: 'display: block; margin: 0; border: 0;',
+                                                                    width: '1'
+  %tr
+    %td= image_tag image_path('mailer/spacer.gif'), alt: '',
+                                                    height: '1',
+                                                    style: 'display: block; margin: 0; border: 0;',
+                                                    width: '60'
+    %td{ valign: 'top' }
+      %h2
+        %strong Welcome to #{app_name}, the simple, powerful #{"political" if ruckus?} website builder!
+      %p{ style: 'margin: 0 0 20px; line-height: 1.4em;' }
+        Thanks for signing up! With #{app_name}, you’ll be able to
+        %strong process online donations, integrate social media, host photos and videos, and a whole lot more, quickly and easily. Here are your credentials:
+
+      %p{ style: 'margin: 0 0 20px; line-height: 1.4em;' }
+        %strong Your user name:
+        = link_to @account.email, profile_root_url,
+                  style: "color: #{ruckus? ? '#008da0' : '#bf1e2e'}; text-decoration: none;",
+                  target: '_blank'
+      %p{ style: 'margin: 0 0 20px; line-height: 1.4em;' }
+        To log into your account, just click
+        = link_to 'here', root_url, style: "color: #{ruckus? ? '#008da0' : '#bf1e2e'}; text-decoration: none;", target: '_blank'
+        or the button below.
+        If you want some setup help, our
+        = link_to 'tutorial video series', front_faq_url, style:  "color: #{ruckus? ? '#008da0' : '#bf1e2e'}; text-decoration: none;",
+                                                          target: '_blank'
+        on our FAQ should give you everything you need to get started.
+        %strong Have any questions? Shoot us an email at support@#{Figaro.env.domain}!
+      %p{ style: 'margin: 0 0 20px; line-height: 1.4em; text-align: center;' }
+        = link_to "Let’s Get Started!",
+                  root_url(show_login_popup: true),
+                  style:  "color: #ffffff; background: #{ruckus? ? '#ff6801' : '#bf1e2e'}; padding: 10px; text-decoration: none; font-size: 22px;",
+                  target: '_blank'
+
+    %td= image_tag image_path('mailer/spacer.gif'), alt: '',
+                                                    height: '1',
+                                                    style: 'display: block; margin: 0; border: 0;',
+                                                    width: '60'
+  %tr
+    %td{ colspan: '3' }= image_tag image_path('mailer/spacer.gif'), alt: '',
+                                                                    height: '60',
+                                                                    style: 'display: block; margin: 0; border: 0;',
+                                                                    width: '1'

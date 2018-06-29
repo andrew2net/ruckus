@@ -1,0 +1,5 @@
+= custom_form_for profile, url: profile_profile_path, as: :profile do |f|
+  #biography-switch.switch-builder.quick-tip-on-off{ data: { type: "#{labels[:type]}" } }
+    .toggle
+      %label.checkbox
+        = f.input_field :biography_on, as: :boolean, class: 'boolean optional'

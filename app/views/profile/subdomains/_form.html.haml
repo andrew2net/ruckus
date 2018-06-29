@@ -1,0 +1,6 @@
+= simple_form_for @subdomain, url: profile_subdomain_path, remote: true do |form|
+  = form.input :name, placeholder: 'Subdomain URL', label: false
+  .domain-suffix #{Figaro.env.domain}
+  .right.form-actions
+    = link_to 'Cancel', profile_subdomain_path, class: 'cancel', remote: true
+    = form.submit 'Update', class: 'button', data: { disable_with: 'Please wait...' }

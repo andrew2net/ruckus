@@ -1,0 +1,82 @@
+!!! Strict
+%html
+  %body
+    %meta{ content: 'text/html; charset=utf-8', 'http-equiv' => 'Content-Type' }
+    / <meta name='viewport' content='width=device-width, initial-scale=1.0'/>
+    %title Welcome to #{app_name}!
+    %table#backgroundTable{  background: '#ededed',
+                             border: '0',
+                             cellpadding: '0',
+                             cellspacing: '0',
+                             style: 'background-color: #ededed;',
+                             width: '100%' }
+      %tr
+        %td{ style: 'font-family: sans-serif; color: #1e2526; font-size: 15px;', valign: 'top' }
+          %table{ align: 'center',
+                  border: '0',
+                  cellpadding: '0',
+                  cellspacing: '0',
+                  style: 'max-width: 600px; margin: 0 auto;' }
+            %tr
+              %td{ background: "#{ruckus? ? '#ff6801' : '#bf1e2e'}", colspan: '2', style: "background-color: #{ruckus? ? '#ff6801' : '#bf1e2e'};" }
+                = image_tag image_path('mailer/spacer.gif'), alt: '',
+                                                             height: '5',
+                                                             style: 'display: block; margin: 0; border: 0;',
+                                                             width: '1'
+            %tr
+              %td{ colspan: '2' }
+                = image_tag image_path('mailer/spacer.gif'), alt: '',
+                                                             height: '35',
+                                                             style: 'display: block; margin: 0; border: 0;',
+                                                             width: '1'
+            %tr
+              %td{ align: 'left', style: 'text-align: left;', valign: 'middle', width: '50%' }
+                = link_to root_url, style: "color: #{ruckus? ? '#008da0' : '#bf1e2e'}; text-decoration: none;",
+                                    target: '_blank',
+                                    title: '' do
+                  = image_tag image_path("mailer/logo-#{ruckus? ? 'ruckus' : 'wingop'}.png"), alt: "#{app_name}",
+                                                             height: '17',
+                                                             style: 'display: block; margin: 0; border: 0;',
+                                                             width: '87'
+              %td{ align: 'right', style: 'text-align: right;', valign: 'middle', width: '50%' }
+                = link_to 'Login',
+                          root_url(show_login_popup: true),
+                          style: "color: #{ruckus? ? '#008da0' : '#bf1e2e'}; text-decoration: none; text-transform: uppercase; font-size: 12px;",
+                          target: '_blank',
+                          title: 'Login'
+            %tr
+              %td{ colspan: '2' }
+                = image_tag image_path('mailer/spacer.gif'), alt: '',
+                                                             height: '35',
+                                                             style: 'display: block; margin: 0; border: 0;',
+                                                             width: '1'
+            %tr
+              %td{ colspan: '2', style: 'background-color: #ffffff; padding: 30px;' }
+                = yield
+
+            %tr
+              %td{ colspan: '2' }
+                = image_tag image_path('mailer/spacer.gif'), alt: '',
+                                                             height: '15',
+                                                             style: 'display: block; margin: 0; border: 0;',
+                                                             width: '1'
+      %tr
+        %td{ valign: 'top' }
+          %table{ align: 'center',
+                  border: '0',
+                  cellpadding: '0',
+                  cellspacing: '0',
+                  style: 'max-width: 600px; margin: 0 auto;' }
+            %tr
+              %td{ align: 'center',
+                   style: 'font-family: sans-serif; color: #aab1b3; font-size: 12px; text-align: center;',
+                   valign: 'top' }
+                %p Copyright ©2015 #{ruckus? ? 'Ruck.us' : 'WIN.GOP Inc.'}
+                %p
+                  = link_to 'Home', root_url, style: 'color: #aab1b3; text-decoration: none;', target: '_blank'
+                  \•
+                  = link_to 'FAQ', profile_help_url, style: 'color: #aab1b3; text-decoration: none;', target: '_blank'
+                  \•
+                  = link_to 'Twitter', "#{ruckus? ? 'https://twitter.com/theruckus' : 'https://twitter.com/wingop_websites'}", style: 'color: #aab1b3; text-decoration: none;', target: '_blank'
+                  \•
+                  = link_to 'Facebook', "#{ruckus? ? 'https://www.facebook.com/TimeforaRuck.us': 'https://www.facebook.com/win.gop.websites'}", style: 'color: #aab1b3; text-decoration: none;', target: '_blank'

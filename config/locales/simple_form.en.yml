@@ -1,0 +1,134 @@
+en:
+  helpers:
+    submit:
+      event:
+        create: 'Add'
+        update: 'Save'
+      issue:
+        create: 'Add'
+        update: 'Update'
+      press_release:
+        create: 'Add'
+        update: 'Update'
+      profile:
+        update: 'Save'
+      account:
+        create: 'Start Building'
+  simple_form:
+    "yes": 'Yes'
+    "no": 'No'
+    required:
+      text: 'required'
+      mark: '*'
+      # You can uncomment the line below if you need to overwrite the whole required html.
+      # When using html, text and mark won't be used.
+      # html: '<abbr title="required">*</abbr>'
+    error_notification:
+      default_message: "Please review the problems below:"
+    labels:
+      profile:
+        office: "Office You're Running for"
+        tagline: 'We make awesome.'
+        party_affiliation: 'Party Affiliation'
+        city: 'City'
+        address_1: 'Address'
+        address_2: 'Address Cont.'
+        phone: 'Phone'
+        contact_city: 'City'
+        contact_zip: 'Zip'
+        contact_state: 'State'
+        campaign_disclaimer: 'Disclaimer'
+      credit_card_holder:
+        first_name: 'First Name'
+        last_name: 'Last Name'
+        city: 'City'
+        state: 'State'
+        zip: 'Zip'
+        address: 'Address'
+        credit_card:
+          number: 'Card Number'
+          month: 'Month Exp.'
+          year: 'Year Exp.'
+          cvv: 'CVV/CVV2'
+    placeholders:
+      donation:
+        amount: '$'
+      support_message:
+        name: 'Name'
+        email: 'Email'
+        message: 'Message'
+      de_account:
+        contribution_limit: '$ 2500'
+        email: 'name@example.com'
+        account_full_name: 'George Washington'
+        account_committee_name: 'Cherry Tree Choppers'
+        account_committee_id: 'W999999'
+        account_party: 'Some Party or Organization'
+        account_address: '1600 Pennsylvania Ave NW'
+        account_city: 'Washington'
+        account_zip: '20500'
+        account_district_or_locality: 'Washington, D.C.'
+        account_campaign_disclaimer: 'Paid for by People for Smith'
+        bank_account_name: 'First National Bank'
+        bank_routing_number: '123456789'
+        bank_account_number: '111222333444555'
+        bank_account_number_confirmation: '111222333444555'
+        contact_first_name: 'First Name'
+        contact_last_name: 'Last Name'
+        contact_email: 'name@example.com'
+        contact_phone: '555 555-5555'
+        contact_address: 'Address'
+        contact_city: 'Washington'
+        contact_zip: '20500'
+      domain:
+        name: 'Domain URL'
+
+      credit_card_holder:
+        first_name: 'John'
+        last_name: 'Doe'
+        city: 'NYC'
+        state: 'State'
+        zip: 'Zip'
+        address: 'Main st.'
+        credit_card:
+          number: '4111 1111 1111 1111'
+          month: '01'
+          year: '2017'
+          cvv: '123'
+      profile:
+        name: 'John Doe'
+        office: 'Governor'
+        tagline: 'We make awesome.'
+        party_affiliation: 'Independants'
+        city: 'Austin'
+        district: '10th District Texas Senate'
+        address_1: '123 Awesome Way'
+        address_2: '123 Awesome Way'
+        phone: '123-456-7890'
+        contact_city: 'Austin'
+        contact_zip: 'Zip'
+        campaign_disclaimer: "John Doe's Awesomenauts"
+        campaign_website: 'http://johndoetexasgovernor.com'
+      event:
+        title: 'Title'
+        link_text: 'Link descriptive text (will be clickable)'
+        link_url: 'http://link.url/'
+        start_time_date: '10/31/2013'
+        start_time_time: 'Time?'
+        end_time_date: '10/31/2013'
+        end_time_time: 'Time?'
+        address: 'Address'
+        city: 'City'
+        state: 'State'
+        zip: 'ZIP'
+        description: 'Event Description'
+      account:
+        email: 'Email'
+        password: 'Password'
+        password_confirmation: 'Password Confirmation'
+        candidate_profile:
+          first_name: 'First Name'
+          last_name: 'Last Name'
+          office: Office
+        organization_profile:
+          name: 'Organization Name'

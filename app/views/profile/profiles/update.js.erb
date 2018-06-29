@@ -1,0 +1,5 @@
+<%= render 'shared/profile/update_completion_percent' %>
+
+var domainLink = '<%= resource.active? ? full_domain_url(resource.domain) : profile_preview_profile_path(resource) %>'
+$("#profile-<%= resource.id %> .domain-link").attr('href', domainLink);
+

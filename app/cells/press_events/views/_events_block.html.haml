@@ -1,0 +1,10 @@
+#events{ class: events_classes }
+  %h3
+    %span Events
+    .edit-section
+      = render_events_pencil
+      = render_events_switch
+  = render_view_all_events_link
+  %ol.list-unstyled
+    - events.each do |event|
+      = render_event(event)

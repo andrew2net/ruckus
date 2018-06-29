@@ -1,0 +1,9 @@
+%li.event{ id: "event-preview-#{event.id}" }
+  .date
+    %strong= event.start_time.day
+    = event.start_time.strftime('%b').downcase
+  .event-info
+    %div
+      %h4= truncate(event.title, length: 32)
+      %strong= event.address_and_city
+  = link_to ' ', front_profile_events_path(event.profile, event_id: event.id), class: 'ajax-modal-link'

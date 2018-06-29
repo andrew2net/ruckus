@@ -1,0 +1,5 @@
+$('#press-clips').replaceWith('<%= j render 'press_releases' %>');
+var pressEventsBlock = '<%= j cell('press_events/', profile: current_profile).call %>';
+$('#press-events-block').html(pressEventsBlock);
+<%= render 'shared/profile/update_completion_percent' %>
+RuckusAdmin._applySortable();

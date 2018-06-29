@@ -1,0 +1,7 @@
+%p Hello, #{@account.email}
+
+%p Owner of the site "#{@profile.name}" (#{link_to root_url(subdomain: @account.profile.domain.name), root_url(subdomain: @account.profile.domain.name)}) restricted your access for editing it.
+
+- if @account_removed
+  %p Also your account was removed since this was the only site you could edit.
+

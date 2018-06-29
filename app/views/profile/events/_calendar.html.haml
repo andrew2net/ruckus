@@ -1,0 +1,10 @@
+%h3#month
+  %strong.pull-left=l @date, format: :events_index_date
+  %span
+    = link_to "<", profile_events_path(month: previous_month_date(@date)), remote: true
+    = link_to ">", profile_events_path(month: next_month_date(@date)), remote: true
+= calendar_for @current_month_events.load, year: @date.year, month: @date.month do |calendar|
+  = calendar.head('sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat')
+  = calendar.day(day_method: :start_time) do |date, events|
+    - if (date >= @date.beginning_of_month) && (date <= @date.end_of_month)
+      = content_tag :span, date.day, class: "day #{'active' if events.present?}"

@@ -1,0 +1,4 @@
+$("[data-type=issue][data-id=<%= resource.id %>]").remove();
+$('#issues-block').html('<%= j cell('issues/', profile: current_profile).call %>');
+<%= render 'shared/profile/update_completion_percent' %>
+RuckusAccount.initialize();

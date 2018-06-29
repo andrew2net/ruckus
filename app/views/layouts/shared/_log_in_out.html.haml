@@ -1,0 +1,4 @@
+- if account_signed_in?
+  %li= link_to 'Logout', destroy_account_session_path, method: :delete
+- else
+  %li= link_to 'Login', new_account_session_path, class: 'ajax-modal-link hide-small-menu'

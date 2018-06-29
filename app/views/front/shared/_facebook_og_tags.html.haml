@@ -1,0 +1,15 @@
+!!!
+%html
+  %head
+    = tag :meta, property: 'fb:app_id', content: OAUTH_PROVIDERS['facebook']['client_id']
+    = tag :meta, property: 'og:site_name', content: "#{app_name}"
+    = tag :meta, property: 'og:type', content: 'article'
+    = tag :meta, property: 'og:title', content: shorten_to_tweet_length(page_title)
+    = tag :meta, property: 'og:description', content: page_description
+    = tag :meta, property: 'og:url', content: resource_url(resource)
+    -# TODO: remove after all resources got moved to profile
+    - if resource.respond_to?(:account)
+      = tag :meta, property: 'og:image', content: resource.account.profile.photo_url(:middle_thumb)
+    - else
+      = tag :meta, property: 'og:image', content: resource.profile.photo_url(:middle_thumb)
+  %body

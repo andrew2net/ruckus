@@ -1,0 +1,28 @@
+- title("#{app_name} Admin | Settings | Donors")
+
+= render 'shared/profile/nav', submenu: :settings, profile: current_profile
+
+.content
+  %h1= "#{current_profile.donations.count} Donors"
+
+  %p This is a list of your donors to date. If you wish to export or otherwise manipulate this data, please login to your #{donation_engine} account.
+
+  .inner
+    %table.data.donors{ cellpadding: 0, cellspacing: 0, width: '100%' }
+      %thead
+        %tr
+          %th
+            %i.icon-play
+            Date
+          %th
+            %i.icon-play
+            Name
+          %th
+            %i.icon-play
+            Amount
+      %tbody
+        - @donations.each do |donation|
+          %tr
+            %td= donation.created_at
+            %td= "#{donation.donor_first_name} #{donation.donor_last_name}"
+            %td= number_to_currency(donation.amount)

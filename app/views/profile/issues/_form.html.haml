@@ -1,0 +1,30 @@
+%h1= current_profile.labels[:issues]
+%p= "Make your stance known on the #{current_profile.labels[:issues].downcase} central to your campaign."
+.inner
+  .col
+    = render 'issue_categories', collection:      current_profile.allowed_categories,
+                                 active_category: resource.issue_category
+
+    = custom_form_for [:profile, resource], html: { class: 'issue-create' } do |f|
+      %div
+        = f.hidden_field :issue_category_id
+        = f.error :issue_category_id
+        = f.label :title do
+          = "#{current_profile.labels[:issue]} Title"
+          %i.icon-help-circled.tip{ data: { placement: 'right' },
+                                    title: "In a few words summarize your stance. Example, a Taxes #{current_profile.labels[:issue].downcase} could be titled 'Fair Taxes for All'" }
+        = f.input :title, placeholder: 'Create a title for your stance', label: false
+      %div
+        = f.label :description do
+          = "#{current_profile.labels[:issue]} Description"
+          %i.icon-help-circled.tip{ data: { placement: 'right' },
+                                    title: 'Share your history, vision, action plan and convitions. Feel free to include links to other sites or materials that support your stance. Remember to break up your text into short paragraphs for ease of reading.' }
+
+        = f.input :description, placeholder: "Take a stance on your #{current_profile.labels[:issue].downcase}", as: :text, label: false
+      .float.right
+        = link_to 'Cancel', profile_issues_path, class: 'cancel', data: { action: '' }, remote: true
+        = f.button :submit, class: 'small'
+
+:javascript
+  $("i.tip").tooltip();
+  $('.ruckus-modal-body').mCustomScrollbar("update");

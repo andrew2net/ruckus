@@ -1,0 +1,21 @@
+/*
+ *= require_self
+
+ *= require admin/admins
+ *= require morris
+ */
+
+@import 'font-awesome';
+
+// todo: following file looks strange
+@import 'account/admin/admin';
+@import 'shared/shared/colours';
+@import 'shared/shared/modal';
+
+#page_data {
+  height: 450px;
+}
+
+.help-inline {
+  color: #E00B43;
+}

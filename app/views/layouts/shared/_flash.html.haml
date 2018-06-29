@@ -1,0 +1,39 @@
+- [:alert, :notice].each do |key|
+  - if flash.present? && flash[key].present?
+    %div{ class: "alert alert-dismissable #{{ notice: 'alert-success', alert: 'alert-danger' }[key]}" }
+      = button_tag class: 'close', data: { dismiss: 'alert' } do
+        &times;
+      = flash[key]
+
+- if flash[:info]
+  .alert.alert-info
+    = flash[:info]
+    %a{:href => "/profile?show_signup_popup=true"}
+      %button.btn.btn-default.upgrade-bt{:type => "button"} UPGRADE NOW
+- if flash[:info]
+  #myModal.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+    .modal-dialog{:role => "document"}
+      .modal-content
+        .modal-header
+          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+            %span{"aria-hidden" => "true"} ×
+          - if ruckus?
+            %h4#myModalLabel.modal-title Ruck.us Trial
+          - else
+            %h4#myModalLabel.modal-title Win.GOP Trial
+        .modal-body
+          - if ruckus?
+            Ruck.us 
+          - else
+            Win.GOP
+          trial accounts are not visible to the public. When you are ready to publish your website, upgrading your trial will make your site active to the world.
+        .modal-footer
+          %a.btn.btn-default.upgrade-bt2{:href => "/profile?show_signup_popup=true"} Upgrade Now
+          %button.btn.btn-default{:type => "button","data-dismiss" => "modal"} Continue with Trial
+
+
+:javascript
+  $(document).ready(function(){
+      $('#myModal').modal('show');
+  });
+

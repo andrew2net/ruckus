@@ -1,0 +1,44 @@
+.row
+  .container
+    .col-lg-4
+      = simple_form_for [:admin, parent, resource.becomes(Profile)],
+                        html: { class: 'form-horizontal new_account' } do |f|
+        = f.input :name
+        = f.input :office
+        = f.input :tagline
+        = f.input :city
+        = f.input :state, as: :select,
+                          collection: US_STATES,
+                          include_blank: false
+        = f.input :party_affiliation
+        = f.input :biography
+        = f.input :donation_notifications_on
+        = f.input :weekly_report_on
+        = f.input :donations_on
+        = f.input :phone, as: :string
+        = f.input :events_on
+        = f.input :press_on
+        = f.input :questions_on
+        = f.input :social_feed_on
+        = f.input :address_1
+        = f.input :address_2
+        = f.input :campaign_website
+        = f.input :campaign_organization
+        = f.input :contact_city
+        = f.input :contact_state, as: :select,
+                                  collection: US_STATES,
+                                  include_blank: false
+        = f.input :issues_on
+        = f.input :media_on
+        = f.input :biography_on
+        = f.input :signup_notifications_on
+        = f.input :premium_by_default
+        = f.input :district
+        = f.input :contact_zip
+        = f.input :campaign_organization_identifier
+
+        .form-actions
+          = f.button :submit, 'Save', class: 'btn-green', data: { disable_with: 'Please wait...' }
+          = link_to t('.cancel', default: t('helpers.links.cancel')),
+                    admin_accounts_path,
+                    class: 'btn btn-default'

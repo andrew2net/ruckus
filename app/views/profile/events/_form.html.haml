@@ -1,0 +1,52 @@
+.my-event-form
+  = simple_form_for [:profile, resource], html: { class: 'event-create',
+                                                    data: { remote: true } } do |f|
+    - resource.errors[:base].each do |error|
+      .alert.alert-error= error
+
+    = f.input :title, label: false
+    = f.input :link_text, as: :text, label: false, input_html: { rows: 2 }
+    = f.input :link_url, as: :string, label: false
+    .row
+      .form-group.col-xs-5
+        .glyphicon.glyphicon-calendar
+        = f.input :start_time_date, as: :string,
+                                    label: false,
+                                    input_html: { value: start_time_date(resource) }
+      .form-group.col-xs-4
+        = f.input :start_time_time, as: :string,
+                                    label: false,
+                                    input_html: { value: start_time_time(resource)  }
+    .end-time
+      = link_to 'End Time?', '#', id: 'display-end-time-row'
+    .row.end-time-row
+      .form-group.col-xs-5
+        .glyphicon.glyphicon-calendar
+        = f.input :end_time_date, as: :string,
+                                  label: false,
+                                  input_html: { value: end_time_date(resource) }
+      .form-group.col-xs-4
+        = f.input :end_time_time, as: :string,
+                                  label: false,
+                                  input_html: { value: end_time_time(resource)  }
+
+    = f.input :address, label: false
+    .row
+      .form-group.col-xs-5
+        = f.input :city, label: false
+      .form-group.col-xs-4
+        = f.input :state, label: false,
+                          as: :select,
+                          collection: US_STATES,
+                          include_blank: false
+      .form-group.col-xs-3
+        = f.input :zip, label: false
+    = f.input :description, label: false
+    .clearfix
+      .float.right
+        = link_to 'Cancel', profile_events_path, class: 'cancel', remote: true
+        = f.button :submit, class: 'btn button', data: { disable_with: 'Please wait...' }
+
+:javascript
+  RuckusAdmin._eventsFunctions();
+  $('.ruckus-modal-body').mCustomScrollbar("update");

@@ -1,0 +1,9 @@
+- title("#{app_name} Admin | Settings | Sites")
+
+= render 'shared/profile/nav', submenu: :settings, profile: current_profile
+
+.content
+  %h1 Create Site
+  .inner
+    .col
+      = render 'form'

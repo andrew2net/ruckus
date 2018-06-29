@@ -1,0 +1,40 @@
+- title("#{app_name} Admin | Settings | Notifications")
+
+= render 'shared/profile/nav', submenu: :settings, profile: current_profile
+
+.content
+  %h1 Notifications
+  %p Control what type of notifications you want to receive. Note: You will always receive system level messages.
+
+  .inner
+    .col
+      = simple_form_for resource, url: profile_notification_path, as: :profile do |f|
+        .white-box
+          = f.label :weekly_report_on do
+            Weekly Report
+            %i.icon-help-circled.tip{ title: "The Weekly Report is a summary of your Dashboard and keeps you up to date on the week's donation totals, new subscribers, campaign performance, and more. ",
+                                      'data-placement'=> 'right' }
+          .switch
+            .toggle
+              = f.input_field :weekly_report_on, as: :boolean
+
+        .white-box
+          = f.label :donation_notifications_on do
+            Donation Notifications
+            %i.icon-help-circled.tip{ title: 'Get notified every time you receive money from supporters.',
+                                      'data-placement'=>'right' }
+          .switch
+            .toggle
+              = f.input_field :donation_notifications_on, as: :boolean
+
+        .white-box
+          = f.label :signup_notifications_on do
+            Email Signups
+            %i.icon-help-circled.tip{ title: 'Get notified each time a supporter signs up to receive emails from you.',
+                                      'data-placement'=>'right' }
+          .switch
+            .toggle
+              = f.input_field :signup_notifications_on, as: :boolean
+
+        .submit
+          = f.button :button, 'Update', class: 'button float right', data: { disable_with: 'Please wait...' }

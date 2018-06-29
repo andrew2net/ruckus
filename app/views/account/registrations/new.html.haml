@@ -1,0 +1,28 @@
+- if account_signed_in?
+  :javascript
+    location.reload();
+- else
+  .ruckus-modal.login-signup-modal.signup-modal
+    .signup
+      .choose-account
+        .signup-wrapper
+          .brand.center=link_to app_name, '#'
+          %p Create an account as
+          .choose-actions
+            =link_to 'Organization', '#', class: 'button', data: { id: 'organization-signup' }
+            %span or
+            =link_to 'Candidate', '#', class: 'button', data: { id: 'candidate-signup' }
+      #candidate-signup
+        .signup-wrapper
+          %h4 Create an Account
+          %p Enter your email and password which you'll use when logging into your #{app_name} website.
+          %h4 Candidate
+          .form-wrapper
+            = render 'form', attributes: { candidate_profile: [:first_name, :last_name, :office] }
+      #organization-signup
+        .signup-wrapper
+          %h4 Create an Account
+          %p Enter your email and password which you'll use when logging into your #{app_name} website.
+          %h4 Organization
+          .form-wrapper
+            = render 'form', attributes: { organization_profile: [:name] }

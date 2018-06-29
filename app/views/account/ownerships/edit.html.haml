@@ -1,0 +1,17 @@
+.modal-dialog
+  .modal-content
+    .modal-body
+      = simple_form_for resource, as: :ownership,
+                                  url: account_profile_account_ownership_path(@profile, @account),
+                                  html: { method: :patch,
+                                          class: 'form-inline form-edit-role text-center' } do |f|
+        %strong Edit member's role
+        .form-group
+          = f.input :type, as: :select,
+                           label: false,
+                           collection: [['Admin', 'AdminOwnership'], ['Editor', 'EditorOwnership']],
+                           input_html: { class: 'select' },
+                           include_blank: false
+        = f.button :submit, 'Apply', class: 'button', data: { disable_with: 'Please wait...' }
+        = link_to 'Cancel', '#', class: 'mfp-close cancel'
+

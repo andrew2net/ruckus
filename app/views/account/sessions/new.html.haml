@@ -1,0 +1,48 @@
+- if account_signed_in?
+  :javascript
+    location.reload();
+- else
+  .ruckus-modal.login-signup-modal.login-modal
+    .flash
+    .login-forgot-wrapper
+      %div
+        %span.brand= app_name
+        %span Login
+      = link_to "Don't have an account?", root_path(show_signup_popup: true), class: 'dont-have-account'
+      .form-wrapper
+        .login
+          = simple_form_for :account, as: Account, url: session_path(Account),
+                            remote: true,
+                            html: { class: 'login-form',
+                                    role: 'form' } do |f|
+
+            .form-group
+              = f.email_field :email, class: 'form-control required', placeholder: 'Email'
+            .form-group
+              = f.password_field :password, class: 'form-control required',
+                                            placeholder: 'Password', 'data-message' => 'Please enter your password'
+            .form-group
+              = link_to 'Forgot Password?', new_account_password_path, class: 'goto-link', 'data-goto' => 'forgot-password'
+            .form-group.submit
+              = f.button :button, class: 'button button-small' do
+                Login
+              = link_to 'Cancel', '#', class: 'cancel-link', data: { dismiss: 'modal' }
+
+        .forgot-password
+          = simple_form_for :account, as: Account,
+                                        url: password_path(Account),
+                                        remote: true,
+                                        html: { class: 'forgot-password-form validate',
+                                                role: 'form',
+                                                'data-html5-validation' => true,
+                                                'data-validate-fields' => true } do |f|
+
+            %p Reset your password by entering the email address you signed up with below.
+            .form-group
+              = f.email_field :email, class: 'form-control required', placeholder: 'Email'
+            .form-group
+              = link_to 'Login?', '#', class: 'goto-link', 'data-goto' => 'login'
+            .form-group.submit
+              = f.button :button, class: 'button button-small' do
+                Submit
+              = link_to 'Cancel', '#', class: 'cancel-link', data: { dismiss: 'modal' }

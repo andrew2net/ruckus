@@ -1,0 +1,59 @@
+= custom_form_for resource, url: profile_general_info_path, as: :profile do |f|
+  %h3 Account Info
+  .edit-name
+    %div= f.input :name
+    - if current_profile.candidate?
+      %div= f.input :office
+  .profile-tagline
+    = label :profile, :tagline do
+      Your Tagline
+      %i.icon-help-circled.tip{ title: "Type in your #{current_profile.labels[:type]} tagline or overarching message. Remember, concise taglines are the most impactful.",
+                                data: { placement: 'right' } }
+    = f.input :tagline, placeholder: 'We make awesome.', label: false
+  - if ruckus?
+    .register-to-vote-url
+      = f.input :register_to_vote_url, label:       '"Register to Vote" URL',
+                                       placeholder: Profile::REGISTER_TO_VOTE_DEFAULT_URL
+  .edit-general-info
+    - if current_profile.candidate?
+      %div= f.input :party_affiliation
+    .row
+      .col-xs-8
+        = f.input :city
+      .col-xs-4
+        = f.input :state, as: :select, collection: US_STATES, include_blank: false
+
+    - if current_profile.candidate?
+      %div= f.input :district
+
+  .contact-info
+
+    %h3 Contact Info
+
+    %div= f.input :address_1
+    %div= f.input :address_2
+    %div= f.input :phone, as: :string
+
+    .row
+      .col-xs-6
+        = f.input :contact_city
+      .col-xs-3
+        = f.input :contact_state, as: :select, collection: US_STATES, include_blank: false
+      .col-xs-3
+        = f.input :contact_zip, label: 'Zip', placeholder: 'Zip'
+
+    %div
+      = label :profile, :campaign_website do
+        = resource.class.human_attribute_name(:campaign_website)
+        %i.icon-help-circled.tip{ title: 'If you have another URL you want to send your users to, enter it here.',
+                                  data: { placement: 'right' } }
+      .input-icon.url
+        = f.input_field :campaign_website, type: :url,
+                                           placeholder: 'http://johndoetexasgovernor.com'
+      = f.error :campaign_website
+
+  .disclaimer
+    = f.input :campaign_disclaimer, label: 'Disclaimer', placeholder: "John Doe's Awesomenauts", as: :text
+
+  .submit
+    = f.submit 'Update', class: 'btn float right'

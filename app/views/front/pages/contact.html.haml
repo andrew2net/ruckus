@@ -1,0 +1,25 @@
+%section.content
+  .container
+    .row
+      .col-md-8.col-md-offset-2
+        %h1 Contact Us
+        .row
+          .contact-meta.col-sm-3
+            = @content
+            %div
+              %h3 Email Address
+              %p
+                = mail_to "support@#{Figaro.env.domain}"
+            %div
+              %h3 Need Help?
+              %p
+                See our
+                = succeed '.' do
+                  = link_to 'FAQ', front_faq_path
+          .col-sm-8.col-sm-offset-1
+            .contact-form-wrapper
+              %h3 Send us a message
+              %p
+                #{app_name} is here to help. Please provide the following information and a #{app_name} team
+                member can assist you.
+              = render 'front/support_messages/form', resource: @support_message

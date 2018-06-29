@@ -1,0 +1,14 @@
+<div class=" container msg-back">
+  <% if account_signed_in? %>
+  	<div class="col-md-6 col-md-offset-3">
+  		<h1 class="msg-head">Trial Account</h1>
+  		<p class="msg-txt">Trial accounts are not visible to public.</p>
+  		<p class="msg-txt2">When you are ready to publish your website,<br> upgrading your trial will make your site active<br> to the world.</p><br>
+      <a class="premium-label upgrade edit-link js-edit-modal" href="/account/sites/<%= @profile.id %>/credit_card_holder/new"><button type="button" class="owner-log">Upgrade Now</button></a>
+  	</div>
+  <% else %>
+    <div class="col-md-6 col-md-offset-3">
+      <h3 class="msg-head">You are not authorized to perform this action</p>
+    </div>
+  <% end %>
+</div>

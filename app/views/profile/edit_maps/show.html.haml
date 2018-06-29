@@ -1,0 +1,9 @@
+- title("#{app_name} Admin | Edit Map")
+- bodyclasses('edit-map')
+
+= render 'shared/profile/nav', submenu: :edit_map, profile: current_profile
+
+.content
+  %h1 Edit Map
+
+  = render 'shared/profile/builder_overlay'

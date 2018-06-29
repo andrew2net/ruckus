@@ -1,0 +1,8 @@
+= simple_form_for resource, url: account_profile_accounts_path, remote: true, method: :post do |f|
+  .row
+    .col-md-12
+      = f.input :email
+    = f.input :ownership_type, as: :hidden, input_html: { value: 'EditorOwnership' }
+  .row
+    .col-md-12
+      = f.submit 'Add', class: 'button', data: { disable_with: 'Please wait...' }

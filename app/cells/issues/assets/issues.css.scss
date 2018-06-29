@@ -1,0 +1,340 @@
+$education-color: #6076bf;
+$healthcare-color: #bf606c;
+$economy-color: #b9bf60;
+$veteran-affairs-color: #60bf96;
+
+$white-1: #FFF;
+$white-2: #F7F7F7;
+$white-3: #EDEDED;
+$white-4: #D5D5D5;
+
+$black-1: #AAB1B3;
+$black-2: #1E2526;
+$black-3: #14191A;
+
+$blue-1: #008DA0;
+$blue-2: #0D7886;
+$blue-3: #0F5963;
+
+$orange-1: #FF6801;
+$orange-2: #D95802;
+
+$red-1: #E00B43;
+$red-2: #B30936;
+
+$brand-primary: $blue-1;
+
+/* ================================================================
+Issues
+================================================================ */
+body.issues .inner {
+  text-align: center;
+  a.button.large {
+    margin-bottom: 40px;
+  }
+  .draggable {
+    border-top: 1px solid $white-4;
+    padding-top: 40px;
+    text-align: left;
+  }
+}
+body.new-issue .inner {
+  text-align: left;
+  textarea {
+    min-height: 345px;
+  }
+  .ruckus-drop {
+    margin-bottom: 10px;
+  }
+}
+
+/* ================================================================
+Issues Section
+================================================================ */
+#issues {
+  .header {
+    position: relative;
+    margin-bottom: 10px;
+    z-index: 120;
+    h3 {
+      float: left;
+      margin: 0;
+      color: $brand-primary;
+      .theme-red & { color: $brand-red; }
+      .theme-green & { color: $brand-green; }
+      .theme-blue & { color: $brand-blue; }
+      .theme-grey & { color: $brand-grey; }
+    }
+    a.btn {
+      float: right;
+    }
+  }
+  #issues-tab-wrapper {
+    position: relative;
+    z-index: 100;
+    ul.tabs {
+      @media (min-width: 768px) {
+        height: 65px;
+        padding-right: 100px;
+      }
+      li {
+        font-size: 18px;
+        /* Small devices (tablets, 768px and up) */
+        @media (min-width: 768px) {
+          font-size: 18px;
+          height: 65px;
+        }
+      }
+    }
+  }
+  #issues-slider-wrapper {
+    position: relative;
+    height: 370px;
+    margin-bottom: 60px;
+    .slide-fade-wrapper {
+      position: relative;
+      opacity: 0;
+      -webkit-transition: opacity 0.25s linear;
+         -moz-transition: opacity 0.25s linear;
+          -ms-transition: opacity 0.25s linear;
+           -o-transition: opacity 0.25s linear;
+              transition: opacity 0.25s linear;
+      &.fade-in {
+        opacity: 1;
+      }
+    }
+    .container {
+      padding: 0;
+    }
+    .slide-wrapper {
+      position: relative;
+      margin: 0 0;
+      &:after, &:before {
+        position: absolute;
+        display: block;
+        content: '';
+        width: 9999px;
+        top: 0;
+        bottom: 0;
+        background-color: transparent;
+        z-index: 48;
+      }
+      &:after {
+        left: 100%;
+      }
+      &:before {
+        right: 100%;
+      }
+      /* Small devices (tablets, 580px and up) */
+      @media (min-width: 580px) {
+        margin: 0 5px;
+      }
+      /* Small devices (tablets, 768px and up) */
+      @media (min-width: 768px) {
+        margin: 0 -5px;
+      }
+    }
+    .css-slider {
+      position: relative;
+      width: 100%;
+      height: 370px;
+      margin: 0 auto;
+      /* Small devices (tablets, 580px and up) */
+      @media (min-width: 580px) {
+        width: 50%;
+        margin: 0;
+      }
+      /* Small devices (tablets, 768px and up) */
+      @media (min-width: 768px) {
+        width: 33%;
+        margin: 0 auto;
+      }
+      .slide {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        padding: 0 15px;
+        /* Small devices (tablets, 580px and up) */
+        @media (min-width: 580px) {
+          padding: 0 10px;
+        }
+        /* Small devices (tablets, 768px and up) */
+        @media (min-width: 768px) {
+          padding: 0 15px;
+        }
+        &.full {
+          .slide-content {
+            opacity: 1;
+            a {
+              cursor: pointer;
+            }
+          }
+        }
+        .slide-content {
+          position: relative;
+          height: 100%;
+          background: #fff;
+          border-bottom: 1px solid #d5d5d5;
+          opacity: 0.5;
+          -webkit-transition: opacity 0.25s linear;
+          -moz-transition: opacity 0.25s linear;
+          -ms-transition: opacity 0.25s linear;
+          -o-transition: opacity 0.25s linear;
+          transition: opacity 0.25s linear;
+        }
+        &.issue {
+          a {
+            text-decoration: none;
+            cursor: default;
+          }
+          .slide-link {
+            position: absolute;
+            display: block;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 30;
+          }
+          h4 {
+            height: 60px;
+            line-height: 60px;
+            padding: 0 20px;
+            margin: 0;
+            color: #fff;
+            font-size: 14px;
+            text-transform: uppercase;
+            font-family: $font-family-sans-serif;
+            background-color: $brand-primary;
+            .theme-red & { background-color: $brand-red; }
+            .theme-green & { background-color: $brand-green; }
+            .theme-blue & { background-color: $brand-blue; }
+            .theme-grey & { background-color: $brand-grey; }
+          }
+          h5 {
+            margin: 0 0 10px;
+            font-size: 20px;
+            font-weight: 300;
+            font-family: $font-family-serif;
+          }
+          .slide-inner {
+            position: relative;
+            height: 310px;
+            padding: 30px 30px 10px;
+          }
+          .slide-copy {
+            position: relative;
+            overflow: hidden;
+            min-height: 190px;
+            max-height: 190px;
+            line-height: 20px;
+            &:after {
+              position: absolute;
+              display: block;
+              content:'';
+              z-index: 20;
+              height: 30px;
+              left: 0;
+              bottom: -30px;
+              right: 0;
+              -webkit-box-shadow:  0px -18px 45px 14px #fff;
+              -moz-box-shadow:  0px -18px 45px 14px #fff;
+              box-shadow:  0px -18px 45px 14px #fff;
+            }
+          }
+          .share-link {
+            position: absolute;
+            display: block;
+            top: 90px;
+            right: 25px;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            opacity: 0.5;
+            -webkit-transition: opacity 0.25s linear;
+            -moz-transition: opacity 0.25s linear;
+            -ms-transition: opacity 0.25s linear;
+            -o-transition: opacity 0.25s linear;
+            transition: opacity 0.25s linear;
+            z-index: 40;
+            &:hover {
+              opacity: 1;
+            }
+          }
+          .likes, .more {
+            position: absolute;
+            display: block;
+            bottom: 10px;
+            color: $brand-primary;
+            .theme-red & { color: $brand-red; }
+            .theme-green & { color: $brand-green; }
+            .theme-blue & { color: $brand-blue; }
+            .theme-grey & { color: $brand-grey; }
+          }
+          .likes {
+            left: 30px;
+          }
+          .more {
+            right: 30px;
+            opacity: 0.5;
+            -webkit-transition: opacity 0.25s linear;
+            -moz-transition: opacity 0.25s linear;
+            -ms-transition: opacity 0.25s linear;
+            -o-transition: opacity 0.25s linear;
+            transition: opacity 0.25s linear;
+          }
+          &:hover {
+            .more {
+              opacity: 1;
+            }
+          }
+        }
+        &.education {
+          h4 {
+            background-color: $education-color;
+          }
+        }
+        &.healthcare {
+          h4 {
+            background-color: $healthcare-color;
+          }
+        }
+        &.economy {
+          h4 {
+            background-color: $economy-color;
+          }
+        }
+        &.veteran-affairs {
+          h4 {
+            background-color: $veteran-affairs-color;
+          }
+        }
+      }
+    }
+    a.slider-nav {
+      position: absolute;
+      display: block;
+      top: 50%;
+      margin-top: -12px;
+      font-size: 25px;
+      text-decoration: none;
+      z-index: 50;
+      opacity: 0.5;
+      -webkit-transition: opacity 0.25s linear;
+      -moz-transition: opacity 0.25s linear;
+      -ms-transition: opacity 0.25s linear;
+      -o-transition: opacity 0.25s linear;
+      transition: opacity 0.25s linear;
+      color: $brand-primary;
+      .theme-red & { color: $brand-red; }
+      .theme-green & { color: $brand-green; }
+      .theme-blue & { color: $brand-blue; }
+      .theme-grey & { color: $brand-grey; }
+      &:hover {
+        opacity: 1;
+      }
+      &.prev { left: 10px; }
+      &.next { right: 10px; }
+    }
+  }
+}

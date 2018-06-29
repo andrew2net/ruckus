@@ -1,0 +1,8 @@
+<% if resource.has_social_errors? %>
+  window.location = '<%= profile_oauth_accounts_path %>';
+<% else %>
+  var container = $('#socialfeed-create').parent();
+  container.find('.alert').remove();
+  container.prepend('<%= j render 'error', resource: resource %>');
+<% end %>
+

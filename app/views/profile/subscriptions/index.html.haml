@@ -1,0 +1,28 @@
+- title("#{app_name} Admin | Settings | Subscribers")
+
+= render 'shared/profile/nav', submenu: :settings, profile: current_profile
+
+.content
+  = link_to 'Export', profile_subscriptions_path(format: :csv), class: 'button float right'
+
+  %h1= "#{collection.count} Subscribers"
+
+  .inner
+    %table.data.subscribers{ cellpadding: 0, cellspacing: 0, width: '100%' }
+      %thead
+        %tr
+          %th
+            %i.icon-play
+            Email
+          %th
+            %i.icon-play
+            Name
+          %th
+            %i.icon-play
+            Subscribed
+      %tbody
+        - collection.each do |subscription|
+          %tr
+            %td= subscription.user.email
+            %td= "#{subscription.user.first_name} #{subscription.user.last_name}"
+            %td= subscription.created_at.strftime('%m/%d/%Y')

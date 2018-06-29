@@ -1,0 +1,25 @@
+.ruckus-modal.small-modal.press-modal.account-modal
+  .ruckus-modal-head
+    .ruckus-modal-head-content
+      .account-meta
+        = image_tag @profile.photo_url(:press_modal_photo_thumb)
+        %h3= @profile.name
+        .social
+          - if @profile.show_facebook_buttons?
+            .facebook
+              = facebook_like_iframe(profile_path(@profile))
+          - if @profile.show_twitter_buttons?
+            .twitter
+              = render 'front/twitter_follow', profile: @profile
+  .ruckus-modal-body
+    .ruckus-modal-body-content
+      - collection.each do |press_release|
+        .item.press{ id: "press-release-#{press_release.id}" }
+          - if press_release.display_page_thumbnail?
+            = image_tag press_release.active_image.image_url(:thumb)
+          %div
+            = link_to press_release.title, press_release.url, target: '_blank'
+            - if press_release.display_page_title?
+              %strong= press_release.page_title
+            - if press_release.display_page_date?
+              = press_release.page_date

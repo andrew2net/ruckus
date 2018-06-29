@@ -1,0 +1,29 @@
+.photo-crop-wrapper{ type: :background }
+  .photo-crop
+    .result
+    .preview-box
+      %h4 Preview
+      %p Move and change cropping area to see how your image will look.
+      .preview-container
+        = image_tag nil
+      = button_tag 'Cancel', class: 'button button-cancel'
+      = button_tag 'Reset', class: 'button button-reset'
+      = button_tag 'Done', class: 'button button-crop orange', data: { disable_with: 'Please wait...' }
+
+= custom_form_for current_profile, url:  profile_background_image_path,
+                                   as:   :profile,
+                                   html: { class: 'media-upload-form',
+                                   id:   'media-upload-form' } do |f|
+
+  = f.simple_fields_for :background_image_medium do |background_image|
+    .fileupload-wrapper
+      .fileupload.button.white.large
+        %span
+          %i.icon-plus-circled
+          Upload Image
+          = background_image.input :image, as: :file, input_html: { class: 'upload upload-profile-pic' }
+
+          = f.input :background_image_cropping_width, as: :hidden, input_html: { class: 'crop-width' }
+          = f.input :background_image_cropping_height, as: :hidden, input_html: { class: 'crop-height' }
+          = f.input :background_image_cropping_offset_y, as: :hidden, input_html: { class: 'crop-y' }
+          = f.input :background_image_cropping_offset_x, as: :hidden, input_html: { class: 'crop-x' }

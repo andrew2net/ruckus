@@ -1,0 +1,9 @@
+%div
+  %span.check-box.accept-terms= f.input_field :terms, as: :boolean
+  = f.label :terms do
+    %b
+      - if ruckus?
+        I agree with Democracy Engine's #{link_to 'Terms of Service', front_terms_path, target: '_blank'}
+      - else
+        I agree with Online Fundraising's #{link_to 'Terms of Service', 'https://sites.google.com/a/onlinefundraisingllc.com/terms/home/recipient-terms-of-service', target: '_blank'}
+  = f.error :terms

@@ -1,0 +1,7 @@
+%ul.draggable.media-tiles.clearfix{ data: { sorted_url: sort_profile_media_stream_path(format: :js) } }
+  - collection.each do |medium|
+    %li.item.media-block{ data: { id: medium.id, type: 'media' } }
+      %div{ class: "image-wrapper #{'video' if medium.video_url.present?}" }
+        = image_tag medium.image_url(:thumb)
+      %span.drag-handle-wrap
+        %i.icon-menu

@@ -1,0 +1,40 @@
+/* ================================================================
+Issues Section > Ask me a question
+================================================================ */
+#issues-block .section-editable.question {
+  float: right;
+  min-height: 88px;
+}
+
+/* Ask me a Question! in footer
+------------------------------------- */
+#social {
+  .btn-speech-bubble-arrow {
+    margin-right: 58px;
+    img, .empty-image {
+      right: -60px;
+      bottom: -2px;
+    }
+    &:after {
+      content: '';
+      width: 0;
+      height: 0;
+      position: absolute;
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+      border-left: 7px solid #fff;
+      background: none;
+      bottom: 13px;
+      right: -7px;
+    }
+  }
+
+  .question-organization {
+    .btn-speech-bubble-arrow {
+      img {
+        display: none;
+      }
+      &:after { display: none !important; }
+    }
+  }
+}

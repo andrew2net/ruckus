@@ -1,0 +1,14 @@
+- title("#{app_name} Admin | Help")
+- bodyclasses('help')
+
+= render 'shared/profile/nav', submenu: :help, profile: current_profile
+
+.content
+  / = link_to 'Need Help Adding Content?', profile_de_account_path, class: 'button float right'
+  %h1 Help
+  %p Need help? Take a look at our Builder FAQs below.
+
+  = render 'shared/profile/builder_overlay'
+
+  .inner
+    = @faq 

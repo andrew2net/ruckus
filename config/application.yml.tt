@@ -1,0 +1,18 @@
+app: wingop
+
+production:
+  domain: ruck.us
+  sendgrid_user_name: ''
+  sendgrid_password: ''
+staging:
+  domain: qa1-ruck.us
+  sendgrid_user_name: ''
+  sendgrid_password: ''
+staging2:
+  domain: qa2-ruck.us
+  sendgrid_user_name: ''
+  sendgrid_password: ''
+development:
+  domain: lvh.me
+test:
+  domain: example.com

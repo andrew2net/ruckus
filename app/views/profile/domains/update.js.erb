@@ -1,0 +1,8 @@
+<% if resource.valid? %>
+  var domain = '<%= j render "domain", domain: resource %>';
+  $("#domain-<%= resource.id %>").replaceWith(domain);
+<% else %>
+  var form = '<%= j render 'form' %>'
+  $("#domain-<%= resource.id %>").html(form);
+<% end %>
+

@@ -1,0 +1,19 @@
+= simple_form_for [:front, resource], html: { id: 'support-message-form',
+                                              data: { remote: true } } do |f|
+  .form-group
+    = f.input :name, data: { message: 'Please let us know your name'},
+                     input_html: { class: 'form-control' }
+  .form-group
+    = f.input :email, input_html: { class: 'form-control' }
+  .form-group
+    = f.input :subject, data: { message: 'Please let us know why you are contacting us' },
+                        input_html: { class: 'form-control' }
+  .form-group
+    = f.input :message, as: :text,
+                        data: { message: 'Looks like you forgot your message' },
+                        input_html: { class: 'form-control' }
+  .form-group.submit
+    = f.button :submit, 'Send Message', class: 'button button-small',
+                                        type: 'submit',
+                                        autocomplete: 'off',
+                                        data: { disable_with: 'Please wait...' }

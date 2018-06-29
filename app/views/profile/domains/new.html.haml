@@ -1,0 +1,10 @@
+- title('Domains')
+- bodyclasses('domains new-domain')
+
+= render 'shared/profile/nav', submenu: :settings, profile: current_profile
+
+.content
+  %h1 Edit subdomain
+  .inner
+    .col
+      = render 'form'

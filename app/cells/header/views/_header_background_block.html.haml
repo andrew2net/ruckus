@@ -1,0 +1,8 @@
+-if show_navigation?
+  #header-bg
+    #header-bg-slider.carousel.slide{ data: { ride: 'carousel', interval: 'false' } }
+      .carousel-inner
+        .item.active{ style: "background-image:url(#{profile.background_image_url})" }
+- else
+  #header-bg{ style: "background-image:url(#{profile.background_image_url})" }
+

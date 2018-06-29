@@ -1,0 +1,24 @@
+%section.content
+  .container
+    .row
+      .col-md-8.col-md-offset-2
+        %h1 Thank You!
+        .row
+          .contact-meta.col-sm-3
+            = @content
+            %div
+              %h3 Email Address
+              %p
+                = mail_to "support@#{Figaro.env.domain}"
+            %div
+              %h3 Need Help?
+              %p
+                See our
+                = succeed '.' do
+                  = link_to 'FAQ', front_faq_path
+          .col-sm-8.col-sm-offset-1
+            %p Thank you for contacting us. We have received your inquiry and will be in touch shortly to help you out.
+            %p
+              If you need to get some questions answered right away, try giving us a call or checking out our
+              = succeed '.' do
+                = link_to 'FAQ', front_faq_path

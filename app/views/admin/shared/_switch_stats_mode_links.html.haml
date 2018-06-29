@@ -1,0 +1,6 @@
+- if params[:period] == 'week'
+  = link_to 'See stats by month', path
+- else
+  = link_to 'See stats by week', path + '?period=week'
+
+= link_to 'Sites Report', admin_profiles_stats_path(format: :csv), class: 'btn btn-default'

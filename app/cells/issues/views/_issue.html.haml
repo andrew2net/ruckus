@@ -1,0 +1,25 @@
+- if issue.present?
+  .slide.issue{ class: issue.issue_category.name.parameterize, id: "issue-#{issue.id}" }
+    .slide-content
+      %h4{ class: "#{category_color_block_class(issue.issue_category, categories.index(issue.issue_category).to_i)} color-block" }
+        = issue.issue_category.name.upcase
+      .slide-inner
+        %h5= truncate(issue.title, length: 20)
+        .slide-copy
+          %p= simple_format(issue.description)
+        %span.likes
+          %i.fa.fa-heart
+            %span.liked-count{ data: { id: issue.id, type: 'Issue' } }= issue.scores.count
+        %span.more
+          %i.fa.fa-plus-circle
+      = editing_link(issue)
+
+      = link_to '#', class: 'share-link' do
+        %i.fa.fa-share-square
+- else
+  .slide.issue
+    .no-content-pad.no-content-pad-white
+      = link_to new_profile_issue_path, class: 'edit-link js-edit-modal link-add-content' do
+        %span.square-button
+          %i.i-icon.i-issue
+        %span Add New #{labels[:issue]}

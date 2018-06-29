@@ -1,0 +1,6 @@
+$('.login-signup-modal .flash').html('');
+$('.login-signup-modal .flash').html("<%=j render('layouts/shared/flash') %>");
+
+<% if @account.present? %>
+  window.location = '<%= profile_builder_path %>'
+<% end %>

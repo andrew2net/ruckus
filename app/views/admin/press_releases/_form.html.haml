@@ -1,0 +1,12 @@
+= simple_form_for [:admin, @account, @profile, resource] do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :title
+    = f.input :url
+    = f.input :page_title
+    = f.input :page_title_enabled, as: :boolean
+    = f.input :page_date_enabled, as: :boolean
+
+  .form-actions
+    = f.button :submit

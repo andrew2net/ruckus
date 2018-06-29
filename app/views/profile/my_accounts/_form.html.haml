@@ -1,0 +1,39 @@
+= simple_form_for(current_account, url: registration_path(Account),
+                                   html: { method:       :patch,
+                                           id:           'my-account-form',
+                                           autocomplete: 'off'}) do |f|
+  %h3 Account Info
+  .row
+    = f.simple_fields_for :profile_attributes, current_profile do |profile|
+      .col-xs-6
+        = profile.input :first_name, label: 'First Name',
+                        input_html:  { required:    true,
+                                       placeholder: 'John' }
+
+      .col-xs-6
+        = profile.input :last_name, label: 'Last Name',
+                        input_html: { required:     true,
+                                      placeholder: 'Doe' }
+
+  %div
+    = f.input :email, label: 'Email Address',
+                      input_html: { required:     true,
+                                    placeholder: 'email@address.com' }
+  %div
+    = f.simple_fields_for :profile_attributes, current_profile do |profile|
+      = profile.label :phone, 'Phone Number'
+      = profile.text_field :phone, required: true, placeholder: '123.456.7890'
+  %h3 New Password
+
+  %div
+    = f.input :password, required: false,
+                         label: 'New Password',
+                         input_html: { pattern: '.{8,}',
+                                       placeholder: 'Must be at least 8 characters' }
+  %div
+    = f.input :password_confirmation, required: false,
+                                      label: 'Repeat Password',
+                                      input_html: { pattern: '.{8,}',
+                                                    placeholder: 'Must be same as above' }
+  .submit
+    = f.submit 'Update', class: 'button float right', data: { disable_with: 'Please wait...' }

@@ -1,0 +1,11 @@
+$('.ruckus-modal .mfp-close').click();
+
+var heroBioBlock = '<%= j cell('bio_featured/', profile: current_profile).call %>'
+$('#about-block').html(heroBioBlock);
+
+if ($(".expansion-container.active").height() > $(".expansion-wrapper").height()) {
+  $(".expansion-button").removeClass('hide');
+  $(".expansion-wrapper").removeClass('short');
+}
+
+<%= render 'shared/profile/update_completion_percent' %>

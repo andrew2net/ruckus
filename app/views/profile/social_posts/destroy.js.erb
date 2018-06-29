@@ -1,0 +1,4 @@
+$('#header').replaceWith('<%= j cell('header/', profile: current_profile).call %>');
+<%= render 'shared/profile/update_completion_percent' %>
+<%= render 'shared/profile/render_social' %>
+$('.ajax-modal-link').magnificPopup($.extend({ type: 'ajax' }, RuckusAccount.defaultMFPOptions));

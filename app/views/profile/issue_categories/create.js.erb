@@ -1,0 +1,7 @@
+<% if @issue_category.valid? %>
+  var html = "<%=j render('profile/issues/issue_categories',
+                          collection:      current_profile.allowed_categories,
+                          active_category: @issue_category) %>";
+  $('.ruckus-drop').replaceWith(html);
+  $("[data-issue-category=<%= @issue_category.id %>]").click();
+<% end %>

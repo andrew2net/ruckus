@@ -1,0 +1,12 @@
+!!!
+%html
+  %head
+    = render 'layouts/shared/head'
+
+    = stylesheet_link_tag 'account_admin', 'data-turbolinks-track' => true
+    = javascript_include_tag 'account_admin', 'data-turbolinks-track' => true
+
+  %body{ class: "admin #{yield(:bodyclasses)}" }
+    #flash= render 'layouts/shared/flash'
+    = render 'shared/profile/welcome_screen', profile: current_profile
+    = yield

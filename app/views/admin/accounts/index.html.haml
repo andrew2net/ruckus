@@ -1,0 +1,57 @@
+- model_class = Account
+.page-header
+  %h1=t '.title', default: model_class.model_name.human.pluralize.titleize
+  %h3 Total number of accounts: #{collection.count}
+  %h3 Total donations raised: #{number_to_currency(Donation.pluck(:amount).sum)}
+
+%h2 Sign-ups:
+= content_tag :div, '', id: 'chart', data: { records: signups_chart_data(params[:period].try(:to_sym)), label: 'Sign-ups' }
+= render 'admin/shared/switch_stats_mode_links', path: admin_accounts_path
+
+%hr
+
+%nav.navbar.navbar-default{ role: 'navigation' }
+  .container-fluid
+    .navbar-header
+      %ul.nav.navbar-nav
+        = account_filter_link 'Active', admin_accounts_path
+        = account_filter_link 'Inactive', admin_accounts_path(status: :inactive)
+        = account_filter_link 'All', admin_accounts_path(status: :all)
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th= model_class.human_attribute_name(:id)
+      %th= model_class.human_attribute_name(:email)
+      %th= model_class.human_attribute_name(:created_at)
+      %th Donations Raised
+      %th Last Login
+      %th Last Site View
+      %th Actions
+  %tbody
+    - @accounts.each do |account|
+      %tr
+        %td= link_to account.id, admin_account_path(account)
+        %td= account.email
+        %td= l account.created_at
+        %td= number_to_currency(@donations_raised[account.id] || 0)
+        %td= formatted_last_sign_in(account)
+        %td= @last_visits[account.id].present? ? I18n.l(@last_visits[account.id]) : 'N/A'
+        %td
+          - if account.deleted_at.present?
+            = link_to 'Activate',
+                      { action: :update, id: account.id, account: { deleted_at: nil } },
+                      method: :patch
+          - else
+            = link_to 'Deactivate',
+                      { action: :update, id: account.id, account: { deleted_at: Time.now } },
+                      method: :patch
+            = link_to 'Login', admin_account_session_path(account), target: '_blank'
+            - if params[:superadmin] == '1'
+              = link_to 'Delete', admin_account_path(account), method: :delete,
+                                                               data: { confirm: 'Are you sure?' }
+
+
+= link_to t('.new', default: t("helpers.links.new")),
+          new_admin_account_path,
+          class: 'btn btn-primary'

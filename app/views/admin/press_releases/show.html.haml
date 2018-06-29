@@ -1,0 +1,15 @@
+= show_for(resource) do |press_release|
+  = press_release.attribute :title
+  = press_release.attribute :url
+  = press_release.attribute :page_title
+  = press_release.attribute :page_title_enabled
+  = press_release.attribute :page_date
+  = press_release.attribute :page_date_enabled
+  = press_release.attribute :created_at
+  = press_release.attribute :updated_at
+
+= link_to 'Edit', edit_admin_account_profile_press_release_path(@account, @profile, resource)
+|
+= link_to 'Back', admin_account_profile_press_releases_path(@account, @profile)
+|
+= link_to 'Back to Account', admin_account_path(@account)

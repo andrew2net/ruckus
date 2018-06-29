@@ -1,0 +1,18 @@
+= custom_form_for :media_items, url: profile_media_stream_path,
+                  html: { class: 'media-upload-form has-video-upload',
+                          id: 'media-upload-form' } do |f|
+  .fileupload-wrapper
+    .fileupload.button.white.large
+      %span
+        %i.icon-plus-circled
+        Upload Image
+        = f.input :images, as: :file, input_html: { class: 'upload instant-upload', multiple: true }
+
+  %span.or -OR-
+  .add-video-wrapper
+    .video-url
+      = f.label :video_url, 'YouTube or Vimeo Video URL'
+      .input-icon.url
+        = f.input_field :video_url, as: :url, placeholder: 'URL'
+        = f.error :video_url
+    = f.submit 'Add Video', class: 'white'

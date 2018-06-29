@@ -1,0 +1,12 @@
+= simple_form_for resource, url:  profile_press_release_parsers_path(format: :js),
+                            html: { id:     'update-url-curl',
+                                    remote: true } do |f|
+  .field-inset
+    = f.label :url, 'URL'
+    .input-icon.url
+      = f.url_field :url, id: 'curl-url', class: 'url-curl', placeholder: 'URL'
+      = f.error :url
+
+    .float.right
+      = link_to 'Cancel', profile_press_releases_path, class: 'cancel', data: { remote: true }
+      = f.submit 'Add', class: 'submit-btn button', data: { disable_with: 'Please wait...' }

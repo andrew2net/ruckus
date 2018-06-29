@@ -1,0 +1,11 @@
+.col-sm-6.col-sm-pull-6.no-content
+  %h3 #{labels[:biography_informal]}
+  .edit-section
+    = render_bio_pencil
+
+  .no-content-pad
+    = link_to edit_profile_biography_path, class: 'edit-link js-edit-modal link-add-content' do
+      %span.square-button.onboard-tip-add-bio
+        %i.i-icon.i-biography
+      %span Add #{labels[:biography]}
+%i.i-edit

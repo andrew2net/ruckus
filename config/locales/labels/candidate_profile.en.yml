@@ -1,0 +1,14 @@
+en:
+  labels:
+    candidate_profile:
+      type: candidate
+      issue: Issue
+      issue_with_article: an Issue
+      issues: Issues
+      issues_name: issues
+      biography: Biography
+      biography_informal: Biography
+      profile_photo: Profile Photo
+      profile_image: Profile Image
+      photo: Photo
+      join_campaign: Join the campaign.

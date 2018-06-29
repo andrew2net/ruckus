@@ -1,0 +1,38 @@
+%table{ align: 'center',
+        background: '#ffffff',
+        border: '0',
+        cellpadding: '0',
+        cellspacing: '0',
+        style: 'max-width: 600px; margin: 0 auto; background-color: #fff;' }
+  %tr
+    %td{ colspan: '3' }= image_tag image_path('mailer/spacer.gif'), alt: '',
+                                                                    height: '60',
+                                                                    style: 'display: block; margin: 0; border: 0;',
+                                                                    width: '1'
+
+  %tr
+    %td= image_tag image_path('mailer/spacer.gif'), alt: '',
+                                                    height: '1',
+                                                    style: 'display: block; margin: 0; border: 0;',
+                                                    width: '60'
+    %td{ valign: 'top' }
+      %p{ style: 'margin: 0 0 20px; line-height: 1.4em;' }
+        Hi, #{@email}!
+      %p{ style: 'margin: 0 0 20px; line-height: 1.4em;' }
+        You’ve received a discount code for #{'%.2f' % @coupon.discount}% off our Premium service!
+      %p{ style: 'margin: 0 0 20px; line-height: 1.4em; font-weight: bold;' } Code: #{@coupon.code}
+      %p{ style: 'margin: 0 0 20px; line-height: 1.4em;' }
+        You can redeem your discount during the Premium signup process. Just log into your account and hit the button that says “Go Premium.” If you have any questions about Premium or #{app_name} generally, let us know at #{mail_to "support@#{Figaro.env.domain}"}.
+      %p{ style: 'margin: 0 0 20px; line-height: 1.4em;' }
+        Cheers,
+      %p{ style: 'margin: 0 0 20px; line-height: 1.4em;' } -Team #{app_name}
+
+    %td= image_tag image_path('mailer/spacer.gif'), alt: '',
+                                                    height: '1',
+                                                    style: 'display: block; margin: 0; border: 0;',
+                                                    width: '60'
+  %tr
+    %td{ colspan: '3' }= image_tag image_path('mailer/spacer.gif'), alt: '',
+                                                                    height: '60',
+                                                                    style: 'display: block; margin: 0; border: 0;',
+                                                                    width: '1'

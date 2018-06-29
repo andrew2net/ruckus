@@ -1,0 +1,24 @@
+%h2 Donations Count:
+= content_tag :div, '', id: 'chart', data: { records: donations_count_chart_data(params[:period].try(:to_sym)), label: 'Number of Donations' }
+
+%h2 Donations Total Amount:
+= content_tag :div, '', id: 'amounts_chart', data: { records: donations_amount_chart_data(params[:period].try(:to_sym)), label: 'Total Amount of Donations' }
+
+= render 'admin/shared/switch_stats_mode_links', path: admin_donations_path
+
+%table.table
+  %thead
+    %tr
+      %th ID
+      %th Date
+      %th Amount
+      %th Donor Name
+      %th Account Display Name
+  %tbody
+    - collection.each do |donation|
+      %tr
+        %td= donation.id
+        %td= l donation.created_at
+        %td= number_to_currency(donation.amount)
+        %td= donation.donor_name
+        %td= link_to donation.profile.name, profile_path(donation.profile), target: '_blank'

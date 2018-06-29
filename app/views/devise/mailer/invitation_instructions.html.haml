@@ -1,0 +1,10 @@
+- if @resource.sign_in_count == 0
+  %p= I18n.t("devise.mailer.invitation_instructions.hello", email: @resource.email)
+  %p= I18n.t("devise.mailer.invitation_instructions.someone_invited_you", url: root_url)
+  %p= link_to I18n.t("devise.mailer.invitation_instructions.accept"), root_url(invitation_token: @token)
+  %p= I18n.t("devise.mailer.invitation_instructions.ignore").html_safe
+- else
+  %p= I18n.t("devise.mailer.invitation_instructions.hello", email: @resource.email)
+  %p= I18n.t("devise.mailer.invitation_instructions.existent_account_invited", url: root_url).html_safe
+
+

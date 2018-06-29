@@ -1,0 +1,8 @@
+%div{ class: photo_classes }
+  - if show_photo?
+    .account-image-rounded
+      = image_tag profile.photo_url(:thumb), alt: profile.name
+  - if show_navigation?
+    .onboard-tip-profile-logo
+      = link_to edit_profile_photo_path, class: 'edit-link js-edit-modal edit-account-image', id: 'add-new-profile-photo-button' do
+        %i.i-icon.i-photo

@@ -1,0 +1,21 @@
+= custom_form_for current_profile, url:  profile_hero_unit_path,
+                                   as:   :profile,
+                                   html: { class: 'media-upload-form has-video-upload',
+                                           id:    'media-upload-form' } do |f|
+
+  = f.simple_fields_for :hero_unit_medium do |hero_unit|
+    .fileupload-wrapper
+      .fileupload.button.white.large
+        %span
+          %i.icon-plus-circled
+          Upload Image
+          = hero_unit.input :image, as: :file, input_html: { class: 'upload instant-upload' }
+
+    %span.or -OR-
+    .add-video-wrapper
+      .video-url
+        = hero_unit.label :video_url, 'YouTube or Vimeo Video URL'
+        .input-icon.url
+          = hero_unit.input_field :video_url, as: :url, placeholder: 'URL', value: ''
+          = hero_unit.error :video_url
+      = f.submit 'Add Video', class: 'white'

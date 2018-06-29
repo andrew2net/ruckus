@@ -1,0 +1,143 @@
+@import 'account/admin/colors';
+
+/*Spinner
+-------------------------------- */
+.spinner {
+  display: block;
+  position: absolute;
+  left: 23px;
+  bottom: 330px;
+  .dropdown {
+    .dropdown-toggle {
+      cursor: pointer;
+    }
+
+    .dropdown-menu {
+      width: 330px;
+      height: 380px;
+      background: rgba(30, 37, 38, 0.95);
+      left: -380px;
+      top: 0;
+      margin-top: 0px;
+      display: block !important;
+      -webkit-transition: left 0.25s ease-in-out;
+      -moz-transition: left 0.25s ease-in-out;
+      transition: left 0.25s ease-in-out;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 20px;
+      border: none;
+
+      &:before {
+        content: '';
+        width: 0;
+        height: 0;
+        position: absolute;
+        border-top: 7px solid transparent;
+        border-bottom: 7px solid transparent;
+        border-right: 7px solid $primary-1;
+        bottom: 15px;
+        left: -7px;
+        top: 22px;
+      }
+
+      .progress-percent {
+        width: 331px;
+        height: 60px;
+        background-color: $primary-1;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 20px;
+        margin: -5px 0 0 0;
+        h1 {
+          padding: 15px 0 0 15px;
+          color: #fff;
+          font: 24px "Lato", sans-serif;
+        }
+      }
+
+      .progress-list {
+        height: 320px;
+        ul {
+          padding: 0;
+          li {
+            list-style: none;
+            a {
+              display: block;
+              color: $primary-1;
+              font: 16px "Lato", sans-serif;
+              padding: 20px 0 20px 20px;
+              border-bottom: 1px solid #1b3032;
+
+              .icon-list {
+                width: 30px;
+                height: 30px;
+                <% if ruckus? %>
+                  background: image-url('icon-list-ruckus.png') top;
+                <% else %>
+                  background: image-url('icon-list-wingop.png') top;
+                <% end %>
+                float: right;
+                margin: -5px 15px 0 0;
+              }
+            } 
+
+            a.active {
+              background-color: #1b3032;
+              border-bottom: 1px solid rgba(30, 37, 38, 0.95);
+              .icon-list {
+                <% if ruckus? %>
+                  background: image-url('icon-list-ruckus.png') bottom !important;
+                <% else %>
+                  background: image-url('icon-list-wingop.png') bottom !important;
+                <% end %>
+              }
+            }
+          }
+        }
+
+        .mCSB_container { margin-right: 8px; }
+        .mCSB_scrollTools { width: 5px; }
+      }
+
+      .col.form {
+        position:absolute;
+        top: 20px;
+        left: 2px;
+      }
+    }
+
+    &.open {
+      .dropdown-menu {
+        left: 90px;
+      }
+    }
+  }
+
+  .progress-radial {
+    float: left;
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #fff;
+  }
+
+  .progress-radial {
+    .progress-value {
+      position: absolute;
+      width: 46px;
+      height: 46px;
+      background-color: #1e2526;
+      color: #fff;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 48px;
+      font-size: 14px;
+      margin: 2px;
+    }
+  }
+
+  .progress {
+    background-image: linear-gradient(-36deg, #fff 50%, rgba(0, 0, 0, 0) 50%,
+    rgba(0, 0, 0, 0)), linear-gradient(270deg, #fff 50%, #0f5963 50%, #0f5963);
+  }
+}

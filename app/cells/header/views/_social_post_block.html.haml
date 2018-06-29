@@ -1,0 +1,19 @@
+- if displayed_social_post.present?
+  #social-feed{ data: { id: "#{displayed_social_post.id}" } }
+    = link_to front_profile_social_posts_path(profile), class: 'social-feed-modal-link ajax-modal-link' do
+      %span{ class: social_post_classes }
+        = social_post_photo_or_placeholder
+        %strong= profile.name
+        %em= time_ago_in_words(displayed_social_post.created_at).to_s + ' ago'
+      %span.social-feed-message
+        = shorten_to_tweet_length(displayed_social_post.message)
+      %span.likes
+        %i.icon-heart
+        %span= displayed_social_post.scores.count
+      %span.more
+        %i.icon-plus-circled
+
+    = render partial: 'new_social_post_icon' if show_navigation?
+
+- else
+  = render partial: 'new_social_post_icon' if show_navigation?

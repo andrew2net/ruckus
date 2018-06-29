@@ -1,0 +1,32 @@
+%div{ id: "profile-member-list-pad-#{parent.id}" }
+
+  %h1 Members List
+
+  - if parent.premium?
+    %ul.no-style.domain-list
+      = render collection.where.not(invitation_accepted_at: nil), parent: parent
+
+    - if collection.where(invitation_accepted_at: nil).exists?
+      %p.pending-invites Pending Invites
+      %ul.no-style.domain-list
+        = render collection.where(invitation_accepted_at: nil), parent: parent
+
+    #create-account-button.add-new-editor-btn
+      - if can? :create, Account.new, parent
+        .inner
+          %ul.no-style.inline-list
+            %li
+              .action
+                = link_to new_account_profile_account_path(parent), class: 'button', remote: true, data: { disable_with: 'Please wait...' } do
+                  %i.icon-plus-circled
+                    Add New Editor
+  - else
+    .inner.domains-id
+      .field-inset
+        .center
+          %p= link_to 'Upgrade', new_account_profile_credit_card_holder_path(parent), class: 'edit-link button js-edit-modal'
+          %br
+          %p 
+            Upgrading to #{app_name} premium gives you even more tools to run the campaign you want, like 
+            custom URLs and multiple-administrator support, all with a donation processing fee well below the 
+            industry standard.

@@ -1,0 +1,21 @@
+.section.section-editable{ id: (show_issues? ? 'issues' : '') }
+  .container
+    %header.header.clearfix
+      - if show_issues?
+        %h3
+          %span #{labels[:issues]}
+          .edit-section
+            = render_pencil
+            = render_switch
+
+      = cell('ask_question/', profile: profile, enable_switcher: true).call
+
+    #issues-tab-wrapper.tab-wrapper
+      %div#issues-selector-wrapper.tab-selector-wrapper
+        #issues-selector.tab-selector All
+        .tab-outer
+          %ul#issues-tabs.tabs.list-unstyled
+            = render_issue_categories
+
+  #issues-slider-wrapper
+    = render_issues

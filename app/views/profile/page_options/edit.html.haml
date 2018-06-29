@@ -1,0 +1,59 @@
+- title("#{app_name} Admin | Settings | Site Options")
+
+= render 'shared/profile/nav', submenu: :settings, profile: current_profile
+.content
+  %h1 Site Features
+  .inner
+    .col
+      = simple_form_for current_profile.model, as: :profile, url: profile_page_option_path do |f|
+        .white-box
+          = f.label :register_to_vote_on, '"Register to Vote" URL'
+          .switch
+            .toggle
+              = f.input_field :register_to_vote_on, as: :boolean
+        = render 'de_account', f: f, builder: false
+        .white-box
+          = f.label :biography_on, "#{current_profile.labels[:biography_informal]}"
+          .switch
+            .toggle
+              = f.input_field :biography_on, as: :boolean
+
+        .white-box
+          = f.label :questions_on, 'Ask a Question'
+          .switch
+            .toggle
+              = f.input_field :questions_on, as: :boolean
+
+        .white-box
+          = f.label :issues_on, "#{current_profile.labels[:issues]}"
+          .switch
+            .toggle
+              = f.input_field :issues_on, as: :boolean
+
+        .white-box
+          = f.label :media_on, 'Media'
+          .switch
+            .toggle
+              = f.input_field :media_on, as: :boolean
+
+        .white-box
+          = f.label :press_on, 'Press'
+          .switch
+            .toggle
+              = f.input_field :press_on, as: :boolean
+
+        .white-box
+          = f.label :events_on, 'Events'
+          .switch
+            .toggle
+              = f.input_field :events_on, as: :boolean
+
+        -#
+          .white-box
+            = f.label :social_feed_on, 'Social Feed'
+            .switch
+              .toggle
+                = f.input_field :social_feed_on, as: :boolean
+
+        .submit
+          = f.button :button, 'Update', class: 'button float right', data: { disable_with: 'Please wait...' }

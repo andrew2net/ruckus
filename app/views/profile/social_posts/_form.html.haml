@@ -1,0 +1,12 @@
+= custom_form_for [:profile, SocialPost.new], html: { id: 'socialfeed-create' } do |f|
+  = f.input :message, as: :text, placeholder: 'Post New', class: 'required', label: false
+  - if current_profile.facebook_account_active?
+    %label.checkbox.checkbox-facebook
+      = f.input_field :provider, type: 'checkbox', value: 'facebook', name: 'social_post[provider][]'
+      %span facebook
+  - if current_profile.twitter_account_active?
+    %label.checkbox.checkbox-twitter
+      = f.input_field :provider, type: 'checkbox', value: 'twitter', name: 'social_post[provider][]'
+      %span.twitter twitter
+  .form-actions
+    = f.submit 'Post'

@@ -1,0 +1,12 @@
+#media.section.section-editable
+  .media-control.media-prev
+    %i.fa.fa-chevron-circle-left
+  .media-control.media-next
+    %i.fa.fa-chevron-circle-right
+
+  #media-slider
+    - media_stream_items.each do |medium|
+      = render_medium(medium)
+
+  = render_switch
+  = render_new_medium_icon

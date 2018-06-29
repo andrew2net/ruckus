@@ -1,0 +1,7 @@
+.media-element
+  - if medium.video_url.present?
+    = link_to medium.video_url, class: 'video-popup' do
+      = image_tag medium.image_url(:large_thumb), width: medium.width, height: medium.height
+  - else
+    = link_to medium.image_url, class: 'image-popup' do
+      = image_tag medium.image_url(:large_thumb), width: medium.width, height: medium.height

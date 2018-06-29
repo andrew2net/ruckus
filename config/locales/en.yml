@@ -1,0 +1,21 @@
+en:
+  hello: "Hello world"
+  devise:
+    failure:
+      deleted: "Your account was deleted."
+  date:
+    formats:
+      events_index_date: '%B %Y'
+      calendar_date: '%Y-%m'
+  time:
+    formats:
+      default: '%m/%d/%Y'
+      social_post: '%b %d, %Y'
+      events_in_dashboard: '%B %d · %-l%p · %{address}'
+      events_in_dashboard_without_time: '%B %d · %{address}'
+      default_hours: '%l:%M%p'
+      event_date: '%B, %d, %Y'
+      event_modal_hours: '%-I:%M%P'
+      hours_and_minutes: '%R'
+      month_only: '%B'
+      day_only: '%d'

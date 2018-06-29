@@ -1,0 +1,11 @@
+.donations-label {
+  overflow: hidden;
+
+  .account-name { float: left; }
+  em.error, .delete-link {
+    float: right;
+    font-style: normal;
+    font-size: 13px;
+    line-height: 22px;
+  }
+}

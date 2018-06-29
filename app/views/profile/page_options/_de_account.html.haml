@@ -1,0 +1,33 @@
+.white-box
+  - if current_profile.de_account.present? && current_profile.de_account.is_active_on_de?
+    = f.label :donations_on, 'Donations'
+    %div{ class: "switch#{'-builder' if builder}" }
+      .toggle
+        = f.input_field :donations_on, as: :boolean
+
+  .donations-label
+    %span
+      %i.icon-cog-solid
+      %em Powered by #{donation_engine}
+    - if current_profile.de_account.present?
+      .account-name= link_to current_profile.de_account.account_full_name, profile_de_account_path
+      - if current_profile.de_account.is_active_on_de?
+        - unless current_profile.donations_on
+          = link_to 'delete', profile_de_account_path, class: 'delete-link',
+                                                       method: :delete,
+                                                       data: { confirm: 'Are you sure you want to discontinue #{donation_engine} account?' }
+      - else
+        %em.error
+          awaiting approval
+    - else
+      = link_to 'Connect Account', new_profile_de_account_path, class: 'button'
+
+- if current_profile.de_account.present?
+  %br
+  .field-inset
+    To update your bank account or other information for your #{donation_engine} account,
+    you will need to contact #{donation_engine} directly at
+    - if ruckus?
+      #{mail_to 'support@democracyengine.com'}.
+    - else
+      #{mail_to 'support@onlinefundraisingllc.com'}.

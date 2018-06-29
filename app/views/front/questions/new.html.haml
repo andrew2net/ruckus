@@ -1,0 +1,10 @@
+.ruckus-modal.small-modal.ask-a-question-modal.account-modal
+  .ruckus-modal-head
+    .ruckus-modal-head-content
+      .account-meta
+        %div{ class: "photo photo-#{profile.labels[:type]}" }
+          = profile.image_for_question_modal(account_signed_in?)
+        %h3 Ask #{profile.name} a Question
+  .ruckus-modal-body
+    .ruckus-modal-body-content
+      = render 'form'

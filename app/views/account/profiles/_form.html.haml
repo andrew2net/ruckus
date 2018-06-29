@@ -1,0 +1,9 @@
+= simple_form_for [:account, @profile], url: account_profiles_path do |f|
+  - if @profile.type == 'CandidateProfile'
+    = f.input :first_name
+    = f.input :last_name
+    = f.input :office
+  - elsif @profile.type == 'OrganizationProfile'
+    = f.input :name
+  = f.input :type, as: :hidden
+  = f.submit 'Submit', class: 'button'

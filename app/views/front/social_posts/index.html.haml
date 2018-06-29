@@ -1,0 +1,32 @@
+.ruckus-modal.small-modal.social-feed-modal.account-modal
+  .ruckus-modal-head
+    .ruckus-modal-head-content
+      .account-meta
+        %div{ class: "photo photo-#{profile.labels[:type]}" }
+          - if profile.photo.present? || (account_signed_in? && request.referrer.include?(profile_root_path))
+            = image_tag profile.photo_url(:press_modal_photo_thumb)
+        .name
+          %h3= @profile.name
+        .social
+          - if @profile.show_facebook_buttons?
+            .facebook
+              = facebook_like_iframe(profile_path(@profile))
+          - if @profile.show_twitter_buttons?
+            .twitter
+              = render 'front/twitter_follow', profile: @profile
+  .ruckus-modal-body
+    .ruckus-modal-body-content
+      - @social_posts.each do |social_post|
+        .item.social-entry
+          %p= shorten_to_tweet_length(social_post.message)
+          %span.nicetime= time_ago_in_words(social_post.created_at) + ' ago'
+          .social
+            = link_to front_score_path, class: 'likes', data: { id: social_post.id, type: 'SocialPost' } do
+              %i.icon-heart
+                %span= social_post.scores.count
+            - if @profile.show_facebook_buttons?
+              = link_to facebook_share_link(social_post), class: 'facebook', target: '_blank' do
+                %i.icon-facebook-squared
+            - if @profile.show_twitter_buttons?
+              = link_to twitter_share_link(@profile, social_post.message), class: 'twitter', target: '_blank' do
+                %i.icon-twitter

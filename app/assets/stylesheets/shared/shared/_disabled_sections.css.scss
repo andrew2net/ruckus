@@ -1,0 +1,45 @@
+.section-editable.section-disabled {
+  h3 > span,
+  ol.list-unstyled,
+  .ajax-modal-link,
+  .expansion-wrapper,
+  .tab-wrapper,
+  .tabs > li > a,
+  .slide-fade-wrapper,
+  .btn-speech-bubble,
+  .video-wrapper, img,
+  .media-control, #media-slider, .disabled-item {
+    opacity: 0.4 !important;
+    pointer-events: none !important;
+  }
+}
+
+.section-editable .section-editable:not(.section-disabled) {
+  h3 > span,
+  ol.list-unstyled,
+  .ajax-modal-link,
+  .expansion-wrapper,
+  .tab-wrapper,
+  .tabs > li > a,
+  .slide-fade-wrapper,
+  .btn-speech-bubble,
+  .video-wrapper, img,
+  .media-control, #media-slider, .disabled-item {
+    opacity: 1.0 !important;
+  }
+}
+
+.section-editable:not(.section-disabled) {
+  h3 > span,
+  ol.list-unstyled,
+  .ajax-modal-link,
+  .expansion-wrapper,
+  .tab-wrapper,
+  .tabs > li > a,
+  .slide-fade-wrapper,
+  .btn-speech-bubble,
+  .video-wrapper, img,
+  .media-control, #media-slider, .disabled-item {
+    opacity: 1.0;
+  }
+}

@@ -1,0 +1,117 @@
+.admin-nav-wrap
+  %nav.admin-nav
+    %ul
+      %li
+        = nav_link [profile_dashboard_path] do
+          %i.i-icon.i-dashboard
+          Dashboard
+      %li
+        = nav_link [profile_builder_path], class: (submenu == :builder ? 'active' : nil) do
+          %i.i-icon.i-builder
+          Builder
+      %li
+        = nav_link [edit_profile_page_option_path], class: (submenu == :settings ? 'active' : nil) do
+          %i.i-icon.i-settings
+          Settings
+
+    = cell('percent/', current_account).call
+
+    .user-dropdown
+      .dropdown
+        = link_to '#', class: 'dropdown-toggle', data: { toggle: :dropdown } do
+          My Account
+          %span.icon-down-open
+        .dropdown-menu
+          %div{ class: "profile-image small profile-image-#{profile.labels[:type]}" }
+            = image_tag profile.photo_url(:middle_thumb)
+          .info-text
+            %h3.name= link_to clean_url(profile_path(profile)), profile_path(profile), target: '_blank'
+            %h3.email= current_account.email
+            .submit
+              = nav_link [edit_profile_page_option_path], class: 'button settings' do
+                Account Settings
+              = nav_link [destroy_account_session_path], method: :delete, class: 'button logout' do
+                Logout
+
+    = link_to "#{app_name}", root_path, class: 'sitename'
+    - unless [:dashboard, :help, :edit_map].include?(submenu)
+      %nav.admin-subnav
+        - if submenu == :builder
+          %h2
+            
+            = render 'shared/profile/nav_premium_btn', profile: profile
+          %ul
+            %li
+              = link_to edit_profile_general_info_path, class: modal_classes do
+                General Info
+            %li
+              = link_to edit_profile_biography_path, class: modal_classes do
+                #{profile.labels[:biography_informal]}
+            %li
+              = link_to profile_issues_path, class: modal_classes do
+                #{profile.labels[:issues]}
+            %li
+              = link_to profile_events_path, class: modal_classes do
+                Events
+            %li
+              = link_to profile_press_releases_path, class: modal_classes do
+                Press
+            %li
+              = link_to profile_media_path, class: modal_classes do
+                Media
+          .theme-color
+            %h3 Theme color
+            = custom_form_for profile, url:  profile_profile_path,
+                                       as:   :profile,
+                                       html: { class: 'theme-select' } do |f|
+              - if ruckus?
+                = theme_selection_tag(profile, 'orange')
+                = theme_selection_tag(profile, 'red')
+                = theme_selection_tag(profile, 'green')
+                = theme_selection_tag(profile, 'blue')
+              - else
+                = theme_selection_tag(profile, 'red')
+                = theme_selection_tag(profile, 'blue')
+                = theme_selection_tag(profile, 'grey')
+                = theme_selection_tag(profile, 'green')
+              = f.input :theme, as: :hidden, input_html: { class: 'current-theme' }
+        - elsif submenu == :settings
+          %h2
+            SETTINGS
+            = render 'shared/profile/nav_premium_btn', profile: profile
+          %ul
+            %li
+              = nav_link [edit_profile_page_option_path,
+                          new_profile_de_account_path,
+                          profile_de_account_path] do
+                My Features
+            %li
+              = nav_link [profile_domains_path] do
+                Domains
+            %li
+              = nav_link [account_profiles_path, new_account_profile_path] do
+                Sites
+            %li
+              = nav_link [profile_subscriptions_path] do
+                Subscribers
+            %li
+              = nav_link [profile_donations_path] do
+                Donors
+            %li
+              = nav_link [profile_oauth_accounts_path] do
+                Social Accounts
+            %li
+              = nav_link [edit_profile_notification_path] do
+                Notifications
+            %li
+              = nav_link [edit_profile_my_account_path] do
+                My Account
+
+        = render 'shared/profile/preview_link', profile: profile
+
+:javascript
+  $(document).ready(function () {
+    if (window.location.href == "http://lvh.me:3000/profile?show_signup_popup=true") {
+      $('.premium-label').click();
+    }
+  });

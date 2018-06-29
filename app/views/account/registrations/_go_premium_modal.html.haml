@@ -1,0 +1,11 @@
+.brand
+  =link_to "#{app_name}", '#'
+%h3
+  Run stronger with #{app_name}
+%ul
+  %li Please note that until you upgrade your account from a trial account your site will not be live to the public.
+  %li To publish your site live, click the 'upgrade' button below.
+.choose-actions.premium-actions
+  = link_to 'Upgrade', new_account_profile_credit_card_holder_path(resource.profile),
+                          class: 'button button-orange go-premium'
+  =link_to 'continue with trial account', profile_root_path, class: 'cancel'

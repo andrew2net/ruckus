@@ -1,0 +1,24 @@
+%h1 My Press
+%p  Showcase your mentions and highlights in the media and other places.
+
+.inner
+  .my-updates{ data: { dynamic_height: 'tallest' } }
+    .col
+      = link_to new_profile_press_release_path, class: 'button large', remote: true do
+        %i.icon-plus-circled
+        Add New Press Link
+
+    .col#updates_list
+      %h3
+        My Press
+        %i.icon-help-circled.tip{ data:  { placement: 'bottom' },
+                                  title: ["Click to edit any press clip. Drag to arrange",
+                                          "order. Remember, the first 2 will be visible",
+                                          " (1st highlighted) on your site without having to",
+                                          "click to see more."].join(' ') }
+      = render 'press_releases', collection: collection
+
+:javascript
+  RuckusAdmin._applySortable();
+  $("i.tip").tooltip();
+  $('.ruckus-modal-body').mCustomScrollbar({ theme: "dark-2" });

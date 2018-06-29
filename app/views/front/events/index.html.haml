@@ -1,0 +1,49 @@
+.ruckus-modal.events-modal
+  .ruckus-modal-head
+    .ruckus-modal-head-content
+      .event-modal-title
+        - if @event.present? # if this is for the month, not archive
+          %h4
+            = @event.start_time.strftime("%B")
+            %span.year= @event.start_time.year
+          - if @events.present?
+            - if @events.first.older_event.present?
+              = link_to front_profile_events_path(@profile, event_id: @events.first.older_event.id), class: 'event-navigation prev ajax-modal-link' do
+                %i.fa.fa-chevron-left
+            - if @events.last.newer_event.present?
+              = link_to front_profile_events_path(@profile, event_id: @events.last.newer_event.id), class: 'event-navigation next ajax-modal-link' do
+                %i.fa.fa-chevron-right
+        - else
+          %h4 Archive
+
+  .ruckus-modal-body
+    .ruckus-modal-body-content
+      - @events.each do |event|
+        .event{ id: "event-#{event.id}", tabindex: -1 }
+          .event-meta
+            %span.day= event.start_time.day
+            .title
+              %h3= event.title
+              %span.location= event.address
+              #span= event_link(event)
+          .event-description
+            = simple_format(event.description)
+          .event-details
+            .details
+              %h5 Event Details:
+              %ul.list-unstyled
+                %li Date: #{l(event.start_time, format: :event_date)}
+                %li Time: #{time_for_events_modal(event)}
+                %li Place: #{[event.address, event.city, event.state].reject(&:blank?).join(', ')}
+            .map
+              .map-container{ data: { latitude: event.latitude, longitude: event.longitude }, id: "event-#{event.id}-map" }
+          .social
+            = link_to '#', class: 'likes', data: { id: event.id, type: 'Event' } do
+              %i.fa.fa-heart
+              %span= event.scores.count
+            - if @profile.show_facebook_buttons?
+              = link_to facebook_share_link(event), class: 'facebook', target: '_blank' do
+                %i.icon-facebook-squared
+            - if @profile.show_twitter_buttons?
+              = link_to twitter_share_link(@profile, event.description), class: 'twitter', target: '_blank' do
+                %i.icon-twitter

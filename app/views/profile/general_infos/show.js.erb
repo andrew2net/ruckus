@@ -1,0 +1,8 @@
+$('#header').replaceWith('<%= j cell('header/', profile: current_profile).call %>');
+var joinCampaignContainer = '<%= j cell('subscribe_form/', profile: current_profile, user: User.new ).call%>';
+$('.join-campaign-container').replaceWith(joinCampaignContainer);
+var footerHtml = '<%= j cell('footer/', profile: current_profile).call %>';
+$('#footer-block').replaceWith(footerHtml);
+<%= render 'shared/profile/update_completion_percent' %>
+$('.ruckus-modal .mfp-close').click();
+<%= render 'shared/profile/render_social' %>

@@ -1,0 +1,9 @@
+.modal-dialog
+  .modal-content
+    .modal-body
+      = custom_form_for [parent, Account.new], url: admin_coupon_sender_coupons_path do |f|
+        %button.close{ aria_label: 'Close', type: 'button', data: { dismiss: 'modal' } }
+          %span{ aria_hidden: true } ×
+        = f.input :email
+        = f.button :submit, value: 'Send'
+

@@ -1,0 +1,8 @@
+= simple_form_for current_profile.model, url: profile_biography_path, as: :profile, remote: true do |f|
+  %div
+    = f.input :biography, placeholder: 'Write a little about yourself...',
+                          required:    true,
+                          input_html:  { id: 'biography' }
+  .submit
+    = f.button :submit, 'Update', class: 'btn button float right',
+                                  data: { disable_with: 'Please wait...' }

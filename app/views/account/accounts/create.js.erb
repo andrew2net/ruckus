@@ -1,0 +1,5 @@
+<% if @account.errors.any? %>
+  $('form#new_account').replaceWith('<%= j render 'form' %>');
+<% else %>
+  $('#profile-member-list-pad-<%= parent.id %>').replaceWith('<%= j render 'list' %>');
+<% end %>

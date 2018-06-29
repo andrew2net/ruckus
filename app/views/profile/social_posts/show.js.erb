@@ -1,0 +1,6 @@
+$('[name="social_post[provider][]"]').attr('checked', false);
+$('#socialfeed-create').parent().find('.alert').remove();
+$('ul.post-feed').prepend('<%= j render 'profile/dashboards/social_post', social_post: resource %>');
+$('#header').replaceWith('<%= j cell('header/', profile: current_profile).call %>');
+<%= render 'shared/profile/update_completion_percent' %>
+<%= render 'shared/profile/render_social' %>

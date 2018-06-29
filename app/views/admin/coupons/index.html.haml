@@ -1,0 +1,30 @@
+%h3 Coupons
+= link_to 'New Coupon', new_admin_coupon_path
+
+%table.table
+  %thead
+    %tr
+      %th ID
+      %th Code
+      %th Discount
+      %th Expired at
+      %th
+  %tbody
+    - collection.each do |coupon|
+      %tr{ id: "coupon-#{coupon.id}" }
+        %td= coupon.id
+        %td= coupon.code
+        %td= coupon.discount
+        %td= coupon.expired_at
+        %td
+          = link_to 'Send', '#', class: 'btn btn-default',
+                                 data: { toggle: 'modal',
+                                         target: '#sendCouponModal',
+                                         remote: new_admin_coupon_sender_coupons_path(coupon) }
+
+          = link_to 'Edit', edit_admin_coupon_path(coupon), class: 'btn btn-default'
+          = link_to 'Delete', admin_coupon_path(coupon), class: 'btn btn-danger',
+                              data: { method: :delete, confirm: 'Are you sure?' }
+
+
+= render 'admin/sender_coupons/modal'

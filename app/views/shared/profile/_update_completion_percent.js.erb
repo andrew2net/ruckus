@@ -1,0 +1,4 @@
+$('.spinner').replaceWith("<%= j cell('percent/', current_account).call %>");
+
+previewLink = $('#preview-link');
+previewLink.replaceWith('<%= j render 'shared/profile/preview_link', profile: current_account.profile %>');
