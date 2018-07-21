@@ -1,0 +1,16 @@
+.modal-dialog#premiumModal
+  .modal-content
+    .modal-header
+    .modal-body
+      %h1 Update card
+      .row
+        .col-xs-3
+          Current card:
+        .col-xs-2
+          = '...' + resource.credit_card.last_four
+        .col-xs-1
+          exp.
+        .col-xs-3
+          = resource.credit_card.exp_date.strftime '%m / %y'
+      %h2 New card
+      = render 'form', update_card: true

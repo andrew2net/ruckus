@@ -1,5 +1,5 @@
 <% if resource.errors.any? || @price_check %>
-  $('.modal-body').html('<%= j render 'form' %>');
+  $('.modal-body').html('<%= j render 'form', update_card: @update_card %>');
 <% else %>
   window.location.href = "/account/sites"
 <% end %>

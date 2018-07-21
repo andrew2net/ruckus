@@ -3,11 +3,15 @@ require 'deapi'
 class De::ProfileUpgrader
   REMOTE_RECIPIENT_ID = ruckus? ? 'ruckusfees' : 'WINGOPINC'
 
+  # @param credit_card_holder [CreditCardHolder]
+  # @param logger [ActiveSupport::Logger]
   def initialize(credit_card_holder, logger = ::ActiveRecord::Base.logger)
     @credit_card_holder = credit_card_holder
     @logger = logger
   end
 
+  # Make a donation and save token.
+  # @return [TrueClass, FalseClass]
   def process
     if @credit_card_holder.real?
       if request_successful?
@@ -15,12 +19,25 @@ class De::ProfileUpgrader
         @credit_card_holder.profile.update_column :suspended, false
         send_mail
       else
-        @credit_card_holder.errors.add(:base, de_response.map(&:last).join(', '))
-        @logger.info "credit_card_holder.errors: #{@credit_card_holder.errors.to_a}"
+        set_error
         @credit_card_holder.destroy if @credit_card_holder.persisted?
       end
     end
     @credit_card_holder.errors.empty? && @credit_card_holder.real?
+  end
+
+  # Make a test request and save token.
+  def auth_test
+    if request_successful?(true) && @credit_card_holder.valid? && @credit_card_holder.credit_card.save
+      @credit_card_holder.update token: de_response['token']
+    else
+      set_error
+    end
+  end
+
+  def set_error
+    @credit_card_holder.errors.add(:base, de_response.map(&:last).join(', '))
+    @logger.info "credit_card_holder.errors: #{@credit_card_holder.errors.to_a}"
   end
 
   def check_coupon
@@ -46,24 +63,28 @@ class De::ProfileUpgrader
     PremiumMailer.delay.profile_upgrading_notification(emails, profile, amount)
   end
 
-  def request_successful?
-    @logger.info "de_response: #{de_response.inspect}"
+  # Performs creatin donation requist.
+  # @paran test [TrueClass, FalseClass] true if the requist is auth/test.
+  # @return [TrueClass, FalseClass] true if requiest is performed successfully.
+  def request_successful?(test = false)
+    @logger.info "de_response: #{de_response(test).inspect}"
     de_response.is_a?(Hash) && de_response['token'].present?
   end
 
-  def de_response
-    @de_response ||= DEApi.create_donation(formatted_data)
+  # @paran test [TrueClass, FalseClass] true if the requist is auth/test.
+  # @return [Hash] DE response
+  def de_response(test = false)
+    @de_response ||= DEApi.create_donation(formatted_data(test))
   end
 
+  # @return [TrueClass, FalseClass] true if discount should be applied.
   def apply_discount?
     coupon.present? && !coupon.expired?
   end
 
-  def formatted_data
-    # Set to '1' if you want to create donations in localhost browser
-    # '1' is Recipient ID of activated recipient on DemocracyEngine.
-    recipient_id = Rails.env.development? ? '1' : REMOTE_RECIPIENT_ID
-
+  # @paran test [TrueClass, FalseClass] true if the requist is auth/test.
+  # @teturn [Hash] data for doantion request.
+  def formatted_data(test)
     result = {
       donor_first_name:      @credit_card_holder.first_name,
       donor_last_name:       @credit_card_holder.last_name,
@@ -77,22 +98,34 @@ class De::ProfileUpgrader
       cc_year:               credit_card.year,
       cc_first_name:         @credit_card_holder.first_name,
       cc_last_name:          @credit_card_holder.last_name,
-      token_request:         @credit_card_holder.token.blank?,
-      line_items: [{
-        amount:       amount,
-        recipient_id: recipient_id
-      }]
+      token_request:         @credit_card_holder.token.blank? || test
     }
+
+    if test
+      result[:authtest_request] = true
+    else
+      result[:line_items] = [{ amount: amount, recipient_id: recipient_id }]
+    end
+
     result[:token] = @credit_card_holder.token unless result[:token_request]
     @logger.info "formatted_data_result: #{result}"
 
     result
   end
 
+  # @return [String] recipient's id
+  def recipient_id
+    # Set to '1' if you want to create donations in localhost browser
+    # '1' is Recipient ID of activated recipient on DemocracyEngine.
+    Rails.env.development? ? '1' : REMOTE_RECIPIENT_ID
+  end
+
+  # @return [CreditCard]
   def credit_card
     @credit_card_holder.credit_card
   end
 
+  # @return [Coupon]
   def coupon
     @credit_card_holder.coupon
   end

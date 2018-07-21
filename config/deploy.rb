@@ -1,11 +1,12 @@
 lock '3.4.0'
 
-set :repo_url, 'git@gl.jetru.by:railsmuffin/ruck.us.git'
+set :repo_url, 'git@github.com:Ruckusdev/ruckus-1.git'
 set :application, 'Ruck.us'
 set :ruby_version,    '2.1.0'
 set :user, 'ruckus'
 
-%w(ruck.us win.gop).each do |name|
+# %w(ruck.us win.gop).each do |name|
+%w(ruck.us).each do |name|
   server name, user: fetch(:user), roles: [:web, :app, :db], primary: true
 end
 # comment 3 lines before uncomment line below if you want to run db:pull, don't forget to set proper domain
@@ -25,8 +26,8 @@ set :sidekiq_config, -> { "#{shared_path}/config/sidekiq.yml" }
 set :real_revision, -> { capture("cd #{current_path} && git rev-parse --short HEAD").chop }
 set :current_revision, -> { real_revision }
 
-set :slack_webhook, 'https://hooks.slack.com/services/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'
-set :slack_icon_emoji, ':rocket:'
+# set :slack_webhook, 'https://hooks.slack.com/services/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'
+# set :slack_icon_emoji, ':rocket:'
 
 set :db_ignore_data_tables, %w(requests)
 set :disallow_pushing, true

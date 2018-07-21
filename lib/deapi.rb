@@ -52,6 +52,4 @@ class DEApi
   def self.get_donations
     get(get_account['recipients_uri']).parsed_response
   end
-
-
 end

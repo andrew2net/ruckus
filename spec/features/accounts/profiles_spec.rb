@@ -303,7 +303,7 @@ describe 'Accounts' do
 
     specify 'upgrade' do
       visit account_profiles_path
-      find("#profile-#{profile2.id} .premium-label").click
+      find("#profile-#{profile2.id} .edit-link").click
 
       within '.modal-body' do
         fill_in 'Card Number', with: '4111111111111111'
@@ -333,6 +333,33 @@ describe 'Accounts' do
       end
 
       expect(page).to have_content 'upgrade'
+    end
+  end
+
+  describe 'update card' do
+    let!(:credit_card_holder) { create :credit_card_holder, token: '1234' }
+    let!(:profile3) { create(:candidate_profile, credit_card_holder: credit_card_holder) }
+
+    before do
+      account.profiles << profile3
+    end
+
+    it 'success' do
+      visit account_profiles_path
+      find("#profile-#{profile3.id} .card-update-link").click
+
+      expect do
+        expect do
+          within '.modal-body' do
+            fill_in 'Card Number', with: '4111111111111112'
+            fill_in 'Month Exp.',  with: '01'
+            fill_in 'Year Exp.',   with: '2019'
+            fill_in 'CVV/CVV2',    with: '123'
+
+            click_on 'Update Card'
+          end
+        end.to change { profile3.credit_card_holder.credit_card.reload.last_four }
+      end.to change { credit_card_holder.reload.token }
     end
   end
 end

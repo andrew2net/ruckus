@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 gem 'rails', '~> 4.1.8'
 
@@ -118,6 +118,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'pry-rails'
   #gem 'sqlite3'
+  gem 'pry-byebug'
 end
 
 group :tools do

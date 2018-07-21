@@ -14,7 +14,10 @@
           - collection.each do |profile|
             %li.white-box.section-editable.large{ id: "profile-#{profile.id}" }
               - if profile.premium?
-                .premium-label.premium premium
+                -# .premium-label.premium premium
+                = link_to 'premium', edit_account_profile_credit_card_holder_path(profile),
+                  class: 'card-update-link premium-label premium js-edit-modal', style: 'color: white',
+                  title: 'Update card'
                 = link_to 'cancel', cancel_account_profile_credit_card_holder_path(profile),
                                     class: 'premium-cancel js-edit-modal'
               - else

@@ -63,7 +63,7 @@ Rails.application.routes.draw do
 
       resource :owner, only: [:update]
 
-      resource :credit_card_holder, only: [:new, :create, :destroy] do
+      resource :credit_card_holder, except: %i[index show] do # only: [:new, :create, :destroy, :edit] do
         get :cancel
       end
     end

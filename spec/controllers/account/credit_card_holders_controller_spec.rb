@@ -42,6 +42,51 @@ describe Account::CreditCardHoldersController do
     end
   end
 
+  it 'GET edit' do
+    get :edit, profile_id: profile.id
+    expect(response).to render_template :edit
+  end
+
+  describe 'PATCH update' do
+    let!(:profile) { create :candidate_profile, :premium }
+    let!(:account) { create :account, profile: profile }
+    let(:params) { { profile_id: profile.id, credit_card_holder: {
+        credit_card_attributes: {
+          id: profile.credit_card_holder.credit_card.id,
+          number: '4111111111111112',
+          cvv: '123',
+          month: '01',
+          year: '2020'
+        }
+      }
+    }}
+
+    # before do
+    #   allow_any_instance_of(De::ProfileUpgrader).to receive(:auth_test).and_return(success?)
+    # end
+
+    after { expect(response).to render_template :create }
+
+    context 'success' do
+      # let(:success?) { true }
+      it do
+        expect { xhr :patch, :update, params }.to change {
+          profile.credit_card_holder.credit_card.reload.last_four
+        }
+        expect(flash[:notice]).to eq 'Card successfully updated'
+      end
+    end
+
+    context 'failure' do
+      # let(:success?) { false }
+      it do
+      allow_any_instance_of(De::ProfileUpgrader).to receive(:auth_test).and_return(false)
+        xhr :patch, :update, params
+        expect(flash[:notice]).to be_blank
+      end
+    end
+  end
+
   describe 'DELETE #destroy' do
     let!(:card_holder) { create :credit_card_holder, profile: profile }
 

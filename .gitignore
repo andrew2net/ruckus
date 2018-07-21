@@ -55,3 +55,4 @@ config/newrelic.yml
 application.yml
 
 /.byebug_history
+erd.*
