@@ -1,21 +1,20 @@
 lock '3.4.0'
 
 set :repo_url, 'git@github.com:Ruckusdev/ruckus-1.git'
-set :application, 'Ruck.us'
-set :ruby_version,    '2.1.0'
-set :user, 'ruckus'
+set :application,  'Ruck.us'
+set :ruby_version, '2.1.0'
+set :user,         'ruckus'
 
-# %w(ruck.us win.gop).each do |name|
-%w(ruck.us).each do |name|
-  server name, user: fetch(:user), roles: [:web, :app, :db], primary: true
+%w[ruck.us win.gop].each do |name|
+  server name, user: fetch(:user), roles: %i[web app db], primary: true
 end
 # comment 3 lines before uncomment line below if you want to run db:pull, don't forget to set proper domain
 # server 'win.gop', user: fetch(:user), roles: [:web, :app, :db], primary: true
 
-set :linked_dirs, %w(log tmp/pids tmp/cache tmp/sockets public/uploads)
+set :linked_dirs, %w[log tmp/pids tmp/cache tmp/sockets public/uploads]
 set :linked_files, fetch(:linked_files, [])
-                     .push(*%w(newrelic analytics application database democracy_engine_credentials google_map_key
-                               oauth_providers sidekiq).map { |name| "config/#{name}.yml" })
+  .push(*%w[newrelic analytics application database democracy_engine_credentials
+            google_map_key oauth_providers sidekiq].map { |name| "config/#{name}.yml" })
 
 set :unicorn_pid, -> { File.join(shared_path, 'tmp', 'pids', 'unicorn.pid') }
 set :unicorn_config_path, -> { File.join(shared_path, 'config', 'unicorn.rb') }
