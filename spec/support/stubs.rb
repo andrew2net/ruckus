@@ -40,5 +40,21 @@ RSpec.configure do |config|
     if example.metadata[:unstub_event_time_validation].blank?
       allow_any_instance_of(Event).to receive(:start_time_is_in_future).and_return true
     end
+
+    if (n = example.metadata[:stub_koala])
+      graph = double :graph
+      expect(graph).to receive(:get_connections)
+        .with('me', 'accounts').and_return(
+          [{
+            'access_token' => 'page_token',
+            'category' => 'Political Organization',
+            'category_list' => [{ 'id' => '123', 'name' => 'Political Organization' }],
+            'name' => 'Social test page',
+            'id' => '2091225817617702',
+            'tasks' => %w[ANALYZE ADVERTISE MODERATE CREATE_CONTENT MANAGE]
+          }]
+        ).exactly(n).times
+      expect(Koala::Facebook::API).to receive(:new).with('token').and_return(graph).exactly(n).times
+    end
   end
 end

@@ -27,7 +27,7 @@ module ProfileableController
     mixpanel_tracker.add_event :display_phone_update if value_changed?(:phone)
     mixpanel_tracker.add_event :office_update if value_changed?(:office)
 
-    mixpanel_tracker.track_event :edit_facebook if value_changed?(:facebook_on)
+    mixpanel_tracker.track_event :edit_facebook if fb_value_changed?
     mixpanel_tracker.track_event :edit_twitter if value_changed?(:twitter_on)
 
     mixpanel_tracker.track_event :notifications_settings_update if values_changed?(notification_switches)
@@ -47,6 +47,14 @@ module ProfileableController
 
   def values_changed?(attrs)
     attrs.select{ |attr| value_changed?(attr) }.any?
+  end
+
+  def fb_value_changed?
+    return false unless (fba = resource.facebook_account)
+    params[:oauth_account][:campaing_pages_attributes].reject do |_k, v|
+      return true unless (campaing_page = fba.campaing_pages.find(v[:id]))
+      v[:publishing_on] == campaing_page.publishing_on
+    end.any?
   end
 
   def notification_switches

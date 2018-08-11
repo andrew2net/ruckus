@@ -7,7 +7,12 @@ describe Profile::SocialsController do
   before { sign_in account }
 
   specify 'PATCH update' do
-    patch :update, profile: { facebook_on: true, twitter_on: true }
+    oauth_account = create :oauth_account, :facebook, profile: profile
+    cp = create :campaing_page, oauth_account: oauth_account
+    patch :update, profile: { facebook_on: true, twitter_on: true },
+                   oauth_account: {
+                    campaing_pages_attributes: { '0' => { id: cp.id, publishing_on: '1' } }
+                   }
 
     account.profile.reload.tap do |profile|
       expect(profile.facebook_on).to be_truthy
@@ -18,9 +23,13 @@ describe Profile::SocialsController do
 
   describe 'mixpanel' do
     specify 'facebook_on' do
+      oauth_account = create :oauth_account, :facebook, profile: profile
+      cp = create :campaing_page, oauth_account: oauth_account
       expect_any_instance_of(MixpanelTracker).to receive(:add_event).with(:edit_facebook)
       expect_any_instance_of(MixpanelTracker).to receive(:track)
-      patch :update, profile: { facebook_on: true }
+      patch :update, profile: { facebook_on: true }, oauth_account: {
+        campaing_pages_attributes: { '0' => { id: cp.id, publishing_on: '1' } }
+      }
     end
 
     specify 'twitter_on' do

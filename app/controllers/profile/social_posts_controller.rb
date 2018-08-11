@@ -3,6 +3,7 @@ class Profile::SocialPostsController < Profile::BaseController
   layout 'account/admin/modal'
   respond_to :html, :js
 
+  # POST /profile/social_posts
   def create
     create! do |success, failure|
       success.js do

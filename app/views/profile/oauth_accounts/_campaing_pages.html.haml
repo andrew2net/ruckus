@@ -1,0 +1,14 @@
+- if oauth_account
+  = simple_fields_for oauth_account do |fb|
+    = fb.label :campaign_pages
+    %i.icon-help-circled.tip.facebook_public_page_url.pull-right{ title: "Check pages for publishing", data: { placement: 'right' } }
+    = link_to '#', class: 'pull-right', data: { fb_pages_reload: fb.object.id } do
+      %i.fa.fa-repeat.tip{ title: 'Reload pages from Facebook', data: { placement: 'right' } }
+    - if oauth_account.campaing_pages.any?
+      = fb.simple_fields_for :campaing_pages do |cp|
+        = cp.input :publishing_on, label: cp.object.name, label_html: { class: ('active' if cp.object.publishing_on?) },
+          input_html: { data: { old_value: cp.object.publishing_on? } }
+    - else
+      %p You don't have pages in your Facebook account. Please add page and press reload button.
+
+  .loader

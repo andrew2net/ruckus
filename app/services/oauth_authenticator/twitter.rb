@@ -3,6 +3,12 @@ class OauthAuthenticator::Twitter < OauthAuthenticator::Base
     'twitter'
   end
 
+  def process
+    return unless (oauth_account = super)
+    oauth_account.activate!
+    oauth_account
+  end
+
   private
 
   def oauth_expires_at

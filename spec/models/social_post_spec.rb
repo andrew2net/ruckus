@@ -15,7 +15,7 @@ describe SocialPost do
       it 'allows to submit to Facebook' do
         allow_any_instance_of(Koala::Facebook::API)
           .to receive(:get_connection).with('me', 'permissions')
-          .and_return [{ 'permission' => 'publish_actions', 'status' => 'granted' }]
+          .and_return [{ 'permission' => 'publish_pages', 'status' => 'granted' }]
 
         expect_any_instance_of(SocialPost).to receive(:submit_to_facebook)
 
@@ -48,7 +48,7 @@ describe SocialPost do
       end
 
       it 'does not allow to submit to Facebook if lengh validation failed' do
-        expected_result = [{ 'permission' => 'publish_actions', 'status' => 'granted' }]
+        expected_result = [{ 'permission' => 'publish_pages', 'status' => 'granted' }]
         allow_any_instance_of(Koala::Facebook::API).to receive(:get_connection).and_return expected_result
         social_post.message = 'a' * 50_000
         expect_any_instance_of(SocialPost).not_to receive(:submit_to_facebook)
@@ -87,13 +87,16 @@ describe SocialPost do
                              profile: profile
       end
 
-      before { allow_any_instance_of(SocialPost).to receive(:should_post_to_facebook?).and_return true }
+      before do
+        create :campaing_page, oauth_account: facebook_account, publishing_on: true
+        allow_any_instance_of(SocialPost).to receive(:should_post_to_facebook?).and_return true
+      end
 
       it 'should send data to FB' do
         expect_any_instance_of(Koala::Facebook::API)
-          .to receive(:put_wall_post).with('hello world')
+          .to receive(:put_connections).with('me', 'feed', message: 'hello world')
           .and_return('id' => '100004757554391_286152791553304')
-        expect(social_post.reload.facebook_remote_id).to eq '100004757554391_286152791553304'
+        expect(social_post.reload.campaing_page_posts.last.remote_id).to eq '100004757554391_286152791553304'
       end
     end
 

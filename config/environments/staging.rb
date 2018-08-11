@@ -104,6 +104,7 @@ Rails.application.configure do
       enable_starttls_auto: true
   }
 
-
   ActionMailer::Base.default bcc: %w(marik@railsmuffin.com)
 end
+
+OmniAuth.config.full_host = 'https://qa1-ruck.us'

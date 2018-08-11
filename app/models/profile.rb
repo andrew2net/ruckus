@@ -99,6 +99,11 @@ class Profile < ActiveRecord::Base
     oauth_account_active?('facebook')
   end
 
+  def facebook_account_linked?
+    account = oauth_account 'facebook'
+    account.present? && (account.linked? || account.active?)
+  end
+
   def twitter_account
     oauth_account('twitter')
   end

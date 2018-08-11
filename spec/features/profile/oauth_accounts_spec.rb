@@ -41,7 +41,7 @@ describe 'Settings', :js do
       end
     end
 
-    specify 'Facebook' do
+    specify 'Facebook', stub_koala: 2 do
       allow_any_instance_of(Medium).to receive(:remote_image_url)
       expect(page).to have_no_css 'a.active', text: 'Facebook'
       expect(page).to have_css 'a', text: 'Facebook'

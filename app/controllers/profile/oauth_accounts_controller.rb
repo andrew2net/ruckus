@@ -13,9 +13,14 @@ class Profile::OauthAccountsController < Profile::BaseController
     redirect_to profile_oauth_accounts_path
   end
 
+  def fb_pages_reload
+    resource.fb_load_pages
+    render partial: 'campaing_pages', locals: { oauth_account: resource }
+  end
+
   private
 
   def permitted_params
-    params.permit(profile: [:facebook_on, :twitter_on])
+    params.permit(profile: %i[facebook_on twitter_on])
   end
 end

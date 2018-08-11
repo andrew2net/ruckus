@@ -283,7 +283,8 @@ Devise.setup do |config|
   config.omniauth :facebook,
                   facebook['client_id'],
                   facebook['client_secret'],
-                  scope: 'publish_actions'
+                  scope: %w[manage_pages publish_pages pages_show_list]
+                  # scope: 'publish_actions'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

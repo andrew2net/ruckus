@@ -95,8 +95,10 @@ Rails.application.routes.draw do
     end
 
     resources :issue_categories, only: :create
-    resources :oauth_accounts,   only: [:index, :destroy]
-    resources :social_posts, only: [:create, :new, :index, :destroy, :show]
+    resources :oauth_accounts, only: %i[index destroy] do
+      get :fb_pages_reload, on: :member
+    end
+    resources :social_posts, only: %i[create new index destroy show]
     resource  :social,       only: [:edit, :update]
     resources :subscriptions, only: [:index]
 

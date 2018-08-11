@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180529085551) do
+ActiveRecord::Schema.define(version: 20180808162318) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,29 @@ ActiveRecord::Schema.define(version: 20180529085551) do
 
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
+
+  create_table "campaing_page_posts", force: true do |t|
+    t.integer  "social_post_id",   null: false
+    t.integer  "campaing_page_id"
+    t.string   "remote_id",        null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "campaing_page_posts", ["campaing_page_id"], name: "index_campaing_page_posts_on_campaing_page_id", using: :btree
+  add_index "campaing_page_posts", ["social_post_id"], name: "index_campaing_page_posts_on_social_post_id", using: :btree
+
+  create_table "campaing_pages", force: true do |t|
+    t.string   "page_id"
+    t.string   "access_token"
+    t.string   "name"
+    t.boolean  "publishing_on",    default: false
+    t.integer  "oauth_account_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "campaing_pages", ["oauth_account_id"], name: "index_campaing_pages_on_oauth_account_id", using: :btree
 
   create_table "coupons", force: true do |t|
     t.datetime "expired_at"

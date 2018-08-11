@@ -2,6 +2,7 @@ class SocialPost < ActiveRecord::Base
   belongs_to :profile
   has_many :scores, as: :scorable
   has_many :oauth_accounts, through: :profile
+  has_many :campaing_page_posts, inverse_of: :social_post, dependent: :destroy
 
   validates :message, presence: true
   validate :provider_inclusion
@@ -68,7 +69,7 @@ class SocialPost < ActiveRecord::Base
   def facebook_post_allowed?
     posting_allowed = profile.facebook_connection
                              .get_connection('me', 'permissions')
-                             .find { |hash| hash.values.include?('publish_actions') }
+                             .find { |hash| hash.values.include?('publish_pages') }
                              .try(:[], 'status') == 'granted'
     errors[:facebook] << 'Need to allow posting at Facebook account' unless posting_allowed
 
@@ -84,11 +85,16 @@ class SocialPost < ActiveRecord::Base
   end
 
   def submit_to_facebook
-    self.facebook_remote_id = profile.facebook_connection.put_wall_post(message)['id']
+    # self.facebook_remote_id = profile.facebook_connection.put_wall_post(message)['id']
+    profile.facebook_account.campaing_pages.publishing.each do |page|
+      conn = Koala::Facebook::API.new(page.try(:access_token))
+      remote_id = conn.put_connections('me', 'feed', message: message)['id']
+      campaing_page_posts.build campaing_page: page, remote_id: remote_id
+    end
   end
 
   def remove_from_facebook
-    profile.account.facebook_connection.try :delete_object, facebook_remote_id
+    # profile.account.facebook_connection.try :delete_object, facebook_remote_id
   rescue Koala::Facebook::ClientError
     logger.info 'Post ' + facebook_remote_id + ' has been removed on Facebook page'
   end

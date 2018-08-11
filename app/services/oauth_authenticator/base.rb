@@ -4,10 +4,11 @@ class OauthAuthenticator::Base
   end
 
   def process
-    if @auth_data.present?
-      account = @profile.oauth_accounts.find_or_initialize_by(provider: provider_name)
-      account.update oauth_account_data.merge(aasm_state: 'active') if oauth_account_data_present?
-    end
+    return unless @auth_data.present?
+    account = @profile.oauth_accounts.find_or_initialize_by(provider: provider_name)
+    return unless oauth_account_data_present?
+    account.update oauth_account_data #.merge(aasm_state: 'active')
+    account
   end
 
   private

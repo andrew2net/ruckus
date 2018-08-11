@@ -43314,4 +43314,55 @@ http_interactions:
         twbcNdo2GoBWW8xpUDB5xmB1gJXxbRVG0y62o6Is/UP/2Q==
     http_version: 
   recorded_at: Sat, 20 Jun 2015 17:21:19 GMT
+- request:
+    method: get
+    uri: https://graph.facebook.com/me/accounts?access_token=token
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.2
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Strict-Transport-Security:
+      - max-age=15552000; preload
+      X-Fb-Trace-Id:
+      - CPJHG+T1CL1
+      Content-Type:
+      - application/json; charset=UTF-8
+      X-Fb-Rev:
+      - '4172657'
+      X-App-Usage:
+      - '{"call_count":0,"total_cputime":0,"total_time":0}'
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Expires:
+      - Sat, 01 Jan 2000 00:00:00 GMT
+      Www-Authenticate:
+      - OAuth "Facebook Platform" "invalid_token" "Invalid OAuth access token."
+      X-Fb-Debug:
+      - pec3VwjqRorLsoJdfbEPgqDvEc0ht1y6kpD2UIznbjtm05345J4qpCU0nfL103nFrCslJvsu9v300WzEHnY3hA==
+      Date:
+      - Fri, 03 Aug 2018 15:45:31 GMT
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '113'
+    body:
+      encoding: UTF-8
+      string: '{"error":{"message":"Invalid OAuth access token.","type":"OAuthException","code":190,"fbtrace_id":"CPJHG+T1CL1"}}'
+    http_version: 
+  recorded_at: Fri, 03 Aug 2018 15:45:31 GMT
 recorded_with: VCR 2.9.3
