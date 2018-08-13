@@ -50,7 +50,7 @@ module ProfileableController
   end
 
   def fb_value_changed?
-    return false unless (fba = resource.facebook_account)
+    return false unless (fba = resource.facebook_account) && params[:oauth_account]
     params[:oauth_account][:campaing_pages_attributes].reject do |_k, v|
       return true unless (campaing_page = fba.campaing_pages.find(v[:id]))
       v[:publishing_on] == campaing_page.publishing_on

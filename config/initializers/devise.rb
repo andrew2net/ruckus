@@ -278,6 +278,7 @@ Devise.setup do |config|
   config.omniauth :twitter,
                   twitter['client_id'],
                   twitter['client_secret'],
+                  # authorize_params: { force_login: true }
                   scope: { authorize_params: { force_login: true } }
 
   config.omniauth :facebook,

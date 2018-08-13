@@ -6,7 +6,7 @@ class Profile::SocialsController < Profile::BaseController
 
   def update
     update! do |success, failure|
-      if permitted_params[:profile].key? :facebook_on
+      if params[:oauth_account] && permitted_params[:profile].key?(:facebook_on)
         oa = resource.facebook_account
         oa.update oauth_account_params
         if oa.campaing_pages.where(publishing_on: true).any?
