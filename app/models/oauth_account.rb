@@ -44,6 +44,9 @@ class OauthAccount < ActiveRecord::Base
       end
       p['id']
     end
+  rescue
+    cp_ids = []
+  ensure
     campaing_pages.where.not(page_id: cp_ids).destroy_all
   end
 
