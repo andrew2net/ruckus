@@ -68,7 +68,7 @@ describe AccountMailer do
   end
 
   describe '#donor_donation_notification' do
-    let(:mail) { described_class.donor_donation_notification(donation) }
+    let(:mail) { described_class.donor_donation_notification(donation.id) }
 
     specify do
       expect(mail.to.first).to eq donation.donor_email

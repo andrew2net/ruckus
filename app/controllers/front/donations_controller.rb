@@ -40,7 +40,7 @@ private
   def send_notification
     if parent.donation_notifications_on? && resource.persisted?
       AccountMailer.delay.donation_notification(parent.account, resource)
-      AccountMailer.delay.donor_donation_notification(resource)
+      AccountMailer.delay.donor_donation_notification(resource.id)
     end
   end
 

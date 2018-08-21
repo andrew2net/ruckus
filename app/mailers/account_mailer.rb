@@ -12,9 +12,9 @@ class AccountMailer < BaseMailer
     mail(to: email_with_name, subject: 'New Donation Received!')
   end
 
-  def donor_donation_notification(donation)
-    @donation = donation
-    mail(to: "#{donation.donor_name} <#{donation.donor_email}>", subject: 'Your donation is processing')
+  def donor_donation_notification(donation_id)
+    @donation = Donation.find donation_id
+    mail(to: "#{@donation.donor_name} <#{@donation.donor_email}>", subject: 'Your donation is processing')
   end
 
   def profile_removal_notification(account, profile, removed)
