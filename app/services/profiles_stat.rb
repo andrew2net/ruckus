@@ -58,7 +58,12 @@ class ProfilesStat
             WHEN credit_card_holders.token IS NOT NULL OR profiles.premium_by_default THEN 'Yes'
             ELSE 'No'
           END
-        )                                       AS premium,
+        )                                       AS premium, (
+          CASE
+            WHEN profiles.suspended THEN 'Yes'
+            ELSE 'No'
+          END
+        )                                       AS suspended,
         visits.visits_count                     AS visits_count,
         coupons.id                              AS coupon_id,
         date_trunc('hour', profiles.created_at) AS created_at
@@ -92,6 +97,9 @@ class ProfilesStat
           WHERE requests.requestable_id = domains.id AND requests.requestable_type = 'Domain'
           GROUP BY profile_id
         ) visits                      ON visits.profile_id = profiles.id
+      WHERE profiles.id IN (SELECT credit_card_holders.profile_id
+        FROM credit_card_holders WHERE credit_card_holders.token IS NOT NULL AND profile_id IS NOT NULL)
+        OR profiles.premium_by_default = true
       ORDER BY accounts.id, profiles.id
     SQL
   end

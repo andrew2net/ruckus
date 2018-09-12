@@ -2,6 +2,7 @@ class CreditCard < ActiveRecord::Base
   attr_accessor :number, :cvv, :month, :year
 
   has_one :credit_card_holder
+  has_many :donations
 
   validates :number, format: /\A\d{15,16}\z/, if: :new_record?
   validates :cvv, format: /\A\d{3,4}\z/, if: :new_record?
