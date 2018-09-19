@@ -60,13 +60,19 @@ class ProfilesStat
           END
         )                                       AS premium, (
           CASE
+            WHEN  profiles.premium_by_default THEN 'Yes'
+            ELSE 'No'
+          END
+        )                                       AS premium_by_default, (
+          CASE
             WHEN profiles.suspended THEN 'Yes'
             ELSE 'No'
           END
         )                                       AS suspended,
         visits.visits_count                     AS visits_count,
         coupons.id                              AS coupon_id,
-        date_trunc('hour', profiles.created_at) AS created_at
+        date_trunc('hour', profiles.created_at) AS created_at,
+        date_trunc('hour', accounts.last_sign_in_at) AS last_visit
       FROM
         profiles
         LEFT JOIN ownerships          ON ownerships.profile_id = profiles.id
