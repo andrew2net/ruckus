@@ -46,17 +46,17 @@ describe ProfilesStat do
 
   specify '#export' do
     expect(subject.export).to eq [
-      %w(email id type name party_affiliation office city state address_1 address_2 district contact_zip donations_on
+      %w(email type name city state address_1 address_2 district contact_zip donations_on
          donations_amount donations_count events_count issues_count media_count press_count premium premium_by_default
          suspended visits_count coupon_id created_at last_visit).join(','),
       # ['email1@example.com', profile1.id, 'CandidateProfile', 'name1', 'party_affiliation1', 'office1', 'city1', 'AK',
       #  'address_11', 'address_21', 'district1', '11111', 'Yes', '10.0', '1', '', '1', '', '2', 'No', 'No', '1', 'hello123',
       #  profile1.created_at.strftime('%Y-%m-%d %H:00:00')].join(','),
-      ['email2@example.com', profile2.id, 'OrganizationProfile', 'name2', 'party_affiliation2', 'office2', 'city2',
+      ['email2@example.com', 'OrganizationProfile', 'name2', 'city2',
        'AZ', 'address_12', 'address_22', 'district2', '11112', 'No', '', '', '2', '', '1', '', 'Yes', 'No', 'No', '2', '',
        profile2.created_at.strftime('%Y-%m-%d %H:00:00'),
        profile2.account.last_sign_in_at && profile2.account.last_sign_in_at.strftime('%Y-%m-%d %H:00:00')].join(','),
-      ['email2@example.com', profile3.id, 'CandidateProfile', 'name3', 'party_affiliation3', 'office3', 'city3', 'AR',
+      ['email2@example.com', 'CandidateProfile', 'name3', 'city3', 'AR',
        'address_13', 'address_23', 'district3', '11113', 'No', '', '', '', '', '', '', 'Yes', 'Yes', 'No', '', '',
        profile3.created_at.strftime('%Y-%m-%d %H:00:00'),
        profile2.account.last_sign_in_at && profile3.account.last_sign_in_at.strftime('%Y-%m-%d %H:00:00')].join(',')

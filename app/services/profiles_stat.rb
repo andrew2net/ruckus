@@ -32,11 +32,8 @@ class ProfilesStat
     <<-SQL
       SELECT
         accounts.email                          AS email,
-        profiles.id                             AS id,
         profiles.TYPE                           AS type,
         profiles.name                           AS name,
-        profiles.party_affiliation              AS party_affiliation,
-        profiles.office                         AS office,
         profiles.city                           AS city,
         profiles.state                          AS state,
         profiles.address_1                      AS address_1,
