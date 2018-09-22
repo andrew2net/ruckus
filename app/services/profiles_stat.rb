@@ -4,22 +4,22 @@ class ProfilesStat
   def export
     CSV.generate do |csv|
       csv << data.fields
-      coupon_id_index = data.fields.index('coupon_id')
+      # coupon_id_index = data.fields.index('coupon_id')
 
-      coupon_ids = data.values.collect { |line| line[coupon_id_index] }
-      coupons_hash = {}
+      # coupon_ids = data.values.collect { |line| line[coupon_id_index] }
+      # coupons_hash = {}
 
-      Coupon.where(id: coupon_ids).each do |coupon|
-        coupons_hash[coupon.id] ||= coupon
-      end
+      # Coupon.where(id: coupon_ids).each do |coupon|
+      #   coupons_hash[coupon.id] ||= coupon
+      # end
 
       data.values.each do |line|
         new_line = line
 
-        if line[coupon_id_index].present?
-          coupon_code = coupons_hash[line[coupon_id_index].to_i].code
-          new_line[coupon_id_index] = coupon_code
-        end
+        # if line[coupon_id_index].present?
+        #   coupon_code = coupons_hash[line[coupon_id_index].to_i].code
+        #   new_line[coupon_id_index] = coupon_code
+        # end
 
         csv << new_line
       end
@@ -32,14 +32,14 @@ class ProfilesStat
     <<-SQL
       SELECT
         accounts.email                          AS email,
-        profiles.TYPE                           AS type,
-        profiles.name                           AS name,
-        profiles.city                           AS city,
-        profiles.state                          AS state,
-        profiles.address_1                      AS address_1,
-        profiles.address_2                      AS address_2,
-        profiles.district                       AS district,
-        profiles.contact_zip                    AS contact_zip, (
+        -- profiles.TYPE                           AS type,
+        -- profiles.name                           AS name,
+        -- profiles.city                           AS city,
+        -- profiles.state                          AS state,
+        -- profiles.address_1                      AS address_1,
+        -- profiles.address_2                      AS address_2,
+        -- profiles.district                       AS district,
+        /* profiles.contact_zip                    AS contact_zip, */ (
           CASE
             WHEN profiles.donations_on AND de_accounts.is_active_on_de THEN 'Yes'
             ELSE 'No'
@@ -47,10 +47,10 @@ class ProfilesStat
         )                                       AS donations_on,
         donats.donations_amount                 AS donations_amount,
         donats.donations_count                  AS donations_count,
-        events.events_count                     AS events_count,
-        issues.issues_count                     AS issues_count,
-        media.media_count                       AS media_count,
-        press.press_count                       AS press_count, (
+        --  events.events_count                     AS events_count,
+        --  issues.issues_count                     AS issues_count,
+        --  media.media_count                       AS media_count,
+        /* press.press_count                       AS press_count, */ (
           CASE
             WHEN credit_card_holders.token IS NOT NULL OR profiles.premium_by_default THEN 'Yes'
             ELSE 'No'
@@ -67,7 +67,7 @@ class ProfilesStat
           END
         )                                       AS suspended,
         visits.visits_count                     AS visits_count,
-        coupons.id                              AS coupon_id,
+        -- coupons.id                              AS coupon_id,
         date_trunc('hour', profiles.created_at) AS created_at,
         date_trunc('hour', accounts.last_sign_in_at) AS last_visit
       FROM
