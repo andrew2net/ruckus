@@ -39,9 +39,14 @@ private
 
   def send_notification
     if parent.donation_notifications_on? && resource.persisted?
+      logger.info "Sending donation id: #{resource.id} notification..."
       AccountMailer.delay.donation_notification(parent.account, resource)
+      logger.info 'Notification to recipient is sent.'
       AccountMailer.delay.donor_donation_notification(resource.id)
+      logger.info 'Notification to donor is sent.'
     end
+  rescue
+    logger.info "Sending donation id: #{resource.id} failed."
   end
 
   def permitted_params
