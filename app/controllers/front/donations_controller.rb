@@ -38,15 +38,15 @@ private
   end
 
   def send_notification
+    logger.info "Sending donation id: #{resource.id} notification..."
     if parent.donation_notifications_on? && resource.persisted?
-      logger.info "Sending donation id: #{resource.id} notification..."
-      AccountMailer.delay.donation_notification(parent.account, resource)
-      logger.info 'Notification to recipient is sent.'
-      AccountMailer.delay.donor_donation_notification(resource.id)
-      logger.info 'Notification to donor is sent.'
+      jid = AccountMailer.delay.donation_notification(parent.account, resource)
+      logger.info "Sending doanation notification to recipient is completed. Job id: #{jid}"
+      jid = AccountMailer.delay.donor_donation_notification(resource.id)
+      logger.info "Sending doanation notification to donor is completed. Job id: #{jid}"
     end
-  rescue
-    logger.info "Sending donation id: #{resource.id} failed."
+  rescue Exception => e
+    logger.info "Sending donation id: #{resource.id} failed. Error: #{e}"
   end
 
   def permitted_params
