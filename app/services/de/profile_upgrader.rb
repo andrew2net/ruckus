@@ -60,7 +60,7 @@ class De::ProfileUpgrader
   def send_mail
     profile = @credit_card_holder.profile
     emails  = profile.accounts.pluck(:email)
-    PremiumMailer.delay.profile_upgrading_notification(emails, profile, amount)
+    PremiumMailer.profile_upgrading_notification(emails, profile, amount).deliver
   end
 
   # Performs creatin donation requist.

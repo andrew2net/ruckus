@@ -24,8 +24,8 @@ describe Front::DonationsController do
         let(:donation_notifications_on) { true }
 
         specify do
-          expect{xhr :post, :create, profile_id: profile.id, donation: donation_attributes}
-          .to change{Sidekiq::Extensions::DelayedMailer.jobs.count}.by 2
+          expect{xhr :post, :create, profile_id: account.profile.id, donation: donation_attributes}
+          .to change{ActionMailer::Base.deliveries.count}.by 2
         end
 
         specify do

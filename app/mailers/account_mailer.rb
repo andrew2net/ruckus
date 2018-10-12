@@ -1,16 +1,18 @@
 class AccountMailer < BaseMailer
+  include Sidekiq::Mailer
+
   def welcome_email(account)
     @account = account
     email_with_name = "#{@account.profile.name} <#{@account.email}>"
     mail(to: email_with_name, subject: 'Your Powerful New Website is Ready!')
   end
 
-  def donation_notification(account, donation)
-    @account = account
-    @donation = donation
+  def donation_notification(account_id, donation_id)
+    @account = Account.find account_id
+    @donation = Donation.find donation_id
     email_with_name = "#{@account.profile.name} <#{@account.email}>"
     mail(to: email_with_name, subject: 'New Donation Received!')
-    logger.info "Sending donation notification to recipient #{account.email} is completed."
+    logger.info "Sending donation notification to recipient #{@account.email} is completed."
   end
 
   def donor_donation_notification(donation_id)

@@ -40,9 +40,9 @@ private
   def send_notification
     logger.info "Sending donation id: #{resource.id} notification..."
     if parent.donation_notifications_on? && resource.persisted?
-      jid = AccountMailer.delay.donation_notification(parent.account, resource)
+      jid = AccountMailer.donation_notification(parent.account.id, resource.id).deliver
       logger.info "Sending donation notification to recipient is queued. Job id: #{jid}"
-      jid = AccountMailer.delay.donor_donation_notification(resource.id)
+      jid = AccountMailer.donor_donation_notification(resource.id).deliver
       logger.info "Sending donation notification to donor is queued. Job id: #{jid}"
     end
   rescue StandardError => e

@@ -67,6 +67,7 @@ gem 'sidekiq', '>= 3'
 gem 'sidetiq'
 gem 'sidekiq-failures'
 gem 'sidekiq-status'
+gem 'sidekiq_mailer'
 gem 'sinatra', '>= 1.3.0', require: nil
 
 # card processing
