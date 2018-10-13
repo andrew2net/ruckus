@@ -8,6 +8,6 @@ class SupportMessage < ActiveRecord::Base
 
   private
   def deliver_message
-    AccountMailer.support_message(self).deliver
+    AccountMailer.support_message(self.id).deliver
   end
 end

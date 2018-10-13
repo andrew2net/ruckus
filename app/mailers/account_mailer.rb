@@ -1,8 +1,8 @@
 class AccountMailer < BaseMailer
   include Sidekiq::Mailer
 
-  def welcome_email(account)
-    @account = account
+  def welcome_email(account_id)
+    @account = Account.find account_id
     email_with_name = "#{@account.profile.name} <#{@account.email}>"
     mail(to: email_with_name, subject: 'Your Powerful New Website is Ready!')
   end
@@ -21,34 +21,35 @@ class AccountMailer < BaseMailer
     logger.info "Sending donation notification to donor #{@donation.donor_email} is completed."
   end
 
-  def profile_removal_notification(account, profile, removed)
-    @account = account
-    @profile = profile
+  def profile_removal_notification(account_id, profile_id, removed)
+    @account = Account.with_deleted.find account_id
+    @profile = Profile.find profile_id
     @account_removed = removed
     mail(to: @account.email, subject: 'Your account was disabled')
   end
 
-  def support_message(params)
-    @message = params[:message]
-    email_with_name = "#{params[:name]} <#{params[:email]}>"
-    mail(to: admin_email, from: email_with_name, subject: params[:subject]) do |format|
+  def support_message(msg_id)
+    msg = SupportMessage.find msg_id
+    @message = msg.message
+    email_with_name = "#{msg.name} <#{msg.email}>"
+    mail(to: admin_email, from: email_with_name, subject: msg.subject) do |format|
       format.html { render layout: false }
     end
   end
 
-  def subscribe_message(user, account)
-    @user = user
-    @account = account
-    mail to: account.email, from: @user.email, subject: "You have a new Subscriber at #{app_name}!"
+  def subscribe_message(user_id, account_id)
+    @user = User.find user_id
+    @account = Account.find account_id
+    mail to: @account.email, from: @user.email, subject: "You have a new Subscriber at #{app_name}!"
   end
 
-  def question_message(question)
-    @question = question
+  def question_message(question_id)
+    @question = Question.find question_id
     mail to: @question.profile.account.email, from: @question.user.email, subject: 'Question'
   end
 
-  def question_asker_notification(question)
-    @question = question
+  def question_asker_notification(question_id)
+    @question = Question.find question_id
     mail to: @question.user.email, from: "info@#{Figaro.env.domain}", subject: 'Question Successfully Submitted'
   end
 

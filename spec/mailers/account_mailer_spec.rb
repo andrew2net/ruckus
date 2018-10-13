@@ -10,19 +10,14 @@ describe AccountMailer do
     create(:donation, profile: profile, amount: '50', donor_first_name: 'Bob', donor_last_name: 'Marley')
   end
   let!(:support_message) do
-    {
-      name: 'Bob',
-      email: 'bob@gmail.com',
-      subject: 'Test Subject',
-      message: 'Test Message'
-    }
+    create :support_message, name: 'Bob', email: 'bob@gmail.com', subject: 'Test Subject', message: 'Test Message'
   end
 
   let!(:user)     { create :user, email: 'user@test.com' }
   let!(:question) { create :question, profile: profile, user: user }
 
   specify '#question_message' do
-    mail = AccountMailer.question_message(question)
+    mail = AccountMailer.question_message(question.id)
 
     expect(mail.to.first).to eq account.email
     expect(mail.subject).to eq 'Question'
@@ -30,7 +25,7 @@ describe AccountMailer do
   end
 
   specify '#question_asker_notification' do
-    mail = AccountMailer.question_asker_notification(question)
+    mail = AccountMailer.question_asker_notification(question.id)
 
     expect(mail.to.first).to eq 'user@test.com'
     expect(mail.subject).to eq 'Question Successfully Submitted'
@@ -38,7 +33,7 @@ describe AccountMailer do
   end
 
   describe 'welcome_email' do
-    let(:mail) { AccountMailer.welcome_email(account) }
+    let(:mail) { AccountMailer.welcome_email(account.id) }
 
     after do
       expect(mail.to.first).to eq account.email
@@ -56,7 +51,7 @@ describe AccountMailer do
   end
 
   specify 'donation_notification' do
-    mail = AccountMailer.donation_notification(account, donation)
+    mail = AccountMailer.donation_notification(account.id, donation.id)
 
     expect(mail.to.first).to eq account.email
     expect(mail.subject).to eq 'New Donation Received!'
@@ -81,7 +76,7 @@ describe AccountMailer do
   end
 
   specify '#support_message' do
-    AccountMailer.support_message(support_message: support_message) do |mail|
+    AccountMailer.support_message(support_message.id) do |mail|
       expect(mail).to be_present
       expect(mail.subject).to         eq 'Test Subject'
       expect(mail.to).to              eq 'contact@localhost:3000'

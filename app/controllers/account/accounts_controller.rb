@@ -21,7 +21,7 @@ class Account::AccountsController < ApplicationController
     else
       resource.ownerships.where(profile_id: parent.id).destroy_all
     end
-    AccountMailer.profile_removal_notification(resource, parent, resource.destroyed?).deliver
+    AccountMailer.profile_removal_notification(resource.id, parent.id, resource.destroyed?).deliver
   end
 
   private

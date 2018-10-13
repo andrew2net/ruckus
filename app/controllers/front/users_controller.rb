@@ -14,6 +14,6 @@ class Front::UsersController < Front::BaseAccountController
   private
 
   def send_subscribe_message
-    AccountMailer.subscribe_message(resource, parent.account).deliver if resource.errors.empty?
+    AccountMailer.subscribe_message(resource.id, parent.account.id).deliver if resource.errors.empty?
   end
 end

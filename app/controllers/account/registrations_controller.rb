@@ -26,7 +26,7 @@ class Account::RegistrationsController < Devise::RegistrationsController
       resource.update_column :profile_id, @profile.id
       Media::ProfileUpdater::DefaultBackgroundImage.new(@profile).process
 
-      AccountMailer.welcome_email(resource).deliver
+      AccountMailer.welcome_email(resource.id).deliver
       yield resource if block_given?
 
       sign_up(resource_name, resource)

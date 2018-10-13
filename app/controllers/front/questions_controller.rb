@@ -19,8 +19,8 @@ class Front::QuestionsController < Front::BaseAccountController
     if @question.add_user(user_params)
       mixpanel_tracker ||= mixpanel_tracker(parent.account)
       mixpanel_tracker.track_event :visitor_question, questioner_name: @question.user.name, questioner_email: @question.user.email, questioner_date: Date.today
-      AccountMailer.question_message(resource).deliver
-      AccountMailer.question_asker_notification(resource).deliver
+      AccountMailer.question_message(resource.id).deliver
+      AccountMailer.question_asker_notification(resource.id).deliver
     end
   end
 
