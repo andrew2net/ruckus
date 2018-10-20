@@ -7,7 +7,7 @@
         .col-xs-3
           Current card:
         .col-xs-2
-          = '...' + (resource && resource.credit_card.last_four)
+          = '...' + (resource && resource.credit_card.last_four).to_s
         .col-xs-1
           exp.
         .col-xs-3
