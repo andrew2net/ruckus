@@ -11,6 +11,6 @@
         .col-xs-1
           exp.
         .col-xs-3
-          = resource && resource.credit_card.exp_date.strftime('%m / %y')
+          = resource && resource.credit_card && resource.credit_card.exp_date && resource.credit_card.exp_date.strftime('%m / %y')
       %h2 New card
       = render 'form', update_card: true

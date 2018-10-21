@@ -22,7 +22,7 @@ class DomainNameFetcher
     domain_name.present? &&
       (domain_name == Figaro.env.domain ||
        domain_name.ends_with?(".#{Figaro.env.domain}") ||
-       %w[ngrock.io localhost.ssl].include?(domain_name))
+       %w[ngrock.io localhost.ssl localhost].include?(domain_name))
   end
 
   def domain_name

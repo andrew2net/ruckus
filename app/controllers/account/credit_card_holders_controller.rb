@@ -24,6 +24,11 @@ class Account::CreditCardHoldersController < ApplicationController
     @new_price = upgrader.amount
   end
 
+  def edit
+    build_resource unless resource
+    resource.build_credit_card unless resource.credit_card
+  end
+
   # PATCH /account/sites/:profile_id/credit_card_holder
   def update
     resource.attributes = permitted_params[:credit_card_holder]
