@@ -26,6 +26,9 @@
       %p{ style: 'margin: 0 0 20px; line-height: 1.4em;' } Email: #{@donation.donor_email}
       %p{ style: 'margin: 0 0 20px; line-height: 1.4em;' } Phone: #{@donation.donor_phone}
       %p{ style: 'margin: 0 0 20px; line-height: 1.4em;' } Address: #{@donation.donor_full_address}      
+      %p{ style: 'margin: 0 0 20px; line-height: 1.4em;' } Employer name: #{@donation.employer_name}      
+      %p{ style: 'margin: 0 0 20px; line-height: 1.4em;' } Employer ocupation: #{@donation.employer_occupation}      
+      %p{ style: 'margin: 0 0 20px; line-height: 1.4em;' } Employer address: #{@donation.employer_full_address}      
       %p{ style: 'margin: 0 0 20px; line-height: 1.4em;' } 
         To access all donation activity, you will want to login to your #{donation_engine} account at
         - "https://recipient.#{ruckus? ? 'democracyengine' : 'onlinefundraisingllc'}.com".tap do |url|

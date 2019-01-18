@@ -51,6 +51,10 @@ class Donation < ActiveRecord::Base
     [donor_address_1, donor_city, donor_zip, donor_state].join(' ')
   end
 
+  def employer_full_address
+    [employer_address, employer_city, employer_zip, employer_state].join(' ')
+  end
+
   private
 
   def fee_tier

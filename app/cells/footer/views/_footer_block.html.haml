@@ -1,7 +1,7 @@
 #footer.section.navbar.navbar-default
   #footer-nav.collapse.navbar-collapse
     %ul.list-unstyled.nav.navbar-nav
-      %li= link_to 'Home', root_url(subdomain: nil)
+      %li= link_to 'Home', root_url(subdomain: true)
       %li= link_to 'FAQ', front_faq_path
       %li= link_to 'Terms of Service/Privacy Policy', front_terms_path
       %li= link_to 'Contact Us', front_contact_us_path
@@ -15,4 +15,5 @@
       %span.icon-bar
       %span.icon-bar
       %span.icon-bar
-    = link_to "#{app_name}", root_url(subdomain: nil), class: 'navbar-brand'
+    - unless profile.premium?
+      = link_to "#{app_name}", root_url(subdomain: nil), class: 'navbar-brand'

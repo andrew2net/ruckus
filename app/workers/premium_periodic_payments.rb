@@ -5,7 +5,7 @@ class PremiumPeriodicPayments
     current_time = Time.current
 
     CreditCardHolder.joins(profile: {ownerships: :account})
-                    .where('last_payment IS NOT NULL AND last_payment < ?', current_time - 1.month)
+                    .where('last_payment IS NULL OR last_payment < ?', current_time - 1.month)
                     .select(&:valid?)
                     .each do |card_holder|
       if !De::ProfileUpgrader.new(card_holder, logger).process
