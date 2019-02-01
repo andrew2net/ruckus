@@ -271,6 +271,7 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   require 'omniauth-twitter'
+  require 'omniauth-facebook'
 
   twitter = OAUTH_PROVIDERS['twitter']
   facebook = OAUTH_PROVIDERS['facebook']
@@ -284,7 +285,8 @@ Devise.setup do |config|
   config.omniauth :facebook,
                   facebook['client_id'],
                   facebook['client_secret'],
-                  scope: %w[manage_pages publish_pages pages_show_list]
+                  scope: %w[manage_pages publish_pages],
+                  callback_url: facebook['callback_url']
                   # scope: 'publish_actions'
 
   # ==> Warden configuration
