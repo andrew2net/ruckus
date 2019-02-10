@@ -205,7 +205,7 @@ describe 'Donations' do
       page.fill_in 'donation_credit_card_attributes_number', with: donation.credit_card.number
       page.fill_in 'donation_credit_card_attributes_cvv', with: donation.credit_card.cvv
       page.select '01', from: 'donation_credit_card_attributes_month'
-      page.select '2019', from: 'donation_credit_card_attributes_year'
+      page.select '2025', from: 'donation_credit_card_attributes_year'
 
       click_button 'Donate'
       expect(page).to have_selector('.donate-amount-error', count: 1)

@@ -43,6 +43,31 @@ describe 'Settings', :js do
 
     specify 'Facebook', stub_koala: 2 do
       allow_any_instance_of(Medium).to receive(:remote_image_url)
+
+      # OmniAuth.config.test_mode = true
+      # OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new(
+      #   {
+      #     provider: 'facebook',
+      #     uid: '123545',
+      #     info: {
+      #       name: 'Joe Bloggs',
+      #       image: 'http://graph.facebook.com/1234567/picture?type=square'
+      #     },
+      #     credentials: {
+      #       token: 'ABCDEF...', # OAuth 2.0 access_token, which you may wish to store
+      #       expires: false # this will always be true
+      #     },
+      #     extra: {
+      #       raw_info: {
+      #         id: '1234567',
+      #         name: 'Joe Bloggs'
+      #       }
+      #     }
+      #   }
+      # )
+      # Rails.application.env_config["devise.mapping"] = Devise.mappings[:account] # If using Devise
+      # Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:facebook]
+
       expect(page).to have_no_css 'a.active', text: 'Facebook'
       expect(page).to have_css 'a', text: 'Facebook'
       click_on 'Build my site'
@@ -71,6 +96,8 @@ describe 'Settings', :js do
         click_on 'Facebook'
         expect(page).not_to have_css '.checkbox.active'
       end
+
+      OmniAuth.config.mock_auth[:facebook]
     end
   end
 end

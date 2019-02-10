@@ -310,7 +310,7 @@ describe 'Accounts' do
         fill_in 'First Name',  with: 'John'
         fill_in 'Last Name',   with: 'Smith'
         fill_in 'Month Exp.',  with: '01'
-        fill_in 'Year Exp.',   with: '2019'
+        fill_in 'Year Exp.',   with: '2025'
         fill_in 'CVV/CVV2',    with: '123'
         fill_in 'City',        with: 'Louisiana'
         select 'CA',           from: 'State'

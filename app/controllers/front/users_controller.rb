@@ -2,13 +2,18 @@ class Front::UsersController < Front::BaseAccountController
   inherit_resources
   belongs_to :profile
   respond_to :js
-  after_action :send_subscribe_message, only: [:create]
+  # after_action :send_subscribe_message, only: [:create]
 
   def create
-    @user = User.subscribe(params[:user][:email], parent)
-    @profile = ProfileDecorator.decorate(parent)
-    mixpanel_tracker ||= mixpanel_tracker(parent.account)
-    mixpanel_tracker.track_event :visitor_subscribe, subscriber_name: resource.name, subscriber_email: resource.email, subscribe_date: Date.today
+    if params[:user][:name].blank?
+      @user = User.subscribe(params[:user][:email], parent)
+      @profile = ProfileDecorator.decorate(parent)
+      mixpanel_tracker ||= mixpanel_tracker(parent.account)
+      mixpanel_tracker.track_event :visitor_subscribe, subscriber_name: resource.name, subscriber_email: resource.email, subscribe_date: Date.today
+      send_subscribe_message
+    else
+      @user = User.new
+    end
   end
 
   private

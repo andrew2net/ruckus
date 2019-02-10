@@ -115,7 +115,7 @@ describe 'Credit Card params' do
                                      credit_card_attributes: { number: '4111111111111111',
                                                                cvv: '123',
                                                                month: '02',
-                                                               year: '2019' }
+                                                               year: '2025' }
   end
 
   it 'should save credit card' do
@@ -123,7 +123,7 @@ describe 'Credit Card params' do
       expect(cc.number).to eq '4111111111111111'
       expect(cc.cvv).to eq '123'
       expect(cc.month).to eq '02'
-      expect(cc.year).to eq '2019'
+      expect(cc.year).to eq '2025'
     end
   end
 

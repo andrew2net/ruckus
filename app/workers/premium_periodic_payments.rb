@@ -4,7 +4,7 @@ class PremiumPeriodicPayments
   def perform
     current_time = Time.current
 
-    CreditCardHolder.joins(profile: {ownerships: :account})
+    CreditCardHolder.joins(profile: {ownerships: :account}).distinct
                     .where('last_payment IS NULL OR last_payment < ?', current_time - 1.month)
                     .select(&:valid?)
                     .each do |card_holder|

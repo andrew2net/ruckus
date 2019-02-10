@@ -11,6 +11,8 @@
                           html: { class:  'form-inline join-campaign new-subscriber-form',
                                   method: :post } do |f|
 
+    = f.input_field :name
+
     .form-group
       = f.input_field :email, type:        'email',
                               placeholder: "#{labels[:join_campaign]}",
