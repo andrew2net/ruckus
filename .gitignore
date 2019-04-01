@@ -56,3 +56,5 @@ application.yml
 
 /.byebug_history
 erd.*
+
+.vscode/
